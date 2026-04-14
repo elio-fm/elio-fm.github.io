@@ -235,45 +235,47 @@ const referenceLinks = [
           <h2 class="docs-section-title">What goes in config.toml</h2>
         </div>
 
-        <div class="docs-two-up">
-          <article class="doc-card docs-card-tight">
-            <h3>Sections</h3>
-            <ul class="docs-list">
-              {
-                configSections.map((section) => (
-                  <li>
-                    <code>{section.name}</code>
-                    <span>{section.body}</span>
-                  </li>
-                ))
-              }
-            </ul>
-          </article>
+        <article class="doc-card docs-detail-card">
+          <div class="docs-detail-grid">
+            <section class="docs-detail-block">
+              <p class="docs-block-label">Sections</p>
+              <ul class="docs-list">
+                {
+                  configSections.map((section) => (
+                    <li>
+                      <code>{section.name}</code>
+                      <span>{section.body}</span>
+                    </li>
+                  ))
+                }
+              </ul>
+            </section>
 
-          <article class="doc-card docs-card-tight">
-            <h3>Useful rules</h3>
-            <ul class="docs-list">
-              <li>
-                <span>Leave a section out to keep the built-in default behavior.</span>
-              </li>
-              <li>
-                <span>
-                  <code>grid_zoom</code> is clamped to <code>0</code>, <code>1</code>, or <code>2</code>.
-                </span>
-              </li>
-              <li>
-                <span>
-                  <code>places.entries</code> can use built-ins like <code>downloads</code> or custom paths starting with <code>~/</code>.
-                </span>
-              </li>
-              <li>
-                <span>
-                  In <code>[layout.panes]</code>, <code>places = 0</code> hides Places and <code>preview = 0</code> hides Preview, but <code>files</code> must stay above <code>0</code>.
-                </span>
-              </li>
-            </ul>
-          </article>
-        </div>
+            <section class="docs-detail-block">
+              <p class="docs-block-label">Rules</p>
+              <ul class="docs-list">
+                <li>
+                  <span>Leave a section out to keep the built-in default behavior.</span>
+                </li>
+                <li>
+                  <span>
+                    <code>grid_zoom</code> is clamped to <code>0</code>, <code>1</code>, or <code>2</code>.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <code>places.entries</code> can use built-ins like <code>downloads</code> or custom paths starting with <code>~/</code>.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    In <code>[layout.panes]</code>, <code>places = 0</code> hides Places and <code>preview = 0</code> hides Preview, but <code>files</code> must stay above <code>0</code>.
+                  </span>
+                </li>
+              </ul>
+            </section>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -284,44 +286,46 @@ const referenceLinks = [
           <h2 class="docs-section-title">What goes in theme.toml</h2>
         </div>
 
-        <div class="docs-two-up">
-          <article class="doc-card docs-card-tight">
-            <h3>Sections</h3>
-            <ul class="docs-list">
-              {
-                themeSections.map((section) => (
-                  <li>
-                    <code>{section.name}</code>
-                    <span>{section.body}</span>
-                  </li>
-                ))
-              }
-            </ul>
-          </article>
+        <article class="doc-card docs-detail-card">
+          <div class="docs-detail-grid">
+            <section class="docs-detail-block">
+              <p class="docs-block-label">Sections</p>
+              <ul class="docs-list">
+                {
+                  themeSections.map((section) => (
+                    <li>
+                      <code>{section.name}</code>
+                      <span>{section.body}</span>
+                    </li>
+                  ))
+                }
+              </ul>
+            </section>
 
-          <article class="doc-card docs-card-tight">
-            <h3>Useful rules</h3>
-            <ul class="docs-list">
-              <li>
-                <span>
-                  Exact filename and directory rules win over extension rules, and extension rules win over class defaults.
-                </span>
-              </li>
-              <li>
-                <span>Matching is case-insensitive.</span>
-              </li>
-              <li>
-                <span>Invalid theme files fall back to the built-in defaults.</span>
-              </li>
-              <li>
-                <span>Built-in classes</span>
-                <div class="docs-tag-row">
-                  {builtInClasses.map((item) => <code>{item}</code>)}
-                </div>
-              </li>
-            </ul>
-          </article>
-        </div>
+            <section class="docs-detail-block">
+              <p class="docs-block-label">Rules</p>
+              <ul class="docs-list">
+                <li>
+                  <span>
+                    Exact filename and directory rules win over extension rules, and extension rules win over class defaults.
+                  </span>
+                </li>
+                <li>
+                  <span>Matching is case-insensitive.</span>
+                </li>
+                <li>
+                  <span>Invalid theme files fall back to the built-in defaults.</span>
+                </li>
+                <li>
+                  <span>Built-in classes</span>
+                  <div class="docs-tag-row">
+                    {builtInClasses.map((item) => <code>{item}</code>)}
+                  </div>
+                </li>
+              </ul>
+            </section>
+          </div>
+        </article>
       </div>
     </section>
 
