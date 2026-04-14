@@ -4,7 +4,7 @@ import Footer from "../components/Footer.astro";
 import "../styles/global.css";
 
 const {
-  title = "Elio",
+  title = "elio",
   description = "A terminal-native file manager with a three-pane layout, rich previews, and inline images.",
 } = Astro.props;
 
@@ -40,5 +40,54 @@ const ogImage = new URL("/images/default.webp", Astro.site ?? Astro.url).toStrin
       </main>
       <Footer />
     </div>
+    <script>
+      const setCopyState = (button, state) => {
+        button.dataset.copyState = state;
+        const label = state === "copied" ? "Copied" : state === "error" ? "Copy failed" : "Copy command";
+        button.setAttribute("aria-label", label);
+        button.setAttribute("title", label);
+      };
+
+      const fallbackCopy = (text) => {
+        const textarea = document.createElement("textarea");
+        textarea.value = text;
+        textarea.setAttribute("readonly", "");
+        textarea.style.position = "absolute";
+        textarea.style.left = "-9999px";
+        document.body.appendChild(textarea);
+        textarea.select();
+        const copied = document.execCommand("copy");
+        document.body.removeChild(textarea);
+        return copied;
+      };
+
+      document.addEventListener("click", async (event) => {
+        const button = event.target.closest("[data-copy-command]");
+        if (!(button instanceof HTMLButtonElement)) return;
+
+        const block = button.closest("[data-command-block]");
+        const code = block?.querySelector("code");
+        const text = code?.textContent?.trimEnd();
+
+        if (!text) return;
+
+        let copied = false;
+
+        try {
+          if (navigator.clipboard?.writeText) {
+            await navigator.clipboard.writeText(text);
+            copied = true;
+          } else {
+            copied = fallbackCopy(text);
+          }
+        } catch {
+          copied = fallbackCopy(text);
+        }
+
+        setCopyState(button, copied ? "copied" : "error");
+        window.clearTimeout(button.__copyResetTimer);
+        button.__copyResetTimer = window.setTimeout(() => setCopyState(button, "idle"), copied ? 1600 : 2200);
+      });
+    </script>
   </body>
 </html>

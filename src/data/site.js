@@ -7,13 +7,7 @@ export const navItems = [
 
 export const installOptions = [
   {
-    name: "Homebrew",
-    icon: "homebrew",
-    command: "brew install elio-fm/elio/elio",
-    note: "macOS and Linux Homebrew users",
-  },
-  {
-    name: "Arch / AUR",
+    name: "Arch",
     icon: "archlinux",
     command: "paru -S elio",
     note: "Fastest path on Arch Linux",
@@ -23,6 +17,12 @@ export const installOptions = [
     icon: "fedora",
     command: "sudo dnf copr enable miguelregueiro/elio\nsudo dnf install elio",
     note: "Official COPR package",
+  },
+  {
+    name: "Homebrew",
+    icon: "homebrew",
+    command: "brew install elio-fm/elio/elio",
+    note: "macOS and Linux Homebrew users",
   },
   {
     name: "Cargo",
@@ -46,8 +46,8 @@ export const features = [
     body: "Supported terminals render images directly in the preview pane.",
   },
   {
-    title: "Themes that actually change the mood",
-    body: "Bundled themes and palette control keep the interface flexible.",
+    title: "Quick actions",
+    body: "Go-to, Open With, search, copy, and bulk actions stay close at hand.",
   },
 ];
 
@@ -55,16 +55,16 @@ export const themeShots = [
   {
     name: "Catppuccin Mocha",
     image: "/images/catppuccin-mocha.png",
-    alt: "Elio using the Catppuccin Mocha theme.",
+    alt: "elio using the Catppuccin Mocha theme.",
   },
   {
     name: "Tokyo Night",
     image: "/images/tokyo-night.png",
-    alt: "Elio using the Tokyo Night theme.",
+    alt: "elio using the Tokyo Night theme.",
   },
   {
     name: "Blush Light",
     image: "/images/blush-light.png",
-    alt: "Elio using the Blush Light theme.",
+    alt: "elio using the Blush Light theme.",
   },
 ];

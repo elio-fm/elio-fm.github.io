@@ -1,34 +1,34 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { features, installOptions, themeShots } from "../data/site.js";
+import { Check, Copy } from "lucide-static";
 
-const heroTitle = "A three-pane terminal file manager with rich previews and inline images";
+const heroTitle = "elio";
 const quickStartOptions = installOptions.map(({ name, command }) => ({ name, command }));
 ---
 
 <BaseLayout
-  title="Elio | Terminal File Manager"
+  title="elio | Terminal File Manager"
   description="A terminal-native file manager with a three-pane layout, rich previews, and inline images."
 >
   <section class="hero">
-    <div class="container hero">
-      <div class="hero-header">
-        <p class="eyebrow">ELIO FM</p>
-        <h1>{heroTitle}</h1>
-      </div>
-
+    <div class="container">
       <div class="hero-grid">
         <div class="hero-copy">
-        <p class="hero-text">
-          Built for fast workflows with bulk actions and customizable places.
-        </p>
+          <div class="hero-header">
+            <h1>{heroTitle}</h1>
+          </div>
 
-        <div class="hero-actions">
-          <a class="button button-primary" href="/install">Install Elio</a>
-          <a class="button button-secondary" href="https://github.com/elio-fm/elio" target="_blank" rel="noreferrer">
-            GitHub
-          </a>
-        </div>
+          <p class="hero-text">
+            A three-pane terminal file manager with rich previews, inline images, and quick actions for fast file workflows.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="/install">Install</a>
+            <a class="button button-secondary" href="https://github.com/elio-fm/elio" target="_blank" rel="noreferrer">
+              GitHub
+            </a>
+          </div>
         </div>
 
         <div class="hero-shot frame">
@@ -40,7 +40,7 @@ const quickStartOptions = installOptions.map(({ name, command }) => ({ name, com
           <div class="frame-body">
             <img
               src="/images/default.webp"
-              alt="Default Elio interface showing places, files, and preview panes."
+              alt="Default elio interface showing places, files, and preview panes."
               width="1425"
               loading="eager"
             />
@@ -53,51 +53,11 @@ const quickStartOptions = installOptions.map(({ name, command }) => ({ name, com
   <section class="section">
     <div class="container">
       <div class="section-heading">
-        <p class="eyebrow">VISUALS</p>
-        <h2>The interface tells the story.</h2>
-        <p>
-          Bundled themes show how much the interface can shift while staying readable.
-        </p>
-      </div>
-
-      <div class="visual-grid">
-        {
-          themeShots.map((shot) => (
-            <figure class="shot-card">
-              <img src={shot.image} alt={shot.alt} loading="lazy" />
-              <figcaption>{shot.name}</figcaption>
-            </figure>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section-heading">
-        <p class="eyebrow">FEATURES</p>
-        <h2>Built for fast navigation.</h2>
-      </div>
-
-      <div class="feature-grid">
-        {
-          features.map((feature) => (
-            <article class="feature-card">
-              <h3>{feature.title}</h3>
-              <p>{feature.body}</p>
-            </article>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section-heading">
         <p class="eyebrow">QUICK START</p>
-        <h2>Install in one command.</h2>
+        <h2>Install with your package manager</h2>
+        <p>
+          Pick the package manager you already use and copy the command.
+        </p>
       </div>
 
       <div class="quick-start" data-quick-start>
@@ -118,9 +78,65 @@ const quickStartOptions = installOptions.map(({ name, command }) => ({ name, com
         </div>
 
         <div class="quick-start-panel">
-          <pre><code data-quick-start-command>{quickStartOptions[0].command}</code></pre>
+          <div class="command-block" data-command-block>
+            <button
+              class="command-copy"
+              type="button"
+              data-copy-command
+              data-copy-state="idle"
+              aria-label="Copy command"
+              title="Copy command"
+            >
+              <span class="command-copy-icon" data-copy-icon="copy" aria-hidden="true" set:html={Copy}></span>
+              <span class="command-copy-icon" data-copy-icon="check" aria-hidden="true" set:html={Check}></span>
+            </button>
+            <pre><code data-quick-start-command>{quickStartOptions[0].command}</code></pre>
+          </div>
           <a class="text-link" href="/install">Open full install page</a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">FEATURES</p>
+        <h2>Built for fast navigation</h2>
+      </div>
+
+      <div class="feature-grid">
+        {
+          features.map((feature) => (
+            <article class="feature-card">
+              <h3>{feature.title}</h3>
+              <p>{feature.body}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">VISUALS</p>
+        <h2>The interface tells the story</h2>
+        <p>
+          Bundled themes show how much the interface can shift while staying readable.
+        </p>
+      </div>
+
+      <div class="visual-grid">
+        {
+          themeShots.map((shot) => (
+            <figure class="shot-card">
+              <img src={shot.image} alt={shot.alt} loading="lazy" />
+              <figcaption>{shot.name}</figcaption>
+            </figure>
+          ))
+        }
       </div>
     </div>
   </section>
@@ -130,6 +146,7 @@ const quickStartOptions = installOptions.map(({ name, command }) => ({ name, com
     if (root) {
       const tabs = Array.from(root.querySelectorAll(".quick-start-tab"));
       const command = root.querySelector("[data-quick-start-command]");
+      const copyButton = root.querySelector("[data-copy-command]");
 
       const selectTab = (activeTab) => {
         tabs.forEach((tab) => {
@@ -140,6 +157,12 @@ const quickStartOptions = installOptions.map(({ name, command }) => ({ name, com
 
         if (command) {
           command.textContent = activeTab.dataset.command ?? "";
+        }
+
+        if (copyButton) {
+          copyButton.dataset.copyState = "idle";
+          copyButton.setAttribute("aria-label", "Copy command");
+          copyButton.setAttribute("title", "Copy command");
         }
       };
 

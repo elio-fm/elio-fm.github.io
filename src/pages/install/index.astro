@@ -1,40 +1,33 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { installOptions } from "../../data/site.js";
-import { siArchlinux, siFedora, siRust } from "simple-icons";
-import { Beer } from "lucide-static";
+import { siArchlinux, siFedora, siHomebrew, siRust } from "simple-icons";
+import { Check, Copy } from "lucide-static";
+
+const formatInstallIcon = (svg) =>
+  svg
+    .replace(/<title>.*?<\/title>/, "")
+    .replace("<svg ", '<svg focusable="false" aria-hidden="true" preserveAspectRatio="xMidYMid meet" ');
 
 const installIcons = {
-  archlinux: {
-    viewBox: siArchlinux.svg.match(/viewBox="([^"]+)"/)?.[1] ?? "0 0 24 24",
-    path: siArchlinux.path,
-    transform: "translate(1.2 1.05) scale(0.89)",
-  },
-  fedora: {
-    viewBox: siFedora.svg.match(/viewBox="([^"]+)"/)?.[1] ?? "0 0 24 24",
-    path: siFedora.path,
-    transform: "translate(1.15 0.9) scale(0.88)",
-  },
-  rust: {
-    viewBox: siRust.svg.match(/viewBox="([^"]+)"/)?.[1] ?? "0 0 24 24",
-    path: siRust.path,
-    transform: "translate(1.05 1.05) scale(0.88)",
-  },
+  archlinux: formatInstallIcon(siArchlinux.svg),
+  fedora: formatInstallIcon(siFedora.svg),
+  homebrew: formatInstallIcon(siHomebrew.svg),
+  rust: formatInstallIcon(siRust.svg),
 };
 ---
 
 <BaseLayout
-  title="Install Elio"
-  description="Install Elio with Homebrew, AUR, Fedora COPR, or Cargo."
+  title="Install elio"
+  description="Install elio with Homebrew, AUR, Fedora COPR, or Cargo."
 >
   <section class="page-intro page-intro-compact">
     <div class="container">
       <div class="page-lead">
       <p class="eyebrow">INSTALL</p>
-      <h1>Install Elio.</h1>
+      <h1>Install elio</h1>
       <p>
-        Pick the package manager you already use. Elio starts in your current working directory,
-        and a Nerd Font is recommended so icons render correctly.
+        Pick the package manager you already use and run the command.
       </p>
       </div>
     </div>
@@ -49,29 +42,27 @@ const installIcons = {
               <article class="install-card">
                 <div class="install-topline">
                   <h2 class="install-title">
-                    <span class="install-icon" aria-hidden="true">
-                      {
-                        option.icon === "homebrew" ? (
-                          <span class="install-icon-mark install-icon-mark-stroke" set:html={Beer}></span>
-                        ) : (
-                          <svg
-                            class="install-icon-mark"
-                            viewBox={installIcons[option.icon].viewBox}
-                            width="18"
-                            height="18"
-                            focusable="false"
-                            fill="currentColor"
-                          >
-                            <path d={installIcons[option.icon].path} transform={installIcons[option.icon].transform}></path>
-                          </svg>
-                        )
-                      }
+                    <span class={`install-icon install-icon--${option.icon}`} aria-hidden="true">
+                      <span class="install-icon-mark" set:html={installIcons[option.icon]}></span>
                     </span>
                     <span>{option.name}</span>
                   </h2>
                   <p>{option.note}</p>
                 </div>
-                <pre><code>{option.command}</code></pre>
+                <div class="command-block" data-command-block>
+                  <button
+                    class="command-copy"
+                    type="button"
+                    data-copy-command
+                    data-copy-state="idle"
+                    aria-label="Copy command"
+                    title="Copy command"
+                  >
+                    <span class="command-copy-icon" data-copy-icon="copy" aria-hidden="true" set:html={Copy}></span>
+                    <span class="command-copy-icon" data-copy-icon="check" aria-hidden="true" set:html={Check}></span>
+                  </button>
+                  <pre><code>{option.command}</code></pre>
+                </div>
               </article>
             ))
           }
@@ -79,21 +70,33 @@ const installIcons = {
 
         <aside class="install-aside">
           <article class="doc-card">
-            <h2>Notes</h2>
-            <p>Elio starts in your current working directory.</p>
-            <p>Use a Nerd Font in your terminal so icons display correctly.</p>
+            <h2>After install</h2>
+            <p>elio starts in your current working directory.</p>
+            <p>Use a Nerd Font in your terminal so file icons render correctly.</p>
           </article>
 
           <article class="doc-card">
             <h2>From source</h2>
-            <pre><code>cargo run --release</code></pre>
+            <div class="command-block" data-command-block>
+              <button
+                class="command-copy"
+                type="button"
+                data-copy-command
+                data-copy-state="idle"
+                aria-label="Copy command"
+                title="Copy command"
+              >
+                <span class="command-copy-icon" data-copy-icon="copy" aria-hidden="true" set:html={Copy}></span>
+                <span class="command-copy-icon" data-copy-icon="check" aria-hidden="true" set:html={Check}></span>
+              </button>
+              <pre><code>cargo run --release</code></pre>
+            </div>
           </article>
 
           <article class="doc-card">
-            <h2>Need more detail?</h2>
+            <h2>Docs and README</h2>
             <p>
-              Configuration and theming live in the docs. The full project reference lives in the
-              main repository.
+              For configuration, theming, and the full project reference, use the docs and README.
             </p>
             <p><a href="/docs">Open docs</a></p>
             <p>
