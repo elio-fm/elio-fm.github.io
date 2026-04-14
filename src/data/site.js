@@ -10,7 +10,7 @@ export const installOptions = [
     name: "Arch",
     icon: "archlinux",
     command: "paru -S elio",
-    note: "Fastest path on Arch Linux",
+    note: "Install from the AUR",
   },
   {
     name: "Fedora",
@@ -22,7 +22,7 @@ export const installOptions = [
     name: "Homebrew",
     icon: "homebrew",
     command: "brew install elio-fm/elio/elio",
-    note: "macOS and Linux Homebrew users",
+    note: "Install from the Homebrew tap",
   },
   {
     name: "Cargo",

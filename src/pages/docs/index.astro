@@ -107,40 +107,40 @@ const builtInClasses = [
 const referenceLinks = [
   {
     title: "Example config",
-    body: "Annotated starting point for startup behavior, Places, layout, and keys.",
-    hint: "Best for first setup",
+    body: "Annotated config for UI, Places, layout, and keys.",
+    hint: "Setup",
     href: "https://github.com/elio-fm/elio/blob/main/examples/config.toml",
     icon: FileCode2,
     tone: "blue",
   },
   {
     title: "Default theme",
-    body: "Full built-in theme with palette keys, preview colors, file classes, and overrides.",
-    hint: "Best for theme editing",
+    body: "Built-in theme with palette, preview, classes, and overrides.",
+    hint: "Theme",
     href: "https://github.com/elio-fm/elio/blob/main/assets/themes/default/theme.toml",
     icon: Palette,
     tone: "violet",
   },
   {
     title: "Bundled themes",
-    body: "Ready-to-copy themes with screenshots, useful when you want a fast starting point.",
-    hint: "Best for inspiration",
+    body: "Copyable themes with screenshots.",
+    hint: "Inspiration",
     href: "https://github.com/elio-fm/elio/tree/main/examples/themes",
     icon: FolderOpen,
     tone: "amber",
   },
   {
     title: "Previews and tools",
-    body: "Preview coverage, image support, and the optional tools that unlock richer previews.",
-    hint: "Best for troubleshooting",
+    body: "Preview coverage, image support, and optional tools.",
+    hint: "Tools",
     href: "https://github.com/elio-fm/elio#optional-tools",
     icon: Wrench,
     tone: "mint",
   },
   {
     title: "Full README",
-    body: "The full project reference in one place: install, workflow, previews, config, and theming.",
-    hint: "Best for the complete picture",
+    body: "Install, workflow, previews, config, and theming.",
+    hint: "Overview",
     href: "https://github.com/elio-fm/elio#readme",
     icon: BookOpen,
     tone: "slate",
@@ -159,7 +159,7 @@ const referenceLinks = [
           <p class="eyebrow">DOCS</p>
           <h1>elio docs</h1>
           <p>
-            A short reference for the files you edit most, what each one controls, and where to go deeper.
+            A quick reference for the files you edit most and what each one controls.
           </p>
 
           <nav class="docs-jump" aria-label="Docs sections">
@@ -177,7 +177,7 @@ const referenceLinks = [
         <div class="docs-section-heading">
           <p class="eyebrow">FILES</p>
           <h2 class="docs-section-title">Paths</h2>
-          <p>The two main files are <code>config.toml</code> and <code>theme.toml</code>.</p>
+          <p>elio uses two config files: <code>config.toml</code> and <code>theme.toml</code></p>
         </div>
 
         <div class="docs-two-up">
@@ -221,7 +221,7 @@ const referenceLinks = [
               </tbody>
             </table>
             <p class="docs-note">
-              Theme files layer on top of the built-in defaults, so you only need to set the keys you want to change.
+              Theme files layer on top of the built-in defaults, so you only need to set the values you want to change.
             </p>
           </article>
         </div>
