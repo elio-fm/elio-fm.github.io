@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { BookOpen, ExternalLink, FileCode2, FolderOpen, Palette, Wrench } from "lucide-static";
 
 const formatPath = (path) =>
   path
@@ -106,28 +107,43 @@ const builtInClasses = [
 const referenceLinks = [
   {
     title: "Example config",
-    body: "Start from the annotated config example in the main repo.",
+    body: "Annotated starting point for startup behavior, Places, layout, and keys.",
+    hint: "Best for first setup",
     href: "https://github.com/elio-fm/elio/blob/main/examples/config.toml",
+    icon: FileCode2,
+    tone: "blue",
   },
   {
     title: "Default theme",
-    body: "See the full built-in theme and every supported key.",
+    body: "Full built-in theme with palette keys, preview colors, file classes, and overrides.",
+    hint: "Best for theme editing",
     href: "https://github.com/elio-fm/elio/blob/main/assets/themes/default/theme.toml",
+    icon: Palette,
+    tone: "violet",
   },
   {
     title: "Bundled themes",
-    body: "Browse ready-to-copy themes and screenshots.",
+    body: "Ready-to-copy themes with screenshots, useful when you want a fast starting point.",
+    hint: "Best for inspiration",
     href: "https://github.com/elio-fm/elio/tree/main/examples/themes",
+    icon: FolderOpen,
+    tone: "amber",
   },
   {
     title: "Previews and tools",
-    body: "Read about preview coverage, image support, and optional tools.",
+    body: "Preview coverage, image support, and the optional tools that unlock richer previews.",
+    hint: "Best for troubleshooting",
     href: "https://github.com/elio-fm/elio#optional-tools",
+    icon: Wrench,
+    tone: "mint",
   },
   {
     title: "Full README",
-    body: "Installation, theming, preview coverage, and the full reference.",
+    body: "The full project reference in one place: install, workflow, previews, config, and theming.",
+    hint: "Best for the complete picture",
     href: "https://github.com/elio-fm/elio#readme",
+    icon: BookOpen,
+    tone: "slate",
   },
 ];
 ---
@@ -313,8 +329,8 @@ const referenceLinks = [
       <div class="container">
         <div class="docs-section-heading">
           <p class="eyebrow">REFERENCE</p>
-          <h2 class="docs-section-title">Examples and deeper links</h2>
-          <p>Use this page as the short version, then jump into the repo for the full detail.</p>
+          <h2 class="docs-section-title">Open the full reference</h2>
+          <p>Use this page for the short version, then open the exact file or guide you need.</p>
         </div>
 
         <div class="docs-link-grid">
@@ -326,8 +342,16 @@ const referenceLinks = [
                 target={link.href.startsWith("http") ? "_blank" : undefined}
                 rel={link.href.startsWith("http") ? "noreferrer" : undefined}
               >
+                <div class="docs-link-top">
+                  <span class={`docs-link-icon docs-link-icon--${link.tone}`} aria-hidden="true" set:html={link.icon}></span>
+                  <span class="docs-link-hint">{link.hint}</span>
+                </div>
                 <h3>{link.title}</h3>
                 <p>{link.body}</p>
+                <span class="docs-link-more">
+                  Open reference
+                  <span class="docs-link-arrow" aria-hidden="true" set:html={ExternalLink}></span>
+                </span>
               </a>
             ))
           }

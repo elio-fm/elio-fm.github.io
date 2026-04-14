@@ -775,10 +775,97 @@ h2 {
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
+.docs-link-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.docs-link-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(151, 185, 236, 0.16);
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.docs-link-icon svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+}
+
+.docs-link-icon--blue {
+  color: #7ebeff;
+  border-color: rgba(126, 190, 255, 0.2);
+  background: rgba(126, 190, 255, 0.09);
+}
+
+.docs-link-icon--violet {
+  color: #b89dff;
+  border-color: rgba(184, 157, 255, 0.18);
+  background: rgba(184, 157, 255, 0.08);
+}
+
+.docs-link-icon--amber {
+  color: #f0c06f;
+  border-color: rgba(240, 192, 111, 0.2);
+  background: rgba(240, 192, 111, 0.09);
+}
+
+.docs-link-icon--mint {
+  color: #74dfc5;
+  border-color: rgba(116, 223, 197, 0.18);
+  background: rgba(116, 223, 197, 0.08);
+}
+
+.docs-link-icon--slate {
+  color: #a8bddc;
+  border-color: rgba(168, 189, 220, 0.18);
+  background: rgba(168, 189, 220, 0.08);
+}
+
+.docs-link-hint {
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
 .docs-link-card p {
   margin-top: 10px;
   color: var(--muted);
   line-height: 1.65;
+}
+
+.docs-link-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  color: var(--link-accent);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.docs-link-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.docs-link-arrow svg {
+  display: block;
+  width: 15px;
+  height: 15px;
+  stroke: currentColor;
 }
 
 .docs-link-card:hover,
@@ -788,6 +875,11 @@ h2 {
     0 34px 96px rgba(1, 4, 10, 0.58),
     0 0 0 1px rgba(111, 183, 255, 0.06),
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.docs-link-card:hover .docs-link-more,
+.docs-link-card:focus-visible .docs-link-more {
+  color: var(--accent-bright);
 }
 
 .install-page-grid {
