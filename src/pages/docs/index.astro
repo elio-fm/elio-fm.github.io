@@ -1,54 +1,338 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const formatPath = (path) =>
+  path
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll(" ", "&nbsp;")
+    .replaceAll("\\", "\\<wbr>")
+    .replaceAll("/", "/<wbr>");
+
+const configPaths = [
+  {
+    platform: "Linux / BSD",
+    primary: "~/.config/elio/config.toml",
+    secondary: "$XDG_CONFIG_HOME/elio/config.toml",
+  },
+  {
+    platform: "macOS",
+    primary: "~/Library/Application Support/elio/config.toml",
+  },
+  {
+    platform: "Windows",
+    primary: "%APPDATA%\\elio\\config.toml",
+  },
+];
+
+const themePaths = [
+  {
+    platform: "Linux / BSD",
+    primary: "~/.config/elio/theme.toml",
+    secondary: "$XDG_CONFIG_HOME/elio/theme.toml",
+  },
+  {
+    platform: "macOS",
+    primary: "~/Library/Application Support/elio/theme.toml",
+  },
+  {
+    platform: "Windows",
+    primary: "%APPDATA%\\elio\\theme.toml",
+  },
+];
+
+const configSections = [
+  {
+    name: "[ui]",
+    body: "Startup options like top bar, hidden files, grid view, and grid zoom.",
+  },
+  {
+    name: "[places]",
+    body: "Pinned sidebar entries and whether the Devices section stays visible.",
+  },
+  {
+    name: "[layout.panes]",
+    body: "Relative pane widths for Places, Files, and Preview.",
+  },
+  {
+    name: "[keys]",
+    body: "Single-character overrides for browser action keys.",
+  },
+];
+
+const themeSections = [
+  {
+    name: "[palette]",
+    body: "App-wide colors for chrome, panels, borders, text, and selection.",
+  },
+  {
+    name: "[preview.code]",
+    body: "Syntax colors for code previews.",
+  },
+  {
+    name: "[classes.<name>]",
+    body: "Default icon and color for a file class.",
+  },
+  {
+    name: "[extensions.<ext>]",
+    body: "Overrides by file extension.",
+  },
+  {
+    name: '[files."name"]',
+    body: "Overrides by exact filename.",
+  },
+  {
+    name: '[directories."name"]',
+    body: "Overrides by exact directory name.",
+  },
+];
+
+const builtInClasses = [
+  "directory",
+  "code",
+  "config",
+  "document",
+  "license",
+  "image",
+  "audio",
+  "video",
+  "archive",
+  "font",
+  "data",
+  "file",
+];
+
+const referenceLinks = [
+  {
+    title: "Example config",
+    body: "Start from the annotated config example in the main repo.",
+    href: "https://github.com/elio-fm/elio/blob/main/examples/config.toml",
+  },
+  {
+    title: "Default theme",
+    body: "See the full built-in theme and every supported key.",
+    href: "https://github.com/elio-fm/elio/blob/main/assets/themes/default/theme.toml",
+  },
+  {
+    title: "Bundled themes",
+    body: "Browse ready-to-copy themes and screenshots.",
+    href: "https://github.com/elio-fm/elio/tree/main/examples/themes",
+  },
+  {
+    title: "Previews and tools",
+    body: "Read about preview coverage, image support, and optional tools.",
+    href: "https://github.com/elio-fm/elio#optional-tools",
+  },
+  {
+    title: "Full README",
+    body: "Installation, theming, preview coverage, and the full reference.",
+    href: "https://github.com/elio-fm/elio#readme",
+  },
+];
 ---
 
 <BaseLayout
-  title="elio Docs"
-  description="Find elio configuration paths, theme locations, and links to the full reference."
+  title="elio docs"
+  description="Quick reference for elio config files, theme files, and the main project docs."
 >
-  <section class="page-intro">
-    <div class="container narrow">
-      <p class="eyebrow">DOCS</p>
-      <h1>Configure and theme elio</h1>
-      <p>
-        Find the right config paths for your platform, start from the bundled themes, and jump into
-        the main repository when you need the full reference.
-      </p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container narrow">
-      <div class="docs-block docs-grid">
-        <article class="doc-card">
-          <h2>Config paths</h2>
-          <p>Linux and BSD use <code>~/.config/elio/</code> or <code>$XDG_CONFIG_HOME/elio/</code>.</p>
-          <p>macOS uses <code>~/Library/Application Support/elio/</code>.</p>
-          <p>Windows uses <code>%APPDATA%\elio\</code>.</p>
-        </article>
-
-        <article class="doc-card">
-          <h2>Theme paths</h2>
-          <p>The theme file is named <code>theme.toml</code> in the same platform config directory.</p>
-          <p>Bundled examples live in <code>examples/themes/</code> in the main repository.</p>
-        </article>
-
-        <article class="doc-card">
-          <h2>Install and reference</h2>
-          <p>Install commands live on the install page. The full reference lives in the main repository.</p>
+  <div class="docs-page">
+    <section class="page-intro docs-intro">
+      <div class="container">
+        <div class="page-lead">
+          <p class="eyebrow">DOCS</p>
+          <h1>elio docs</h1>
           <p>
-            <a href="/install">Open install page</a>
+            A short reference for the files you edit most, what each one controls, and where to go deeper.
           </p>
-          <p>
-            <a href="https://github.com/elio-fm/elio#readme" target="_blank" rel="noreferrer">Read the README</a>
-          </p>
-          <p>
-            <a href="https://github.com/elio-fm/elio/tree/main/examples/themes" target="_blank" rel="noreferrer">
-              Browse bundled themes
-            </a>
-          </p>
-        </article>
+
+          <nav class="docs-jump" aria-label="Docs sections">
+            <a href="#paths">Paths</a>
+            <a href="#config">Config</a>
+            <a href="#theme">Theme</a>
+            <a href="#reference">Reference</a>
+          </nav>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <section class="section docs-section" id="paths">
+      <div class="container">
+        <div class="docs-section-heading">
+          <p class="eyebrow">FILES</p>
+          <h2 class="docs-section-title">Paths</h2>
+          <p>The two main files are <code>config.toml</code> and <code>theme.toml</code>.</p>
+        </div>
+
+        <div class="docs-two-up">
+          <article class="doc-card docs-card-tight">
+            <h3>Config file</h3>
+            <table class="docs-table">
+              <tbody>
+                {
+                  configPaths.map((entry) => (
+                    <tr>
+                      <th scope="row">{entry.platform}</th>
+                      <td>
+                        <code class="docs-path-code" set:html={formatPath(entry.primary)}></code>
+                        {entry.secondary && <span class="docs-secondary-path"><code class="docs-path-code" set:html={formatPath(entry.secondary)}></code></span>}
+                      </td>
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </table>
+            <p class="docs-note">
+              Use this file for startup behavior, Places, layout, and key overrides.
+            </p>
+          </article>
+
+          <article class="doc-card docs-card-tight">
+            <h3>Theme file</h3>
+            <table class="docs-table">
+              <tbody>
+                {
+                  themePaths.map((entry) => (
+                    <tr>
+                      <th scope="row">{entry.platform}</th>
+                      <td>
+                        <code class="docs-path-code" set:html={formatPath(entry.primary)}></code>
+                        {entry.secondary && <span class="docs-secondary-path"><code class="docs-path-code" set:html={formatPath(entry.secondary)}></code></span>}
+                      </td>
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </table>
+            <p class="docs-note">
+              Theme files layer on top of the built-in defaults, so you only need to set the keys you want to change.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section docs-section" id="config">
+      <div class="container">
+        <div class="docs-section-heading">
+          <p class="eyebrow">CONFIG</p>
+          <h2 class="docs-section-title">What goes in config.toml</h2>
+        </div>
+
+        <div class="docs-two-up">
+          <article class="doc-card docs-card-tight">
+            <h3>Sections</h3>
+            <ul class="docs-list">
+              {
+                configSections.map((section) => (
+                  <li>
+                    <code>{section.name}</code>
+                    <span>{section.body}</span>
+                  </li>
+                ))
+              }
+            </ul>
+          </article>
+
+          <article class="doc-card docs-card-tight">
+            <h3>Useful rules</h3>
+            <ul class="docs-list">
+              <li>
+                <span>Leave a section out to keep the built-in default behavior.</span>
+              </li>
+              <li>
+                <span>
+                  <code>grid_zoom</code> is clamped to <code>0</code>, <code>1</code>, or <code>2</code>.
+                </span>
+              </li>
+              <li>
+                <span>
+                  <code>places.entries</code> can use built-ins like <code>downloads</code> or custom paths starting with <code>~/</code>.
+                </span>
+              </li>
+              <li>
+                <span>
+                  In <code>[layout.panes]</code>, <code>places = 0</code> hides Places and <code>preview = 0</code> hides Preview, but <code>files</code> must stay above <code>0</code>.
+                </span>
+              </li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section docs-section" id="theme">
+      <div class="container">
+        <div class="docs-section-heading">
+          <p class="eyebrow">THEME</p>
+          <h2 class="docs-section-title">What goes in theme.toml</h2>
+        </div>
+
+        <div class="docs-two-up">
+          <article class="doc-card docs-card-tight">
+            <h3>Sections</h3>
+            <ul class="docs-list">
+              {
+                themeSections.map((section) => (
+                  <li>
+                    <code>{section.name}</code>
+                    <span>{section.body}</span>
+                  </li>
+                ))
+              }
+            </ul>
+          </article>
+
+          <article class="doc-card docs-card-tight">
+            <h3>Useful rules</h3>
+            <ul class="docs-list">
+              <li>
+                <span>
+                  Exact filename and directory rules win over extension rules, and extension rules win over class defaults.
+                </span>
+              </li>
+              <li>
+                <span>Matching is case-insensitive.</span>
+              </li>
+              <li>
+                <span>Invalid theme files fall back to the built-in defaults.</span>
+              </li>
+              <li>
+                <span>Built-in classes</span>
+                <div class="docs-tag-row">
+                  {builtInClasses.map((item) => <code>{item}</code>)}
+                </div>
+              </li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section docs-section" id="reference">
+      <div class="container">
+        <div class="docs-section-heading">
+          <p class="eyebrow">REFERENCE</p>
+          <h2 class="docs-section-title">Examples and deeper links</h2>
+          <p>Use this page as the short version, then jump into the repo for the full detail.</p>
+        </div>
+
+        <div class="docs-link-grid">
+          {
+            referenceLinks.map((link) => (
+              <a
+                class="docs-link-card"
+                href={link.href}
+                target={link.href.startsWith("http") ? "_blank" : undefined}
+                rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+              >
+                <h3>{link.title}</h3>
+                <p>{link.body}</p>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+  </div>
 </BaseLayout>
