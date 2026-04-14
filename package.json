@@ -1,0 +1,17 @@
+{
+  "name": "elio-fm.github.io",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.2",
+    "astro": "^5.18.1",
+    "lucide-static": "^1.8.0",
+    "simple-icons": "^16.16.0"
+  }
+}

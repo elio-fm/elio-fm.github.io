@@ -1,0 +1,54 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Elio Docs"
+  description="Find Elio configuration paths, theme locations, and links to the full reference."
+>
+  <section class="page-intro">
+    <div class="container narrow">
+      <p class="eyebrow">DOCS</p>
+      <h1>Configure and theme Elio.</h1>
+      <p>
+        Find the right config paths for your platform, start from the bundled themes, and jump into
+        the main repository when you need the full reference.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container narrow">
+      <div class="docs-block docs-grid">
+        <article class="doc-card">
+          <h2>Config paths</h2>
+          <p>Linux and BSD use <code>~/.config/elio/</code> or <code>$XDG_CONFIG_HOME/elio/</code>.</p>
+          <p>macOS uses <code>~/Library/Application Support/elio/</code>.</p>
+          <p>Windows uses <code>%APPDATA%\elio\</code>.</p>
+        </article>
+
+        <article class="doc-card">
+          <h2>Theme paths</h2>
+          <p>The theme file is named <code>theme.toml</code> in the same platform config directory.</p>
+          <p>Bundled examples live in <code>examples/themes/</code> in the main repository.</p>
+        </article>
+
+        <article class="doc-card">
+          <h2>Install and reference</h2>
+          <p>Install commands live on the install page. The full reference lives in the main repository.</p>
+          <p>
+            <a href="/install">Open install page</a>
+          </p>
+          <p>
+            <a href="https://github.com/elio-fm/elio#readme" target="_blank" rel="noreferrer">Read the README</a>
+          </p>
+          <p>
+            <a href="https://github.com/elio-fm/elio/tree/main/examples/themes" target="_blank" rel="noreferrer">
+              Browse bundled themes
+            </a>
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
