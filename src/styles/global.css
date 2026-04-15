@@ -575,28 +575,31 @@ h2 {
 
 .feature-card {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  align-items: start;
+  grid-template-columns: 46px minmax(0, 1fr);
+  grid-template-areas:
+    "icon title"
+    "copy copy";
+  align-items: center;
   gap: 12px 14px;
   text-align: left;
 }
 
+.feature-card .feature-icon {
+  grid-area: icon;
+}
+
 .feature-card p {
-  grid-column: 1 / -1;
+  grid-area: copy;
   text-align: left;
 }
 
 .feature-card h3 {
+  grid-area: title;
   margin: 0;
-  align-self: center;
-}
-
-.feature-card h3 {
-  margin-bottom: 10px;
   line-height: 1.12;
+  font-size: 1.15rem;
 }
 
-.feature-card h3,
 .install-topline h2,
 .install-topline h3,
 .doc-card h2 {
