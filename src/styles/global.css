@@ -1478,6 +1478,11 @@ h2 {
   margin-bottom: 14px;
 }
 
+.docs-path-card-top {
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
 .docs-link-icon {
   display: inline-flex;
   align-items: center;
