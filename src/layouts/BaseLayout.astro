@@ -5,10 +5,13 @@ import "../styles/global.css";
 
 const {
   title = "elio",
-  description = "A terminal-native file manager with a three-pane layout, rich previews, and inline images.",
+  description = "Elio is a terminal file manager (TUI) with a three-pane layout, rich previews, and inline image previews.",
+  structuredData = null,
 } = Astro.props;
 
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url).toString();
 const ogImage = new URL("/images/default.webp", Astro.site ?? Astro.url).toString();
+const socialImageAlt = "Elio terminal file manager interface with three panes and inline preview.";
 ---
 
 <!doctype html>
@@ -20,11 +23,19 @@ const ogImage = new URL("/images/default.webp", Astro.site ?? Astro.url).toStrin
     <meta name="color-scheme" content="dark" />
     <meta name="theme-color" content="#000000" />
     <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="Elio" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content={socialImageAlt} />
     <meta property="og:url" content={Astro.url.href} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={socialImageAlt} />
     <link rel="icon" type="image/png" href="/images/logo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -32,6 +43,7 @@ const ogImage = new URL("/images/default.webp", Astro.site ?? Astro.url).toStrin
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
+    {structuredData && <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />}
     <title>{title}</title>
   </head>
   <body>

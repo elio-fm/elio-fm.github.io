@@ -4,6 +4,9 @@ import { actionPreviews, features, installOptions, themeShots } from "../data/si
 import { Check, Command as CommandIcon, Copy, Image as ImageIcon, LayoutGrid, PanelsLeftRight, ScanEye, Trash2 } from "lucide-static";
 
 const heroTitle = "elio";
+const homeUrl = "https://elio-fm.github.io/";
+const homeDescription = "Elio is a terminal file manager (TUI) with a three-pane layout, rich previews, inline image previews, and fast file actions.";
+const heroIntro = "Terminal file manager (TUI) with a three-pane layout, rich previews, inline image previews, and keyboard-first workflows.";
 const quickStartOptions = installOptions.map(({ name, command }) => ({ name, command }));
 const featureIcons = {
   panels: PanelsLeftRight,
@@ -13,11 +16,33 @@ const featureIcons = {
   trash: Trash2,
   views: LayoutGrid,
 };
+const homeStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "Elio",
+  applicationCategory: "UtilitiesApplication",
+  operatingSystem: "Linux, macOS, BSD",
+  description: homeDescription,
+  url: homeUrl,
+  downloadUrl: `${homeUrl}install/`,
+  softwareHelp: `${homeUrl}docs/`,
+  codeRepository: "https://github.com/elio-fm/elio",
+  image: `${homeUrl}images/logo.png`,
+  screenshot: `${homeUrl}images/default.webp`,
+  featureList: [
+    "Three-pane layout",
+    "Rich previews",
+    "Inline image previews",
+    "Keyboard-first workflows",
+    "Copy, cut, and paste file actions",
+  ],
+};
 ---
 
 <BaseLayout
   title="Elio – Terminal File Manager (TUI) with Inline Image Previews"
-  description="A terminal-native file manager with a three-pane layout, rich previews, and inline images."
+  description={homeDescription}
+  structuredData={homeStructuredData}
 >
   <section class="hero">
     <div class="container">
@@ -31,7 +56,7 @@ const featureIcons = {
           </div>
 
           <p class="hero-text">
-            A three-pane terminal file manager with rich previews, inline images, and quick actions for fast file workflows.
+            {heroIntro}
           </p>
         </div>
 
@@ -102,7 +127,7 @@ const featureIcons = {
       <div class="container motion-showcase-header">
         <div class="section-heading section-heading-centered motion-showcase-heading">
           <p class="eyebrow">DEMO</p>
-          <h2>See elio in motion</h2>
+          <h2>Watch elio at work</h2>
           <p>Real workflow clips from inside elio.</p>
         </div>
       </div>
@@ -170,7 +195,7 @@ const featureIcons = {
         <p class="eyebrow">VISUALS</p>
         <h2>Bundled themes</h2>
         <p>
-          Different palettes, same readable layout.
+          Different themes, same clean layout.
         </p>
       </div>
 

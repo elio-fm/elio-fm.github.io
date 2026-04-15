@@ -807,11 +807,14 @@ h2 {
 }
 
 .feature-card:nth-child(3n + 2) .feature-icon {
-  border-color: rgba(207, 175, 112, 0.22);
-  color: var(--gold-strong);
+  border-color: rgba(188, 173, 139, 0.12);
+  color: rgba(205, 194, 166, 0.78);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.016)),
-    linear-gradient(180deg, rgba(77, 56, 27, 0.82), rgba(30, 22, 14, 0.96));
+    linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.012)),
+    linear-gradient(180deg, rgba(52, 47, 39, 0.72), rgba(20, 19, 16, 0.95));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.03),
+    0 8px 16px rgba(3, 6, 10, 0.11);
 }
 
 .feature-card:nth-child(3n) .feature-icon {
