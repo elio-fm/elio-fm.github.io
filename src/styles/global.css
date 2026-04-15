@@ -1340,14 +1340,14 @@ h2 {
   color: #f7fbff;
   border-color: transparent;
   background:
-    linear-gradient(160deg, rgba(59, 42, 23, 0.98), rgba(22, 16, 11, 0.98)) padding-box,
-    linear-gradient(135deg, rgba(247, 235, 207, 0.44), rgba(143, 191, 255, 0.4), rgba(201, 154, 96, 0.44)) border-box;
+    linear-gradient(160deg, rgba(20, 34, 62, 0.98), rgba(8, 17, 35, 0.98)) padding-box,
+    linear-gradient(135deg, rgba(200, 221, 255, 0.48), rgba(143, 191, 255, 0.46), rgba(239, 217, 169, 0.22)) border-box;
   box-shadow:
-    0 16px 30px rgba(14, 9, 5, 0.34),
+    0 16px 30px rgba(4, 10, 20, 0.34),
     inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    0 0 0 1px rgba(143, 191, 255, 0.06),
-    0 0 30px rgba(143, 191, 255, 0.1),
-    0 0 42px rgba(239, 217, 169, 0.08);
+    0 0 0 1px rgba(143, 191, 255, 0.08),
+    0 0 30px rgba(143, 191, 255, 0.16),
+    0 0 42px rgba(239, 217, 169, 0.05);
 }
 
 .quick-start-panel {
@@ -1505,7 +1505,7 @@ h2 {
 
   .container,
   .narrow {
-    width: min(100% - 20px, var(--container));
+    width: min(100% - 16px, var(--container));
   }
 
   .header-row {
@@ -1520,22 +1520,56 @@ h2 {
     gap: 8px 12px;
   }
 
+  .site-nav .site-nav-home {
+    display: none;
+  }
+
   .footer-row {
     flex-direction: column;
     align-items: center;
     text-align: center;
   }
 
+  .section {
+    padding: 32px 0;
+  }
+
   .hero {
-    padding-top: 16px;
+    padding-top: 12px;
   }
 
   .page-intro {
-    padding-top: 24px;
+    padding-top: 18px;
+  }
+
+  .hero-grid,
+  .hero-split {
+    gap: 18px;
+  }
+
+  .hero-header {
+    margin-bottom: 10px;
+  }
+
+  .hero-text {
+    font-size: 1rem;
   }
 
   .docs-section {
-    padding-top: 24px;
+    padding-top: 20px;
+  }
+
+  .section-heading {
+    margin-bottom: 20px;
+  }
+
+  .quick-start {
+    padding: 18px;
+  }
+
+  .quick-start-panel pre {
+    padding: 16px 50px 16px 16px;
+    border-radius: 14px;
   }
 
   .visual-grid {
@@ -1562,8 +1596,14 @@ h2 {
 
   .shot-card {
     flex: 0 0 min(84vw, 320px);
-    padding: 18px;
+    padding: 16px;
     scroll-snap-align: start;
+  }
+
+  .install-card .command-block pre,
+  .install-aside .command-block pre,
+  .doc-card .command-block pre {
+    padding: 12px 44px 12px 12px;
   }
 
   .shot-card img {
@@ -1593,6 +1633,10 @@ h2 {
     padding-bottom: 2px;
   }
 
+  .footer-row {
+    padding: 24px 0 34px;
+  }
+
   h1 {
     font-size: clamp(1.85rem, 7vw, 2.6rem);
   }
@@ -1601,10 +1645,6 @@ h2 {
 @media (max-width: 520px) {
   :root {
     --header-offset: 58px;
-  }
-
-  .site-nav-home {
-    display: none;
   }
 
   .header-row {
@@ -1627,6 +1667,28 @@ h2 {
   .install-topline {
     gap: 8px 12px;
   }
+
+  .feature-card,
+  .install-card,
+  .doc-card {
+    padding: 12px;
+  }
+
+  .quick-start-tabs {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+    justify-content: stretch;
+  }
+
+  .quick-start-tab {
+    min-width: 0;
+    min-height: 38px;
+    width: 100%;
+    padding: 0 8px;
+    font-size: 0.82rem;
+    text-align: center;
+  }
 }
 
 @media (max-width: 430px) {
@@ -1642,15 +1704,17 @@ h2 {
     gap: 6px 8px;
   }
 
-  .quick-start-tabs {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    justify-content: stretch;
+  .hero-lockup {
+    gap: 6px;
+  }
+
+  .hero-mark {
+    width: 40px;
   }
 
   .quick-start-tab {
-    width: 100%;
-    text-align: center;
+    padding: 0 6px;
+    font-size: 0.78rem;
   }
 
   .install-card .command-block pre,
