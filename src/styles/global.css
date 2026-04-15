@@ -1422,9 +1422,18 @@ h2 {
   .hero-split,
   .install-page-grid,
   .docs-grid,
-  .feature-grid,
-  .visual-grid {
+  .feature-grid {
     grid-template-columns: 1fr;
+  }
+
+  .visual-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .visual-grid > :last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    inline-size: calc((100% - 18px) / 2);
   }
 
   .docs-two-up,
@@ -1515,8 +1524,36 @@ h2 {
     padding-top: 24px;
   }
 
+  .visual-grid {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    padding: 8px 2px 12px;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 2px;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .visual-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .visual-grid > :last-child:nth-child(odd) {
+    grid-column: auto;
+    justify-self: auto;
+    inline-size: auto;
+  }
+
   .shot-card {
+    flex: 0 0 min(84vw, 320px);
     padding: 18px;
+    scroll-snap-align: start;
+  }
+
+  .shot-card img {
+    width: 100%;
   }
 
   .command-copy {
