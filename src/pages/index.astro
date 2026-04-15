@@ -227,6 +227,10 @@ const featureIcons = {
           }
 
           if (event.shiftKey) {
+            if (motionTrack.scrollWidth <= motionTrack.clientWidth + 1) {
+              return;
+            }
+
             event.preventDefault();
             motionTrack.scrollBy({
               left: (Math.abs(event.deltaX) > 0 ? event.deltaX : event.deltaY) * 1.35,

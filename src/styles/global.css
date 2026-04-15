@@ -550,31 +550,18 @@ h2 {
 
 .motion-carousel-shell {
   position: relative;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-  overflow: hidden;
+  width: min(1420px, calc(100% - 40px));
+  margin: 0 auto;
 }
 
 .motion-carousel-track {
-  display: flex;
-  gap: clamp(16px, 2vw, 28px);
-  overflow-x: auto;
-  padding:
-    4px max(16px, calc((100vw - var(--container)) / 2))
-    22px;
-  margin-bottom: -22px;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  -webkit-overflow-scrolling: touch;
-}
-
-.motion-carousel-track::-webkit-scrollbar {
-  display: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  align-items: start;
 }
 
 .motion-demo {
-  flex: 0 0 clamp(560px, 68vw, 920px);
   margin: 0;
   border-color: rgba(159, 192, 255, 0.1);
   background: linear-gradient(180deg, rgba(20, 26, 36, 0.985), rgba(13, 17, 23, 0.995));
@@ -1911,16 +1898,33 @@ h2 {
     gap: 14px;
   }
 
+  .motion-carousel-shell {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    overflow: hidden;
+  }
+
   .motion-carousel-track {
+    display: flex;
+    grid-template-columns: none;
     gap: 12px;
+    overflow-x: auto;
     padding:
       4px 16px
       18px;
     margin-bottom: -18px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .motion-carousel-track::-webkit-scrollbar {
+    display: none;
   }
 
   .motion-demo {
-    flex-basis: calc(100vw - 32px);
+    flex: 0 0 calc(100vw - 32px);
   }
 
   .motion-demo-body {
@@ -1937,7 +1941,8 @@ h2 {
 
   .motion-demo-caption h3 {
     max-width: none;
-    font-size: clamp(1.2rem, 5.6vw, 1.55rem);
+    font-size: clamp(1.02rem, 4.2vw, 1.26rem);
+    line-height: 1.16;
   }
 
   .hero {
