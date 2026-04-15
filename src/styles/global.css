@@ -1,11 +1,11 @@
 :root {
   color-scheme: dark;
-  --root-bg: linear-gradient(180deg, #010204 0%, #03060d 24%, #05101a 48%, #02060d 78%, #000102 100%);
-  --bg: #02050a;
-  --bg-soft: #07101b;
+  --root-bg: linear-gradient(180deg, #000000 0%, #010205 24%, #03101a 48%, #01060d 78%, #000000 100%);
+  --bg: #010103;
+  --bg-soft: #050c15;
   --bg-elevated: #0d1726;
-  --bg-deep: #010205;
-  --bg-void: #000102;
+  --bg-deep: #000102;
+  --bg-void: #000000;
   --gold: #f0d79c;
   --gold-strong: #f6e5bc;
   --gold-deep: #cb9558;
@@ -13,15 +13,15 @@
   --cool-strong: #d6e3ff;
   --cool-deep: #355d9f;
   --panel:
-    radial-gradient(circle at 18% 0%, rgba(125, 168, 255, 0.14), transparent 34%),
-    radial-gradient(circle at 100% 10%, rgba(240, 215, 156, 0.07), transparent 24%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.058), rgba(255, 255, 255, 0.016) 34%, rgba(255, 255, 255, 0)),
-    linear-gradient(180deg, rgba(10, 17, 31, 0.965), rgba(2, 7, 14, 0.988));
+    radial-gradient(circle at 18% 0%, rgba(125, 168, 255, 0.08), transparent 36%),
+    radial-gradient(circle at 100% 10%, rgba(240, 215, 156, 0.03), transparent 26%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.014) 34%, rgba(255, 255, 255, 0)),
+    linear-gradient(180deg, rgba(8, 14, 25, 0.972), rgba(2, 6, 12, 0.99));
   --panel-strong:
-    radial-gradient(circle at 88% 0%, rgba(125, 168, 255, 0.18), transparent 30%),
-    radial-gradient(circle at 14% 100%, rgba(240, 215, 156, 0.09), transparent 26%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.066), rgba(255, 255, 255, 0.018) 34%, rgba(255, 255, 255, 0)),
-    linear-gradient(180deg, rgba(10, 18, 33, 0.984), rgba(2, 6, 12, 0.996));
+    radial-gradient(circle at 88% 0%, rgba(125, 168, 255, 0.1), transparent 32%),
+    radial-gradient(circle at 14% 100%, rgba(240, 215, 156, 0.04), transparent 28%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.056), rgba(255, 255, 255, 0.016) 34%, rgba(255, 255, 255, 0)),
+    linear-gradient(180deg, rgba(8, 15, 28, 0.986), rgba(2, 5, 10, 0.996));
   --panel-inset:
     linear-gradient(180deg, rgba(255, 255, 255, 0.038), rgba(255, 255, 255, 0.01)),
     linear-gradient(180deg, rgba(4, 10, 20, 0.965), rgba(1, 4, 10, 0.987));
@@ -59,7 +59,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: var(--header-offset);
-  background-color: #010204;
+  background-color: #000000;
   background: var(--root-bg);
 }
 
@@ -67,7 +67,7 @@ body {
   margin: 0;
   min-width: 320px;
   color: var(--text);
-  background-color: #010204;
+  background-color: #000000;
   background: var(--root-bg);
   font-family: "Space Grotesk", sans-serif;
   text-rendering: optimizeLegibility;
@@ -120,11 +120,11 @@ pre {
   z-index: -2;
   pointer-events: none;
   background:
-    radial-gradient(circle at 18% 10%, rgba(125, 168, 255, 0.2), transparent 24%),
-    radial-gradient(circle at 84% 10%, rgba(14, 39, 82, 0.46), transparent 24%),
-    radial-gradient(circle at 50% 34%, rgba(4, 10, 18, 0.48), transparent 36%),
-    radial-gradient(circle at 78% 104%, rgba(240, 215, 156, 0.1), transparent 24%),
-    radial-gradient(circle at 24% 90%, rgba(53, 93, 159, 0.18), transparent 26%),
+    radial-gradient(circle at 18% 10%, rgba(125, 168, 255, 0.15), transparent 22%),
+    radial-gradient(circle at 84% 10%, rgba(9, 23, 48, 0.38), transparent 23%),
+    radial-gradient(circle at 50% 34%, rgba(2, 6, 12, 0.56), transparent 34%),
+    radial-gradient(circle at 78% 104%, rgba(240, 215, 156, 0.06), transparent 22%),
+    radial-gradient(circle at 24% 90%, rgba(53, 93, 159, 0.12), transparent 24%),
     var(--root-bg);
 }
 
@@ -134,11 +134,11 @@ pre {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: 0.1;
+  opacity: 0.07;
   background-image:
-    radial-gradient(circle at center, rgba(255, 255, 255, 0.045), transparent 68%),
-    linear-gradient(rgba(125, 168, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(125, 168, 255, 0.034) 1px, transparent 1px);
+    radial-gradient(circle at center, rgba(255, 255, 255, 0.03), transparent 68%),
+    linear-gradient(rgba(125, 168, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(125, 168, 255, 0.026) 1px, transparent 1px);
   background-size:
     auto,
     128px 128px,
@@ -423,7 +423,7 @@ h2 {
   background: var(--panel-strong);
   box-shadow:
     var(--shadow-strong),
-    0 0 0 1px rgba(125, 168, 255, 0.05),
+    0 0 0 1px rgba(125, 168, 255, 0.03),
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
     inset 0 -20px 36px rgba(0, 0, 0, 0.18);
 }
@@ -552,7 +552,7 @@ h2 {
   background: var(--panel);
   box-shadow:
     var(--shadow),
-    0 0 0 1px rgba(125, 168, 255, 0.05),
+    0 0 0 1px rgba(125, 168, 255, 0.03),
     inset 0 1px 0 rgba(255, 255, 255, 0.05),
     inset 0 -18px 28px rgba(0, 0, 0, 0.22);
   transition:
@@ -590,7 +590,7 @@ h2 {
   background: var(--panel);
   box-shadow:
     var(--shadow),
-    0 0 0 1px rgba(125, 168, 255, 0.05),
+    0 0 0 1px rgba(125, 168, 255, 0.03),
     inset 0 1px 0 rgba(255, 255, 255, 0.05),
     inset 0 -18px 28px rgba(0, 0, 0, 0.22);
   min-width: 0;
@@ -1248,7 +1248,7 @@ h2 {
   background: var(--panel);
   box-shadow:
     var(--shadow),
-    0 0 0 1px rgba(125, 168, 255, 0.05),
+    0 0 0 1px rgba(125, 168, 255, 0.03),
     inset 0 1px 0 rgba(255, 255, 255, 0.05),
     inset 0 -18px 28px rgba(0, 0, 0, 0.22);
   transition:
@@ -1434,13 +1434,13 @@ h2 {
   border: 1px solid rgba(151, 185, 236, 0.2);
   border-radius: var(--radius-xl);
   background:
-    radial-gradient(circle at 90% 0%, rgba(125, 168, 255, 0.18), transparent 30%),
-    radial-gradient(circle at 8% 100%, rgba(240, 215, 156, 0.08), transparent 24%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.015)),
-    linear-gradient(180deg, rgba(9, 17, 31, 0.985), rgba(3, 8, 14, 0.996));
+    radial-gradient(circle at 90% 0%, rgba(125, 168, 255, 0.1), transparent 32%),
+    radial-gradient(circle at 8% 100%, rgba(240, 215, 156, 0.03), transparent 24%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.014)),
+    linear-gradient(180deg, rgba(8, 15, 28, 0.986), rgba(2, 6, 11, 0.996));
   box-shadow:
     var(--shadow-strong),
-    0 0 0 1px rgba(125, 168, 255, 0.06),
+    0 0 0 1px rgba(125, 168, 255, 0.04),
     inset 0 1px 0 rgba(255, 255, 255, 0.06),
     inset 0 -22px 38px rgba(0, 0, 0, 0.22);
 }
