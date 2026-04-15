@@ -900,15 +900,15 @@ h2 {
   width: 32px;
   height: 32px;
   line-height: 0;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(159, 192, 255, 0.14);
   border-radius: 11px;
   color: var(--icon-accent);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.016)),
-    rgba(18, 22, 30, 0.8);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.014)),
+    linear-gradient(180deg, rgba(31, 40, 54, 0.84), rgba(14, 20, 29, 0.96));
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.04),
-    0 8px 18px rgba(2, 7, 16, 0.16);
+    0 8px 18px rgba(2, 7, 16, 0.14);
   flex: 0 0 auto;
 }
 
@@ -941,27 +941,27 @@ h2 {
 }
 
 .install-icon--archlinux {
-  color: #4cb4ef;
-  border-color: rgba(76, 180, 239, 0.22);
+  color: rgba(145, 206, 234, 0.92);
+  border-color: rgba(107, 178, 214, 0.18);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02)),
-    rgba(76, 180, 239, 0.09);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.014)),
+    linear-gradient(180deg, rgba(29, 53, 69, 0.84), rgba(14, 24, 34, 0.96));
 }
 
 .install-icon--fedora {
-  color: #6dbcf2;
-  border-color: rgba(109, 188, 242, 0.22);
+  color: rgba(156, 190, 239, 0.9);
+  border-color: rgba(102, 139, 214, 0.18);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02)),
-    rgba(109, 188, 242, 0.09);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.014)),
+    linear-gradient(180deg, rgba(32, 43, 71, 0.84), rgba(14, 20, 34, 0.96));
 }
 
 .install-icon--homebrew {
-  color: #f2c56b;
-  border-color: rgba(242, 197, 107, 0.24);
+  color: rgba(214, 194, 152, 0.84);
+  border-color: rgba(187, 168, 131, 0.15);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02)),
-    rgba(242, 197, 107, 0.1);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.012)),
+    linear-gradient(180deg, rgba(53, 45, 33, 0.82), rgba(21, 18, 14, 0.96));
 }
 
 .install-icon--homebrew .install-icon-mark,
@@ -971,11 +971,11 @@ h2 {
 }
 
 .install-icon--rust {
-  color: #d99557;
-  border-color: rgba(217, 149, 87, 0.22);
+  color: rgba(210, 175, 144, 0.84);
+  border-color: rgba(181, 136, 103, 0.16);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02)),
-    rgba(217, 149, 87, 0.09);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.012)),
+    linear-gradient(180deg, rgba(57, 41, 31, 0.82), rgba(24, 18, 14, 0.96));
 }
 
 .install-list,
