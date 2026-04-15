@@ -13,18 +13,24 @@
   --cool-strong: #e0ebff;
   --cool-deep: #304b79;
   --panel:
-    radial-gradient(circle at 0% 0%, rgba(130, 168, 232, 0.12), transparent 30%),
-    radial-gradient(circle at 100% 100%, rgba(207, 175, 112, 0.05), transparent 34%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.012) 34%, rgba(255, 255, 255, 0)),
-    linear-gradient(180deg, rgba(18, 24, 36, 0.97), rgba(9, 12, 18, 0.992));
+    radial-gradient(circle at 0% 0%, rgba(130, 168, 232, 0.1), transparent 30%),
+    radial-gradient(circle at 100% 100%, rgba(207, 175, 112, 0.04), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.048), rgba(255, 255, 255, 0.012) 34%, rgba(255, 255, 255, 0)),
+    linear-gradient(180deg, rgba(23, 30, 44, 0.978), rgba(12, 16, 23, 0.994));
   --panel-strong:
-    radial-gradient(circle at 100% 0%, rgba(130, 168, 232, 0.14), transparent 32%),
-    radial-gradient(circle at 0% 100%, rgba(207, 175, 112, 0.06), transparent 30%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.014) 34%, rgba(255, 255, 255, 0)),
-    linear-gradient(180deg, rgba(21, 29, 44, 0.978), rgba(8, 12, 18, 0.996));
+    radial-gradient(circle at 100% 0%, rgba(130, 168, 232, 0.12), transparent 32%),
+    radial-gradient(circle at 0% 100%, rgba(207, 175, 112, 0.05), transparent 30%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.052), rgba(255, 255, 255, 0.014) 34%, rgba(255, 255, 255, 0)),
+    linear-gradient(180deg, rgba(25, 34, 50, 0.982), rgba(13, 17, 24, 0.996));
   --panel-inset:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.038), rgba(255, 255, 255, 0.008)),
-    linear-gradient(180deg, rgba(10, 15, 24, 0.955), rgba(5, 8, 13, 0.986));
+    linear-gradient(180deg, rgba(255, 255, 255, 0.028), rgba(255, 255, 255, 0.008)),
+    linear-gradient(180deg, rgba(21, 28, 41, 0.92), rgba(15, 20, 29, 0.95));
+  --command-surface:
+    linear-gradient(180deg, rgba(23, 29, 40, 0.97), rgba(23, 29, 40, 0.97)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.022), rgba(255, 255, 255, 0.006));
+  --inline-code-surface:
+    linear-gradient(180deg, rgba(26, 33, 46, 0.94), rgba(26, 33, 46, 0.94)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.018), rgba(255, 255, 255, 0.006));
   --line-soft: rgba(160, 186, 234, 0.14);
   --line: rgba(160, 186, 234, 0.2);
   --line-strong: rgba(212, 224, 247, 0.3);
@@ -602,9 +608,9 @@ h2 {
   inset: 0;
   pointer-events: none;
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.03), transparent 28%, transparent 74%, rgba(130, 168, 232, 0.045)),
-    radial-gradient(circle at top right, rgba(130, 168, 232, 0.08), transparent 34%),
-    radial-gradient(circle at bottom left, rgba(207, 175, 112, 0.04), transparent 28%);
+    linear-gradient(135deg, rgba(255, 255, 255, 0.02), transparent 30%, transparent 74%, rgba(130, 168, 232, 0.028)),
+    radial-gradient(circle at top right, rgba(130, 168, 232, 0.05), transparent 34%),
+    radial-gradient(circle at bottom left, rgba(207, 175, 112, 0.025), transparent 28%);
 }
 
 .feature-card::after,
@@ -620,7 +626,7 @@ h2 {
   width: 44%;
   height: 1px;
   pointer-events: none;
-  background: linear-gradient(90deg, rgba(130, 168, 232, 0.34), rgba(207, 175, 112, 0.2), transparent);
+  background: linear-gradient(90deg, rgba(130, 168, 232, 0.22), rgba(207, 175, 112, 0.12), transparent);
 }
 
 .feature-icon {
@@ -839,15 +845,15 @@ h2 {
   width: 30px;
   height: 30px;
   padding: 0;
-  border: 1px solid rgba(159, 192, 255, 0.16);
+  border: 1px solid rgba(159, 192, 255, 0.12);
   border-radius: 999px;
   color: var(--muted);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.015)),
-    rgba(13, 17, 24, 0.82);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.012)),
+    rgba(18, 24, 35, 0.72);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.04),
-    0 10px 22px rgba(0, 0, 0, 0.14);
+    inset 0 1px 0 rgba(255, 255, 255, 0.03),
+    0 4px 12px rgba(0, 0, 0, 0.08);
   cursor: pointer;
   transition:
     color 180ms ease,
@@ -860,13 +866,13 @@ h2 {
 .command-copy:hover,
 .command-copy:focus-visible {
   color: var(--text);
-  border-color: rgba(159, 192, 255, 0.24);
+  border-color: rgba(159, 192, 255, 0.18);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.02)),
-    rgba(18, 24, 36, 0.88);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.016)),
+    rgba(21, 28, 41, 0.82);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.05),
-    0 12px 26px rgba(0, 0, 0, 0.18);
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 6px 16px rgba(0, 0, 0, 0.1);
   transform: translateY(-1px);
 }
 
@@ -917,16 +923,16 @@ h2 {
 }
 
 .command-block pre {
-  border: 1px solid rgba(160, 186, 234, 0.16);
-  background: var(--panel-inset);
+  border: 1px solid rgba(160, 186, 234, 0.12);
+  background: var(--command-surface);
   overflow-x: auto;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.03),
-    inset 0 -18px 26px rgba(0, 0, 0, 0.18),
-    0 12px 26px rgba(0, 0, 0, 0.18);
+    inset 0 1px 0 rgba(255, 255, 255, 0.022),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.008),
+    0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
 .install-card .command-block {
@@ -1120,12 +1126,13 @@ h2 {
 .docs-list code,
 .docs-tag-row code {
   color: #e9f1ff;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.016)),
-    rgba(12, 17, 26, 0.56);
-  border: 1px solid rgba(160, 186, 234, 0.14);
+  background: var(--inline-code-surface);
+  border: 1px solid rgba(160, 186, 234, 0.12);
   border-radius: 8px;
   padding: 0.16rem 0.42rem;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.018),
+    0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .docs-preview-grid {
@@ -1436,7 +1443,7 @@ h2 {
 
 .command-block code {
   display: block;
-  color: #edf4ff;
+  color: #e6eefc;
   width: max-content;
   min-width: 100%;
   white-space: pre;
