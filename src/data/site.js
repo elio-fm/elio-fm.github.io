@@ -53,6 +53,16 @@ export const features = [
     title: "Quick actions",
     body: "Go-to, Open With, search, copy, and bulk actions stay close at hand.",
   },
+  {
+    icon: "trash",
+    title: "Trash management",
+    body: "Trash, restore, or permanently delete files on Linux, macOS, and BSD.",
+  },
+  {
+    icon: "views",
+    title: "Grid and list views",
+    body: "Switch between list and grid views, then zoom the grid when you want more density.",
+  },
 ];
 
 export const themeShots = [
