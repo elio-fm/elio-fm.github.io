@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { features, installOptions, themeShots } from "../data/site.js";
+import { actionPreviews, features, installOptions, themeShots } from "../data/site.js";
 import { Check, Command as CommandIcon, Copy, Image as ImageIcon, LayoutGrid, PanelsLeftRight, ScanEye, Trash2 } from "lucide-static";
 
 const heroTitle = "elio";
@@ -97,6 +97,52 @@ const featureIcons = {
     </div>
   </section>
 
+  <section class="section motion-showcase">
+    <div class="motion-showcase-shell">
+      <div class="container motion-showcase-header">
+        <div class="section-heading section-heading-centered motion-showcase-heading">
+          <p class="eyebrow">DEMO</p>
+          <h2>See elio in motion.</h2>
+          <p>Real workflow clips from inside elio.</p>
+        </div>
+      </div>
+
+      <div class="motion-carousel-shell">
+        <div class="motion-carousel-track" data-motion-track aria-label="elio workflow demos">
+          {
+            actionPreviews.map((preview) => (
+              <figure class="motion-demo frame">
+                <div class="frame-bar">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+
+                <div class="motion-demo-body">
+                  <video
+                    class="motion-demo-video"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    preload="metadata"
+                    aria-label={`${preview.label} workflow demo in elio`}
+                  >
+                    <source src={preview.video} type="video/webm" />
+                  </video>
+                </div>
+
+                <figcaption class="motion-demo-caption">
+                  <h3>{preview.title}</h3>
+                </figcaption>
+              </figure>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section">
     <div class="container">
       <div class="section-heading section-heading-centered">
@@ -169,6 +215,28 @@ const featureIcons = {
       tabs.forEach((tab) => {
         tab.addEventListener("click", () => selectTab(tab));
       });
+    }
+
+    const motionTrack = document.querySelector("[data-motion-track]");
+    if (motionTrack instanceof HTMLElement) {
+      motionTrack.addEventListener(
+        "wheel",
+        (event) => {
+          if (event.ctrlKey) {
+            return;
+          }
+
+          if (event.shiftKey) {
+            event.preventDefault();
+            motionTrack.scrollBy({
+              left: (Math.abs(event.deltaX) > 0 ? event.deltaX : event.deltaY) * 1.35,
+              behavior: "auto",
+            });
+            return;
+          }
+        },
+        { passive: false },
+      );
     }
   </script>
 </BaseLayout>

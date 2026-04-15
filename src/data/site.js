@@ -82,3 +82,43 @@ export const themeShots = [
     alt: "elio using the Blush Light theme.",
   },
 ];
+
+export const actionPreviews = [
+  {
+    id: "bulk-add",
+    eyebrow: "Bulk add",
+    label: "Bulk add",
+    title: "Create files in bulk.",
+    body: "A short real workflow capture from inside elio.",
+    video: "/videos/bulk-add.webm",
+    note: "",
+    chips: ["Keyboard-first", "Batch workflow", "Preview stays visible"],
+    highlights: [
+      "Build up a selection quickly without modal hopping.",
+      "Keep spatial context while you decide what to do next.",
+      "Stay inside the same keyboard loop from selection to action.",
+    ],
+  },
+  {
+    id: "previews",
+    eyebrow: "Previews",
+    label: "Previews",
+    title: "Preview almost any file.",
+    body: "A short real workflow capture from inside elio.",
+    video: "/videos/previews.webm",
+    note: "",
+    chips: ["Inline preview", "Fast browsing", "Single flow"],
+    highlights: [],
+  },
+  {
+    id: "copy-cut-paste",
+    eyebrow: "Copy / cut / paste",
+    label: "Copy / cut / paste",
+    title: "Copy, cut, and paste files.",
+    body: "A short real workflow capture from inside elio.",
+    video: "/videos/copy-cut-paste.webm",
+    note: "",
+    chips: ["Move files", "Keyboard-first", "Fast operations"],
+    highlights: [],
+  },
+];
