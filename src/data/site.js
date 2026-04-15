@@ -34,18 +34,22 @@ export const installOptions = [
 
 export const features = [
   {
-    title: "Three panes, less friction",
+    icon: "panels",
+    title: "Three panes",
     body: "Places, files, and preview stay visible together. No modal hopping.",
   },
   {
+    icon: "preview",
     title: "Rich previews",
     body: "Text, code, documents, archives, and media stay inline.",
   },
   {
+    icon: "image",
     title: "Inline images",
     body: "Supported terminals render images directly in the preview pane.",
   },
   {
+    icon: "actions",
     title: "Quick actions",
     body: "Go-to, Open With, search, copy, and bulk actions stay close at hand.",
   },

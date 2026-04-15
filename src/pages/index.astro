@@ -1,10 +1,16 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { features, installOptions, themeShots } from "../data/site.js";
-import { Check, Copy } from "lucide-static";
+import { Check, Command as CommandIcon, Copy, Image as ImageIcon, PanelsLeftRight, ScanEye } from "lucide-static";
 
 const heroTitle = "elio";
 const quickStartOptions = installOptions.map(({ name, command }) => ({ name, command }));
+const featureIcons = {
+  panels: PanelsLeftRight,
+  preview: ScanEye,
+  image: ImageIcon,
+  actions: CommandIcon,
+};
 ---
 
 <BaseLayout
@@ -101,6 +107,7 @@ const quickStartOptions = installOptions.map(({ name, command }) => ({ name, com
         {
           features.map((feature) => (
             <article class="feature-card">
+              <span class="feature-icon" aria-hidden="true" set:html={featureIcons[feature.icon]}></span>
               <h3>{feature.title}</h3>
               <p>{feature.body}</p>
             </article>
