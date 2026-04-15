@@ -111,7 +111,7 @@ const featureIcons = {
         <div class="motion-carousel-track" data-motion-track aria-label="elio workflow demos">
           {
             actionPreviews.map((preview) => (
-              <figure class="motion-demo frame">
+              <figure class:list={["motion-demo", "frame", preview.id === "previews" && "motion-demo-featured"]}>
                 <div class="frame-bar">
                   <span></span>
                   <span></span>
