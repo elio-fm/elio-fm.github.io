@@ -492,9 +492,20 @@ h2 {
   background: linear-gradient(180deg, rgba(8, 11, 15, 0.94), rgba(5, 7, 10, 0.98));
 }
 
-.hero-quick-start {
+.quick-start.hero-quick-start {
   max-width: none;
   margin: 0;
+  border-color: rgba(160, 186, 234, 0.2);
+  background: linear-gradient(180deg, rgba(13, 17, 25, 0.995), rgba(9, 13, 19, 0.998));
+  box-shadow:
+    0 24px 48px rgba(0, 0, 0, 0.3),
+    0 10px 22px rgba(4, 8, 14, 0.18),
+    0 0 0 1px rgba(130, 168, 232, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.quick-start.hero-quick-start::before {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.016), rgba(255, 255, 255, 0));
 }
 
 .hero-quick-start-header {
