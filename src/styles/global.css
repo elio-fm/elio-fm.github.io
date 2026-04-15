@@ -220,6 +220,15 @@ main {
   gap: 24px;
 }
 
+.hero-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.32fr) minmax(360px, 0.98fr);
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  max-width: 1120px;
+}
+
 .hero-copy {
   max-width: 760px;
   margin: 0 auto;
@@ -323,7 +332,34 @@ h2 {
 
 .hero-shot {
   border-radius: 12px;
-  width: min(100%, 800px);
+  width: 100%;
+}
+
+.hero-quick-start {
+  max-width: none;
+  margin: 0;
+}
+
+.hero-quick-start-header {
+  margin-bottom: 18px;
+}
+
+.hero-quick-start-header .eyebrow {
+  margin-bottom: 10px;
+}
+
+.hero-quick-start-header h2 {
+  font-size: clamp(1.5rem, 2.2vw, 2.05rem);
+  margin-bottom: 10px;
+}
+
+.hero-quick-start-header p {
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.hero-quick-start .quick-start-tabs {
+  justify-content: flex-start;
 }
 
 .section {
@@ -433,7 +469,10 @@ h2 {
 
 .install-topline p {
   margin: 0;
+  display: inline-flex;
+  align-items: center;
   color: var(--muted);
+  line-height: 1.1;
 }
 
 .install-title {
@@ -441,6 +480,7 @@ h2 {
   align-items: center;
   flex-wrap: wrap;
   gap: clamp(8px, 1vw, 10px);
+  line-height: 1.15;
 }
 
 .install-icon {
@@ -1007,8 +1047,7 @@ h2 {
 }
 
 .quick-start {
-  width: min(100%, 700px);
-  margin: 0 auto;
+  width: 100%;
   padding: 24px;
   border: 1px solid var(--line);
   border-radius: var(--radius-xl);
@@ -1104,6 +1143,7 @@ h2 {
 
 @media (max-width: 1024px) {
   .hero-grid,
+  .hero-split,
   .install-page-grid,
   .docs-grid,
   .feature-grid,
@@ -1124,6 +1164,14 @@ h2 {
   .docs-link-grid > :nth-last-child(2),
   .docs-link-grid > :last-child {
     grid-column: auto;
+  }
+
+  .hero-split {
+    max-width: 800px;
+  }
+
+  .hero-quick-start {
+    max-width: none;
   }
 }
 
@@ -1250,7 +1298,6 @@ h2 {
   }
 
   .install-topline {
-    align-items: flex-start;
     gap: 8px 12px;
   }
 }
@@ -1266,6 +1313,17 @@ h2 {
 
   .site-nav {
     gap: 6px 8px;
+  }
+
+  .quick-start-tabs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    justify-content: stretch;
+  }
+
+  .quick-start-tab {
+    width: 100%;
+    text-align: center;
   }
 
   .install-card .command-block pre,
