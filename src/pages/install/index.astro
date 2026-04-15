@@ -80,7 +80,8 @@ const installIcons = {
           </article>
 
           <article class="doc-card">
-            <h2>From source</h2>
+            <h2>Run from source</h2>
+            <p>Clone the repo, then run elio from the project directory.</p>
             <div class="command-block" data-command-block>
               <button
                 class="command-copy"
@@ -93,7 +94,9 @@ const installIcons = {
                 <span class="command-copy-icon" data-copy-icon="copy" aria-hidden="true" set:html={Copy}></span>
                 <span class="command-copy-icon" data-copy-icon="check" aria-hidden="true" set:html={Check}></span>
               </button>
-              <pre><code>cargo run --release</code></pre>
+              <pre><code>{`git clone https://github.com/elio-fm/elio.git
+cd elio
+cargo run --release`}</code></pre>
             </div>
           </article>
 
