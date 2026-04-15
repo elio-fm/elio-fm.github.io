@@ -1094,6 +1094,93 @@ h2 {
   padding: 0.16rem 0.42rem;
 }
 
+.docs-preview-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(240px, 0.72fr);
+  gap: clamp(12px, 1.8vw, 18px);
+  align-items: start;
+}
+
+.docs-preview-summary {
+  gap: 12px;
+}
+
+.docs-preview-summary .docs-list {
+  gap: 10px;
+}
+
+.docs-preview-summary .docs-list li {
+  line-height: 1.58;
+}
+
+.docs-support-scroller {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.docs-support-table {
+  min-width: 560px;
+}
+
+.docs-support-table th {
+  width: 168px;
+}
+
+.docs-support-table thead th {
+  width: auto;
+  padding-right: 18px;
+}
+
+.docs-support-table th,
+.docs-support-table td {
+  padding-top: 9px;
+  padding-bottom: 9px;
+}
+
+.docs-support-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  color: var(--text);
+  background: none;
+  box-shadow: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.35;
+  white-space: normal;
+}
+
+.docs-support-status::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(151, 185, 236, 0.75);
+  box-shadow: 0 0 14px rgba(125, 168, 255, 0.28);
+}
+
+.docs-support-status--auto::before {
+  background: rgba(151, 185, 236, 0.9);
+}
+
+.docs-support-status--manual::before {
+  background: rgba(240, 215, 156, 0.88);
+  box-shadow: 0 0 14px rgba(240, 215, 156, 0.24);
+}
+
+.docs-support-status--unsupported::before {
+  background: rgba(255, 138, 138, 0.9);
+  box-shadow: 0 0 14px rgba(255, 138, 138, 0.24);
+}
+
 .docs-list code:not(.docs-path-code),
 .docs-section-heading code:not(.docs-path-code),
 .docs-note code:not(.docs-path-code) {
@@ -1123,8 +1210,16 @@ h2 {
 
 .docs-list li {
   color: var(--muted);
-  line-height: 1.65;
+  line-height: 1.72;
   overflow-wrap: anywhere;
+}
+
+.docs-list li code {
+  display: inline-block;
+  vertical-align: middle;
+  white-space: nowrap;
+  overflow-wrap: normal;
+  line-height: 1.25;
 }
 
 .docs-list li span {
@@ -1499,6 +1594,10 @@ h2 {
     grid-template-columns: 1fr;
   }
 
+  .docs-preview-grid {
+    grid-template-columns: 1fr;
+  }
+
   .feature-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1716,14 +1815,14 @@ h2 {
     flex-direction: column;
   }
 
-  .docs-table th,
-  .docs-table td {
+  .docs-table:not(.docs-support-table) th,
+  .docs-table:not(.docs-support-table) td {
     display: block;
     width: 100%;
     padding: 8px 0;
   }
 
-  .docs-table th {
+  .docs-table:not(.docs-support-table) th {
     padding-bottom: 2px;
   }
 

@@ -104,6 +104,63 @@ const builtInClasses = [
   "file",
 ];
 
+const imagePreviewSupport = [
+  {
+    terminal: "Kitty",
+    protocol: "Kitty Graphics Protocol",
+    status: "Auto-detected",
+    tone: "auto",
+  },
+  {
+    terminal: "Ghostty",
+    protocol: "Kitty Graphics Protocol",
+    status: "Auto-detected",
+    tone: "auto",
+  },
+  {
+    terminal: "Warp",
+    protocol: "Kitty Graphics Protocol",
+    status: "Auto-detected",
+    tone: "auto",
+  },
+  {
+    terminal: "WezTerm",
+    protocol: "iTerm2 Inline Protocol",
+    status: "Auto-detected",
+    tone: "auto",
+  },
+  {
+    terminal: "iTerm2",
+    protocol: "iTerm2 Inline Protocol",
+    status: "Auto-detected",
+    tone: "auto",
+  },
+  {
+    terminal: "foot",
+    protocol: "Sixel",
+    status: "Auto-detected",
+    tone: "auto",
+  },
+  {
+    terminal: "Windows Terminal",
+    protocol: "Sixel",
+    status: "Auto-detected",
+    tone: "auto",
+  },
+  {
+    terminal: "Alacritty",
+    protocol: "None",
+    status: "Not supported",
+    tone: "unsupported",
+  },
+  {
+    terminal: "Other",
+    protocol: "Kitty Graphics Protocol",
+    status: "Manual enable",
+    tone: "manual",
+  },
+];
+
 const referenceLinks = [
   {
     title: "Example config",
@@ -161,6 +218,7 @@ const referenceLinks = [
             <a href="#paths">Paths</a>
             <a href="#config">Config</a>
             <a href="#theme">Theme</a>
+            <a href="#image-previews">Image previews</a>
             <a href="#reference">Reference</a>
           </nav>
         </div>
@@ -321,6 +379,65 @@ const referenceLinks = [
             </section>
           </div>
         </article>
+      </div>
+    </section>
+
+    <section class="section docs-section" id="image-previews">
+      <div class="container">
+        <div class="docs-section-heading">
+          <p class="eyebrow">PREVIEWS</p>
+          <h2 class="docs-section-title">Image previews</h2>
+          <p>
+            Inline visual previews, including images, covers, thumbnails, and rendered pages, work automatically on supported terminals.
+          </p>
+        </div>
+
+        <div class="docs-preview-grid">
+          <article class="doc-card docs-card-tight docs-detail-card">
+            <h3>Supported terminals</h3>
+            <div class="docs-support-scroller">
+              <table class="docs-table docs-support-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Terminal</th>
+                    <th scope="col">Protocol</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    imagePreviewSupport.map((entry) => (
+                      <tr>
+                        <th scope="row">{entry.terminal}</th>
+                        <td>{entry.protocol}</td>
+                        <td>
+                          <span class={`docs-support-status docs-support-status--${entry.tone}`}>{entry.status}</span>
+                        </td>
+                      </tr>
+                    ))
+                  }
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="doc-card docs-card-tight docs-preview-summary">
+            <h3>How it works</h3>
+            <ul class="docs-list">
+              <li>
+                <span>elio auto-detects Kitty Graphics Protocol, iTerm2 Inline Protocol, and Sixel when the terminal supports them.</span>
+              </li>
+              <li>
+                <span>
+                  For other terminals, set <code>ELIO_IMAGE_PREVIEWS=1</code> to opt into Kitty Graphics Protocol.
+                </span>
+              </li>
+              <li>
+                <span>Alacritty does not support inline image previews.</span>
+              </li>
+            </ul>
+          </article>
+        </div>
       </div>
     </section>
 
