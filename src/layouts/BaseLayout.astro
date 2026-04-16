@@ -104,6 +104,149 @@ const socialImageAlt = "elio terminal file manager interface with three panes an
         window.clearTimeout(button.__copyResetTimer);
         button.__copyResetTimer = window.setTimeout(() => setCopyState(button, "idle"), copied ? 1600 : 2200);
       });
+
+      const mediaPopoutQuery = window.matchMedia("(min-width: 900px) and (hover: hover) and (pointer: fine)");
+      let activeMediaPopout = null;
+
+      const popoutItems = () => [...document.querySelectorAll("[data-popout-item]")];
+
+      const syncPopoutControls = () => {
+        popoutItems().forEach((item) => {
+          if (mediaPopoutQuery.matches) {
+            const title =
+              item.querySelector("h3, figcaption")?.textContent?.trim() ||
+              item.querySelector("img")?.getAttribute("alt") ||
+              "preview";
+            item.setAttribute("role", "button");
+            item.setAttribute("tabindex", "0");
+            item.setAttribute("aria-label", `Open ${title}`);
+          } else {
+            item.removeAttribute("role");
+            item.removeAttribute("tabindex");
+            item.removeAttribute("aria-label");
+          }
+        });
+      };
+
+      const closePopout = () => {
+        if (!activeMediaPopout) return;
+
+        const { source, overlay, clone, previousBodyOverflow, previousBodyPaddingRight } = activeMediaPopout;
+        const sourceRect = source.getBoundingClientRect();
+        activeMediaPopout = null;
+
+        overlay.classList.add("is-closing");
+        overlay.classList.remove("is-open");
+        clone.style.left = `${sourceRect.left}px`;
+        clone.style.top = `${sourceRect.top}px`;
+        clone.style.width = `${sourceRect.width}px`;
+
+        window.setTimeout(() => {
+          source.classList.remove("is-popout-source");
+          document.body.style.overflow = previousBodyOverflow;
+          document.body.style.paddingRight = previousBodyPaddingRight;
+          window.requestAnimationFrame(() => overlay.remove());
+        }, 220);
+      };
+
+      const openPopout = (source) => {
+        if (!mediaPopoutQuery.matches || activeMediaPopout) return;
+
+        const sourceRect = source.getBoundingClientRect();
+        const overlay = document.createElement("div");
+        const backdrop = document.createElement("div");
+        const clone = source.cloneNode(true);
+
+        overlay.className = "media-popout";
+        overlay.setAttribute("role", "dialog");
+        overlay.setAttribute("aria-modal", "true");
+        backdrop.className = "media-popout-backdrop";
+        clone.classList.add("media-popout-card");
+        clone.classList.remove("is-popout-source");
+        clone.removeAttribute("data-popout-item");
+        clone.removeAttribute("role");
+        clone.removeAttribute("tabindex");
+        clone.removeAttribute("aria-label");
+        clone.style.left = `${sourceRect.left}px`;
+        clone.style.top = `${sourceRect.top}px`;
+        clone.style.width = `${sourceRect.width}px`;
+
+        overlay.append(backdrop, clone);
+        document.body.append(overlay);
+        const previousBodyOverflow = document.body.style.overflow;
+        const previousBodyPaddingRight = document.body.style.paddingRight;
+        const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+        if (scrollbarWidth > 0) {
+          document.body.style.paddingRight = `${scrollbarWidth}px`;
+        }
+        document.body.style.overflow = "hidden";
+        source.classList.add("is-popout-source");
+        activeMediaPopout = { source, overlay, clone, previousBodyOverflow, previousBodyPaddingRight };
+
+        const video = clone.querySelector("video");
+        if (video instanceof HTMLVideoElement) {
+          video.muted = true;
+          video.play().catch(() => {});
+        }
+
+        window.requestAnimationFrame(() => {
+          const sourceRatio = sourceRect.height / sourceRect.width;
+          let targetWidth = Math.min(window.innerWidth - 80, 1040);
+          let targetHeight = targetWidth * sourceRatio;
+
+          if (targetHeight > window.innerHeight - 80) {
+            targetHeight = window.innerHeight - 80;
+            targetWidth = targetHeight / sourceRatio;
+          }
+
+          overlay.classList.add("is-open");
+          clone.style.left = `${(window.innerWidth - targetWidth) / 2}px`;
+          clone.style.top = `${(window.innerHeight - targetHeight) / 2}px`;
+          clone.style.width = `${targetWidth}px`;
+        });
+      };
+
+      document.addEventListener("click", (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+
+        if (activeMediaPopout) {
+          if (target.closest(".media-popout-card")) return;
+          if (target.closest(".media-popout")) closePopout();
+          return;
+        }
+
+        const item = target.closest("[data-popout-item]");
+        if (!item) return;
+
+        openPopout(item);
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          closePopout();
+          return;
+        }
+
+        if (event.key !== "Enter" && event.key !== " ") return;
+
+        const item = document.activeElement?.closest?.("[data-popout-item]");
+        if (!item) return;
+
+        event.preventDefault();
+        openPopout(item);
+      });
+
+      mediaPopoutQuery.addEventListener("change", () => {
+        syncPopoutControls();
+        if (!mediaPopoutQuery.matches) closePopout();
+      });
+
+      window.addEventListener("resize", () => {
+        if (!mediaPopoutQuery.matches) closePopout();
+      });
+
+      syncPopoutControls();
     </script>
   </body>
 </html>

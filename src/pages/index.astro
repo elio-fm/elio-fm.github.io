@@ -63,7 +63,7 @@ const homeStructuredData = {
         </div>
 
         <div class="hero-split">
-          <div class="hero-shot frame">
+          <div class="hero-shot frame" data-popout-item>
             <div class="frame-bar">
               <span></span>
               <span></span>
@@ -138,7 +138,7 @@ const homeStructuredData = {
         <div class="motion-carousel-track" data-motion-track aria-label="elio workflow demos">
           {
             actionPreviews.map((preview) => (
-              <figure class:list={["motion-demo", "frame", preview.id === "previews" && "motion-demo-featured"]}>
+              <figure class:list={["motion-demo", "frame", preview.id === "previews" && "motion-demo-featured"]} data-popout-item>
                 <div class="frame-bar">
                   <span></span>
                   <span></span>
@@ -204,7 +204,7 @@ const homeStructuredData = {
       <div class="visual-grid">
         {
           themeShots.map((shot) => (
-            <figure class="shot-card">
+            <figure class="shot-card" data-popout-item>
               <img src={shot.image} alt={shot.alt} loading="lazy" />
               <figcaption>{shot.name}</figcaption>
             </figure>
