@@ -5,13 +5,15 @@ import "../styles/global.css";
 
 const {
   title = "elio",
-  description = "Elio is a terminal file manager (TUI) with a three-pane layout, rich previews, and inline image previews.",
+  ogTitle = title,
+  ogSiteName = "elio fm",
+  description = "elio is a terminal file manager (TUI) with a three-pane layout, rich previews, and inline image previews.",
   structuredData = null,
 } = Astro.props;
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url).toString();
 const ogImage = new URL("/images/default.webp", Astro.site ?? Astro.url).toString();
-const socialImageAlt = "Elio terminal file manager interface with three panes and inline preview.";
+const socialImageAlt = "elio terminal file manager interface with three panes and inline preview.";
 ---
 
 <!doctype html>
@@ -24,9 +26,9 @@ const socialImageAlt = "Elio terminal file manager interface with three panes an
     <meta name="theme-color" content="#000000" />
     <meta name="generator" content={Astro.generator} />
     <link rel="canonical" href={canonicalUrl} />
-    <meta property="og:title" content={title} />
+    <meta property="og:title" content={ogTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:site_name" content="Elio" />
+    <meta property="og:site_name" content={ogSiteName} />
     <meta property="og:type" content="website" />
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:alt" content={socialImageAlt} />

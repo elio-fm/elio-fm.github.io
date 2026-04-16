@@ -1,6 +1,6 @@
 # elio-fm.github.io
 
-Landing page for Elio.
+Landing page for elio.
 
 Live: https://elio-fm.github.io
 
@@ -36,4 +36,4 @@ Automatically deployed to GitHub Pages on push to `main` via GitHub Actions.
 
 ## Related
 
-- [Elio](https://github.com/elio-fm/elio) — Main repository
+- [elio](https://github.com/elio-fm/elio) — Main repository
