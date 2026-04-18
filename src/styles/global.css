@@ -1116,6 +1116,31 @@ h2 {
   border-radius: clamp(12px, 1.2vw, 14px);
 }
 
+.install-tooling {
+  margin-top: clamp(12px, 1.4vw, 16px);
+  padding-top: clamp(12px, 1.4vw, 16px);
+  border-top: 1px solid rgba(160, 186, 234, 0.1);
+}
+
+.install-tooling-label {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.install-tooling .command-block {
+  margin-top: 0;
+}
+
+.install-tooling-note {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
 .docs-block + .docs-block {
   margin-top: 24px;
 }
@@ -1636,6 +1661,38 @@ h2 {
 
 .doc-card a {
   color: var(--link-accent);
+}
+
+.preview-tool-list {
+  display: grid;
+  gap: 0;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.preview-tool-list li {
+  display: grid;
+  gap: 3px;
+  padding: 10px 0;
+  border-top: 1px solid rgba(160, 186, 234, 0.1);
+}
+
+.preview-tool-list li:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.preview-tool-list strong {
+  color: var(--text);
+  font-size: 0.95rem;
+  line-height: 1.25;
+}
+
+.preview-tool-list span {
+  color: var(--muted);
+  font-size: 0.94rem;
+  line-height: 1.55;
 }
 
 .doc-card a:hover,

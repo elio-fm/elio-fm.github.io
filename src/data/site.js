@@ -10,18 +10,22 @@ export const installOptions = [
     name: "Arch",
     icon: "archlinux",
     command: "paru -S elio",
+    optionalToolsCommand: "sudo pacman -S poppler ffmpeg resvg 7zip",
     note: "Install from the AUR",
   },
   {
     name: "Fedora",
     icon: "fedora",
     command: "sudo dnf copr enable miguelregueiro/elio\nsudo dnf install elio",
+    optionalToolsCommand: "sudo dnf install poppler-utils ffmpeg resvg 7zip",
+    optionalToolsNote: "Full FFmpeg may require RPM Fusion on Fedora.",
     note: "Official COPR package",
   },
   {
     name: "Homebrew",
     icon: "homebrew",
     command: "brew install elio-fm/elio/elio",
+    optionalToolsCommand: "brew install poppler ffmpeg resvg sevenzip",
     note: "Install from the Homebrew tap",
   },
   {

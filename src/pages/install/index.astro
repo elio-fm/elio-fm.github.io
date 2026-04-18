@@ -15,11 +15,18 @@ const installIcons = {
   homebrew: formatInstallIcon(siHomebrew.svg),
   rust: formatInstallIcon(siRust.svg),
 };
+
+const optionalPreviewTools = [
+  { name: "Poppler", description: "PDF metadata and rendered page previews." },
+  { name: "FFmpeg", description: "Media metadata, album art, thumbnails, and wider image format support." },
+  { name: "resvg", description: "SVG inline previews." },
+  { name: "7-Zip", description: "Comic book archives, fallback archive listings, and broader archive support." },
+];
 ---
 
 <BaseLayout
   title="Install elio"
-  description="Install elio with Homebrew, AUR, Fedora COPR, or Cargo."
+  description="Install elio with Homebrew, AUR, Fedora COPR, or Cargo, plus optional preview tools."
 >
   <section class="page-intro page-intro-compact">
     <div class="container">
@@ -63,6 +70,28 @@ const installIcons = {
                   </button>
                   <pre><code>{option.command}</code></pre>
                 </div>
+                {
+                  option.optionalToolsCommand && (
+                    <div class="install-tooling">
+                      <p class="install-tooling-label">Optional preview tools</p>
+                      <div class="command-block" data-command-block>
+                        <button
+                          class="command-copy"
+                          type="button"
+                          data-copy-command
+                          data-copy-state="idle"
+                          aria-label="Copy command"
+                          title="Copy command"
+                        >
+                          <span class="command-copy-icon" data-copy-icon="copy" aria-hidden="true" set:html={Copy}></span>
+                          <span class="command-copy-icon" data-copy-icon="check" aria-hidden="true" set:html={Check}></span>
+                        </button>
+                        <pre><code>{option.optionalToolsCommand}</code></pre>
+                      </div>
+                      {option.optionalToolsNote && <p class="install-tooling-note">{option.optionalToolsNote}</p>}
+                    </div>
+                  )
+                }
               </article>
             ))
           }
@@ -70,8 +99,21 @@ const installIcons = {
 
         <aside class="install-aside">
           <article class="doc-card">
-            <h2>Starting directory</h2>
-            <p>elio opens in your current working directory.</p>
+            <h2>Optional preview tools</h2>
+            <p>
+              <code>elio</code> works out of the box. Install these helpers if you want richer previews, metadata,
+              thumbnails, and broader file format support.
+            </p>
+            <ul class="preview-tool-list">
+              {
+                optionalPreviewTools.map((tool) => (
+                  <li>
+                    <strong>{tool.name}</strong>
+                    <span>{tool.description}</span>
+                  </li>
+                ))
+              }
+            </ul>
           </article>
 
           <article class="doc-card">
