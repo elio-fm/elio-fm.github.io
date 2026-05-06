@@ -73,7 +73,8 @@ const homeStructuredData = {
               <img
                 src="/images/default.webp"
                 alt="Default elio interface showing places, files, and preview panes."
-                width="1425"
+                width="1920"
+                height="1080"
                 loading="eager"
               />
             </div>
@@ -201,15 +202,19 @@ const homeStructuredData = {
         </p>
       </div>
 
-      <div class="visual-grid">
+      <div class="visual-carousel-shell" tabindex="0" aria-label="Bundled theme screenshots" data-theme-carousel>
+        <div class="visual-track">
         {
           themeShots.map((shot) => (
             <figure class="shot-card" data-popout-item>
-              <img src={shot.image} alt={shot.alt} loading="lazy" />
+              <div class="shot-card-image">
+                <img src={shot.image} alt={shot.alt} loading="lazy" width="1920" height="1080" />
+              </div>
               <figcaption>{shot.name}</figcaption>
             </figure>
           ))
         }
+        </div>
       </div>
     </div>
   </section>
@@ -269,5 +274,6 @@ const homeStructuredData = {
         { passive: false },
       );
     }
+
   </script>
 </BaseLayout>
