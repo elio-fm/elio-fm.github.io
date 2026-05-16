@@ -1107,6 +1107,7 @@ h2 {
 .install-title .install-icon {
   vertical-align: middle;
   margin-right: clamp(8px, 1vw, 10px);
+  transform: translateY(-2px);
 }
 
 .install-icon {
@@ -1316,6 +1317,53 @@ h2 {
   max-width: 100%;
   overflow-x: auto;
   border-radius: clamp(12px, 1.2vw, 14px);
+}
+
+.language-bash {
+  color: rgba(232, 226, 214, 0.96);
+}
+
+.language-bash .token.comment,
+.language-bash .token.shebang {
+  color: rgba(160, 186, 234, 0.5);
+  font-style: italic;
+}
+
+.language-bash .token.string,
+.language-bash .token.string-interpolation {
+  color: #a8d49b;
+}
+
+.language-bash .token.builtin,
+.language-bash .token.class-name {
+  color: #c5a8e8;
+}
+
+.language-bash .token.function {
+  color: #82c8ff;
+}
+
+.language-bash .token.keyword {
+  color: #c5a8e8;
+}
+
+.language-bash .token.operator {
+  color: #d6b574;
+}
+
+.language-bash .token.punctuation {
+  color: rgba(158, 170, 190, 0.78);
+}
+
+.language-bash .token.variable,
+.language-bash .token.parameter,
+.language-bash .token.assign-left {
+  color: #d6b574;
+}
+
+.language-bash .token.number,
+.language-bash .token.boolean {
+  color: #e89464;
 }
 
 .install-tooling {

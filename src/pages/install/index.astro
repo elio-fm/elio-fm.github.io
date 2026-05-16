@@ -1,8 +1,12 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Prism from "prismjs";
+import "prismjs/components/prism-bash.js";
 import { installOptions } from "../../data/site.js";
 import { siArchlinux, siDebian, siFedora, siHomebrew, siRust } from "simple-icons";
 import { Check, Copy } from "lucide-static";
+
+const highlightBash = (code) => Prism.highlight(code, Prism.languages.bash, "bash");
 
 const formatInstallIcon = (svg) =>
   svg
@@ -72,7 +76,7 @@ const optionalPreviewTools = [
                     <span class="command-copy-icon" data-copy-icon="copy" aria-hidden="true" set:html={Copy}></span>
                     <span class="command-copy-icon" data-copy-icon="check" aria-hidden="true" set:html={Check}></span>
                   </button>
-                  <pre><code>{option.command}</code></pre>
+                  <pre class="language-bash"><code class="language-bash" set:html={highlightBash(option.command)}></code></pre>
                 </div>
                 {
                   option.manualCommand && (
@@ -90,7 +94,7 @@ const optionalPreviewTools = [
                           <span class="command-copy-icon" data-copy-icon="copy" aria-hidden="true" set:html={Copy}></span>
                           <span class="command-copy-icon" data-copy-icon="check" aria-hidden="true" set:html={Check}></span>
                         </button>
-                        <pre><code>{option.manualCommand}</code></pre>
+                        <pre class="language-bash"><code class="language-bash" set:html={highlightBash(option.manualCommand)}></code></pre>
                       </div>
                     </div>
                   )
@@ -111,7 +115,7 @@ const optionalPreviewTools = [
                           <span class="command-copy-icon" data-copy-icon="copy" aria-hidden="true" set:html={Copy}></span>
                           <span class="command-copy-icon" data-copy-icon="check" aria-hidden="true" set:html={Check}></span>
                         </button>
-                        <pre><code>{option.optionalToolsCommand}</code></pre>
+                        <pre class="language-bash"><code class="language-bash" set:html={highlightBash(option.optionalToolsCommand)}></code></pre>
                       </div>
                       {option.optionalToolsNote && <p class="install-tooling-note">{option.optionalToolsNote}</p>}
                     </div>
@@ -161,9 +165,9 @@ const optionalPreviewTools = [
                 <span class="command-copy-icon" data-copy-icon="copy" aria-hidden="true" set:html={Copy}></span>
                 <span class="command-copy-icon" data-copy-icon="check" aria-hidden="true" set:html={Check}></span>
               </button>
-              <pre><code>{`git clone https://github.com/elio-fm/elio.git
+              <pre class="language-bash"><code class="language-bash" set:html={highlightBash(`git clone https://github.com/elio-fm/elio.git
 cd elio
-cargo run --release`}</code></pre>
+cargo run --release`)}></code></pre>
             </div>
           </article>
 
