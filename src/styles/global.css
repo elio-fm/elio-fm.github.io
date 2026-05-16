@@ -1083,13 +1083,13 @@ h2 {
 
 .install-topline {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   flex-wrap: wrap;
   gap: 8px 14px;
 }
 
 .install-topline h2 {
-  margin-bottom: 0;
+  margin: 0;
 }
 
 .install-topline p {
@@ -1097,15 +1097,16 @@ h2 {
   display: inline-flex;
   align-items: center;
   color: var(--muted);
-  line-height: 1.1;
+  line-height: 1.5;
 }
 
 .install-title {
-  display: inline-flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: clamp(8px, 1vw, 10px);
   line-height: 1.15;
+}
+
+.install-title .install-icon {
+  vertical-align: middle;
+  margin-right: clamp(8px, 1vw, 10px);
 }
 
 .install-icon {
