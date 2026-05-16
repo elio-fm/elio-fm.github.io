@@ -802,7 +802,7 @@ h2 {
 .feature-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
+  gap: 12px;
 }
 
 .feature-card,
@@ -862,55 +862,74 @@ h2 {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  width: 46px;
-  height: 46px;
+  width: 42px;
+  height: 42px;
   margin: 0;
-  border: 1px solid rgba(159, 192, 255, 0.18);
-  border-radius: 13px;
-  color: rgba(232, 240, 255, 0.96);
+  padding: 0;
+  border: 1px solid rgba(177, 203, 255, 0.18);
+  border-radius: 12px;
+  color: rgba(224, 235, 255, 0.98);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.016)),
-    linear-gradient(180deg, rgba(30, 44, 68, 0.82), rgba(15, 22, 35, 0.96));
+    linear-gradient(180deg, rgba(187, 209, 255, 0.14), rgba(112, 146, 213, 0.055)),
+    linear-gradient(180deg, #1a2538, #101827);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.04),
-    0 10px 20px rgba(3, 6, 10, 0.14);
-}
-
-.feature-card:nth-child(3n + 2) .feature-icon {
-  border-color: rgba(188, 173, 139, 0.12);
-  color: rgba(205, 194, 166, 0.78);
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.012)),
-    linear-gradient(180deg, rgba(52, 47, 39, 0.72), rgba(20, 19, 16, 0.95));
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.03),
-    0 8px 16px rgba(3, 6, 10, 0.11);
-}
-
-.feature-card:nth-child(3n) .feature-icon {
-  border-color: rgba(189, 205, 232, 0.16);
-  color: #d5e1f2;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.065), rgba(255, 255, 255, 0.016)),
-    linear-gradient(180deg, rgba(36, 42, 57, 0.84), rgba(18, 22, 30, 0.96));
+    0 10px 20px rgba(3, 8, 18, 0.24);
+  line-height: 0;
 }
 
 .feature-icon svg {
-  width: 20px;
-  height: 20px;
+  display: block;
+  flex: 0 0 auto;
+  width: 21px;
+  height: 21px;
   stroke: currentColor;
+  transform: translate(-0.5px, -0.5px);
+}
+
+.feature-card:nth-child(2) .feature-icon svg {
+  transform: translate(0.05px, -0.5px);
+}
+
+.feature-card:nth-child(4) .feature-icon svg {
+  transform: translate(0.1px, -0.5px);
+}
+
+.feature-card:nth-child(3) .feature-icon svg,
+.feature-card:nth-child(6) .feature-icon svg {
+  transform: translate(0.85px, -0.5px);
 }
 
 .feature-card {
-  padding: clamp(12px, 1.4vw, 16px);
+  padding: clamp(13px, 1.35vw, 15px);
   display: grid;
-  grid-template-columns: 46px minmax(0, 1fr);
+  grid-template-columns: 42px minmax(0, 1fr);
   grid-template-areas:
     "icon title"
     "copy copy";
   align-items: center;
-  gap: 10px 12px;
+  gap: 9px 12px;
   text-align: left;
+  border: 0;
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 100% 100%, rgba(130, 168, 232, 0.055), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.052), rgba(255, 255, 255, 0.014) 40%, rgba(255, 255, 255, 0.006)),
+    linear-gradient(180deg, rgba(21, 29, 43, 0.99), rgba(9, 13, 20, 0.998));
+  box-shadow:
+    0 30px 62px rgba(0, 0, 0, 0.36),
+    0 12px 24px rgba(4, 10, 22, 0.28),
+    inset 1px 0 0 rgba(160, 186, 234, 0.12),
+    inset -1px 0 0 rgba(160, 186, 234, 0.08),
+    inset 0 -1px 0 rgba(160, 186, 234, 0.12);
+  transition: none;
+}
+
+.feature-card::before {
+  display: none;
+}
+
+.feature-card::after {
+  display: none;
 }
 
 .feature-card .feature-icon {
@@ -919,14 +938,19 @@ h2 {
 
 .feature-card p {
   grid-area: copy;
+  margin-top: 0;
   text-align: left;
+  color: rgba(177, 184, 196, 0.92);
+  font-size: 1rem;
+  line-height: 1.56;
 }
 
 .feature-card h3 {
   grid-area: title;
   margin: 0;
+  color: rgba(248, 249, 251, 0.97);
   line-height: 1.12;
-  font-size: 1.15rem;
+  font-size: 1.18rem;
 }
 
 .install-topline h2,
@@ -1907,8 +1931,6 @@ h2 {
     transform: translateY(-1px);
   }
 
-  .feature-card:hover,
-  .feature-card:focus-within,
   .install-card:hover,
   .install-card:focus-within,
   .doc-card:hover,
@@ -2121,6 +2143,10 @@ h2 {
   .feature-icon svg {
     width: 17px;
     height: 17px;
+  }
+
+  .feature-card:nth-child(3) .feature-icon svg {
+    transform: translate(0.2px, -0.5px);
   }
 
   .feature-card h3 {

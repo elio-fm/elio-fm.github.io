@@ -47,12 +47,12 @@ export const features = [
   {
     icon: "panels",
     title: "Three panes",
-    body: "Places, files, and preview stay visible together. No modal hopping.",
+    body: "Browse places, files, and previews in one flow.",
   },
   {
     icon: "preview",
     title: "Rich previews",
-    body: "Text, code, documents, archives, and media stay inline.",
+    body: "Text, code, data, docs, media, archives, and more.",
   },
   {
     icon: "image",
