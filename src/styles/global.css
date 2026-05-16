@@ -1032,6 +1032,10 @@ h2 {
   line-height: 1.56;
 }
 
+.feature-card:first-child p {
+  min-height: 3.12em;
+}
+
 .feature-card h3 {
   grid-area: title;
   margin: 0;
