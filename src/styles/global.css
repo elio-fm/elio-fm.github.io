@@ -568,7 +568,7 @@ h2 {
 }
 
 .motion-showcase-heading {
-  margin-bottom: 0;
+  margin-bottom: 32px;
   max-width: 720px;
 }
 
@@ -706,9 +706,42 @@ h2 {
   padding-top: 14px;
 }
 
+.hero + .motion-showcase {
+  padding-top: 14px;
+}
+
+.motion-showcase {
+  padding-bottom: 16px;
+}
+
+.feature-section {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.themes-section {
+  padding-top: 16px;
+}
+
+.motion-showcase-shell {
+  gap: 0;
+}
+
+.motion-showcase-heading,
+.feature-section-heading,
+.themes-section .section-heading {
+  margin-bottom: 32px;
+}
+
 .section-heading h2,
 .page-intro h1 {
   margin-bottom: 12px;
+}
+
+.motion-showcase-heading h2,
+.feature-section-heading h2,
+.themes-section .section-heading h2 {
+  margin-bottom: 0;
 }
 
 .page-lead {
@@ -2247,12 +2280,16 @@ h2 {
   }
 
   .motion-showcase {
-    padding-top: 10px;
-    padding-bottom: 14px;
+    padding-top: 8px;
+    padding-bottom: 13px;
+  }
+
+  .hero + .motion-showcase {
+    padding-top: 8px;
   }
 
   .motion-showcase-shell {
-    gap: 28px;
+    gap: 0;
   }
 
   .motion-showcase-header {
@@ -2351,16 +2388,30 @@ h2 {
     margin-bottom: 20px;
   }
 
+  .motion-showcase-heading,
   .feature-section-heading {
-    margin-bottom: 36px;
+    margin-bottom: 26px;
   }
 
   .feature-section {
-    padding-top: 18px;
+    padding-top: 13px;
+    padding-bottom: 13px;
   }
 
   .section-tight-top {
     padding-top: 10px;
+  }
+
+  .feature-section.section-tight-top {
+    padding-top: 13px;
+  }
+
+  .themes-section {
+    padding-top: 13px;
+  }
+
+  .themes-section .section-heading {
+    margin-bottom: 26px;
   }
 
   .quick-start {
