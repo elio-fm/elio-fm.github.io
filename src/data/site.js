@@ -26,7 +26,17 @@ export const installOptions = [
     quickStartLabel: "Debian",
     icon: "debian",
     command: "curl -fsSL https://elio-fm.github.io/elio-apt/install.sh | sudo sh\nsudo apt install elio",
-    note: "Official apt repository for Debian, Ubuntu, Mint, LMDE, Pop!_OS, and compatible distributions",
+    manualCommand: `sudo install -d -m 0755 /etc/apt/keyrings
+curl -fsSL https://elio-fm.github.io/elio-apt/elio-archive-keyring.gpg \\
+  | sudo tee /etc/apt/keyrings/elio-archive-keyring.gpg >/dev/null
+
+echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/elio-archive-keyring.gpg] \\
+https://elio-fm.github.io/elio-apt stable main" \\
+  | sudo tee /etc/apt/sources.list.d/elio.list
+
+sudo apt update
+sudo apt install elio`,
+    note: "Official apt repository",
   },
   {
     name: "Homebrew",

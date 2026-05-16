@@ -57,6 +57,9 @@ const optionalPreviewTools = [
                   </h2>
                   <p>{option.note}</p>
                 </div>
+                {option.manualCommand && (
+                  <p class="install-tooling-label install-command-label">Option 1 — Quick install</p>
+                )}
                 <div class="command-block" data-command-block>
                   <button
                     class="command-copy"
@@ -71,6 +74,27 @@ const optionalPreviewTools = [
                   </button>
                   <pre><code>{option.command}</code></pre>
                 </div>
+                {
+                  option.manualCommand && (
+                    <div class="install-tooling">
+                      <p class="install-tooling-label">Option 2 — Manual setup</p>
+                      <div class="command-block" data-command-block>
+                        <button
+                          class="command-copy"
+                          type="button"
+                          data-copy-command
+                          data-copy-state="idle"
+                          aria-label="Copy command"
+                          title="Copy command"
+                        >
+                          <span class="command-copy-icon" data-copy-icon="copy" aria-hidden="true" set:html={Copy}></span>
+                          <span class="command-copy-icon" data-copy-icon="check" aria-hidden="true" set:html={Check}></span>
+                        </button>
+                        <pre><code>{option.manualCommand}</code></pre>
+                      </div>
+                    </div>
+                  )
+                }
                 {
                   option.optionalToolsCommand && (
                     <div class="install-tooling">
