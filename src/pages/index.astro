@@ -217,7 +217,7 @@ const homeStructuredData = {
             themeShots.map((shot) => (
               <figure class="shot-card" data-popout-item>
                 <div class="shot-card-image">
-                  <img src={shot.image} alt={shot.alt} loading="lazy" width="1920" height="1080" />
+                  <img src={shot.image} alt="" loading="lazy" width="1920" height="1080" />
                 </div>
                 <figcaption>{shot.name}</figcaption>
               </figure>
@@ -365,22 +365,6 @@ const homeStructuredData = {
           themeCarousel.scrollTo({ left: themeCarousel.scrollWidth, behavior: "smooth" });
         }
       });
-
-      themeCarousel.addEventListener(
-        "wheel",
-        (event) => {
-          if (event.ctrlKey || !event.shiftKey || themeCarousel.scrollWidth <= themeCarousel.clientWidth + 1) {
-            return;
-          }
-
-          event.preventDefault();
-          themeCarousel.scrollBy({
-            left: (Math.abs(event.deltaX) > 0 ? event.deltaX : event.deltaY) * 1.35,
-            behavior: "auto",
-          });
-        },
-        { passive: false },
-      );
 
       themeCarousel.addEventListener("scroll", updateThemeControls, { passive: true });
       window.addEventListener("resize", updateThemeControls);

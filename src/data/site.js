@@ -80,42 +80,34 @@ export const themeShots = [
   {
     name: "Catppuccin Mocha",
     image: "/images/catppuccin-mocha.webp",
-    alt: "elio using the Catppuccin Mocha theme.",
   },
   {
     name: "Amber Dusk",
     image: "/images/amber-dusk.webp",
-    alt: "elio using the Amber Dusk theme.",
   },
   {
     name: "Transparent",
     image: "/images/transparent.webp",
-    alt: "elio using the Transparent theme.",
   },
   {
     name: "Blush Light",
     image: "/images/blush-light.webp",
-    alt: "elio using the Blush Light theme.",
   },
   {
     name: "Navi",
     image: "/images/navi.webp",
-    alt: "elio using the Navi theme.",
   },
   {
     name: "Tokyo Night",
     image: "/images/tokyo-night.webp",
-    alt: "elio using the Tokyo Night theme.",
   },
   {
     name: "Neon Cherry",
     image: "/images/neon-cherry.webp",
-    alt: "elio using the Neon Cherry theme.",
   },
   {
     name: "Default Light",
     image: "/images/default-light.webp",
-    alt: "elio using the Default Light theme.",
   },
 ];
 
