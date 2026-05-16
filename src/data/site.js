@@ -22,6 +22,13 @@ export const installOptions = [
     note: "Official COPR package",
   },
   {
+    name: "Debian and Ubuntu-based Linux",
+    quickStartLabel: "Debian",
+    icon: "debian",
+    command: "curl -fsSL https://elio-fm.github.io/elio-apt/install.sh | sudo sh\nsudo apt install elio",
+    note: "Official apt repository for Debian, Ubuntu, Mint, LMDE, Pop!_OS, and compatible distributions",
+  },
+  {
     name: "Homebrew",
     icon: "homebrew",
     command: "brew install elio-fm/elio/elio",

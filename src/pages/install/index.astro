@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { installOptions } from "../../data/site.js";
-import { siArchlinux, siFedora, siHomebrew, siRust } from "simple-icons";
+import { siArchlinux, siDebian, siFedora, siHomebrew, siRust } from "simple-icons";
 import { Check, Copy } from "lucide-static";
 
 const formatInstallIcon = (svg) =>
@@ -11,6 +11,7 @@ const formatInstallIcon = (svg) =>
 
 const installIcons = {
   archlinux: formatInstallIcon(siArchlinux.svg),
+  debian: formatInstallIcon(siDebian.svg),
   fedora: formatInstallIcon(siFedora.svg),
   homebrew: formatInstallIcon(siHomebrew.svg),
   rust: formatInstallIcon(siRust.svg),
@@ -26,7 +27,7 @@ const optionalPreviewTools = [
 
 <BaseLayout
   title="Install elio"
-  description="Install elio with Homebrew, AUR, Fedora COPR, or Cargo, plus optional preview tools."
+  description="Install elio with apt, Homebrew, AUR, Fedora COPR, or Cargo, plus optional preview tools."
 >
   <section class="page-intro page-intro-compact">
     <div class="container">
