@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { actionPreviews, features, installOptions, themeShots } from "../data/site.js";
-import { Check, Command as CommandIcon, Copy, Image as ImageIcon, LayoutGrid, PanelsLeftRight, ScanEye, Trash2 } from "lucide-static";
+import { Check, ChevronLeft, ChevronRight, Command as CommandIcon, Copy, Image as ImageIcon, LayoutGrid, PanelsLeftRight, ScanEye, Trash2 } from "lucide-static";
 
 const heroTitle = "elio";
 const homeUrl = "https://elio-fm.github.io/";
@@ -205,19 +205,39 @@ const homeStructuredData = {
         </p>
       </div>
 
-      <div class="visual-carousel-shell" tabindex="0" aria-label="Bundled theme screenshots" data-theme-carousel>
-        <div class="visual-track">
-        {
-          themeShots.map((shot) => (
-            <figure class="shot-card" data-popout-item>
-              <div class="shot-card-image">
-                <img src={shot.image} alt={shot.alt} loading="lazy" width="1920" height="1080" />
-              </div>
-              <figcaption>{shot.name}</figcaption>
-            </figure>
-          ))
-        }
+      <div class="visual-gallery" data-theme-gallery>
+        <button
+          class="visual-gallery-control visual-gallery-control-prev"
+          type="button"
+          aria-label="Previous theme"
+          data-theme-scroll="previous"
+        >
+          <span aria-hidden="true" set:html={ChevronLeft}></span>
+        </button>
+
+        <div class="visual-carousel-shell" tabindex="0" aria-label="Bundled theme screenshots" data-theme-carousel>
+          <div class="visual-track">
+          {
+            themeShots.map((shot) => (
+              <figure class="shot-card" data-popout-item>
+                <div class="shot-card-image">
+                  <img src={shot.image} alt={shot.alt} loading="lazy" width="1920" height="1080" />
+                </div>
+                <figcaption>{shot.name}</figcaption>
+              </figure>
+            ))
+          }
+          </div>
         </div>
+
+        <button
+          class="visual-gallery-control visual-gallery-control-next"
+          type="button"
+          aria-label="Next theme"
+          data-theme-scroll="next"
+        >
+          <span aria-hidden="true" set:html={ChevronRight}></span>
+        </button>
       </div>
     </div>
   </section>
@@ -276,6 +296,99 @@ const homeStructuredData = {
         },
         { passive: false },
       );
+    }
+
+    const themeCarousel = document.querySelector("[data-theme-carousel]");
+    if (themeCarousel instanceof HTMLElement) {
+      const themeGallery = themeCarousel.closest("[data-theme-gallery]");
+      const themeTrack = themeCarousel.querySelector(".visual-track");
+      const scrollButtons = themeGallery
+        ? Array.from(themeGallery.querySelectorAll("[data-theme-scroll]"))
+        : [];
+
+      const getThemeScrollStep = () => {
+        const firstCard = themeCarousel.querySelector(".shot-card");
+        if (!(firstCard instanceof HTMLElement)) {
+          return Math.max(320, themeCarousel.clientWidth * 0.75);
+        }
+
+        const gap = themeTrack instanceof HTMLElement ? parseFloat(getComputedStyle(themeTrack).columnGap || "0") : 0;
+        return firstCard.offsetWidth + (Number.isFinite(gap) ? gap : 0);
+      };
+
+      const updateThemeControls = () => {
+        const maxScroll = themeCarousel.scrollWidth - themeCarousel.clientWidth;
+
+        scrollButtons.forEach((button) => {
+          if (!(button instanceof HTMLButtonElement)) {
+            return;
+          }
+
+          const direction = button.dataset.themeScroll;
+          const disabled =
+            maxScroll <= 1 ||
+            (direction === "previous" && themeCarousel.scrollLeft <= 1) ||
+            (direction === "next" && themeCarousel.scrollLeft >= maxScroll - 1);
+
+          button.disabled = disabled;
+        });
+      };
+
+      const scrollThemes = (direction) => {
+        themeCarousel.scrollBy({
+          left: direction * getThemeScrollStep(),
+          behavior: "smooth",
+        });
+      };
+
+      scrollButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const direction = button.dataset.themeScroll === "previous" ? -1 : 1;
+          scrollThemes(direction);
+        });
+      });
+
+      themeCarousel.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          scrollThemes(-1);
+        }
+
+        if (event.key === "ArrowRight") {
+          event.preventDefault();
+          scrollThemes(1);
+        }
+
+        if (event.key === "Home") {
+          event.preventDefault();
+          themeCarousel.scrollTo({ left: 0, behavior: "smooth" });
+        }
+
+        if (event.key === "End") {
+          event.preventDefault();
+          themeCarousel.scrollTo({ left: themeCarousel.scrollWidth, behavior: "smooth" });
+        }
+      });
+
+      themeCarousel.addEventListener(
+        "wheel",
+        (event) => {
+          if (event.ctrlKey || !event.shiftKey || themeCarousel.scrollWidth <= themeCarousel.clientWidth + 1) {
+            return;
+          }
+
+          event.preventDefault();
+          themeCarousel.scrollBy({
+            left: (Math.abs(event.deltaX) > 0 ? event.deltaX : event.deltaY) * 1.35,
+            behavior: "auto",
+          });
+        },
+        { passive: false },
+      );
+
+      themeCarousel.addEventListener("scroll", updateThemeControls, { passive: true });
+      window.addEventListener("resize", updateThemeControls);
+      updateThemeControls();
     }
 
   </script>
