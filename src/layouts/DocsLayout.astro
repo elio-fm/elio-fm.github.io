@@ -1,0 +1,76 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import { docsNav, docsPagerNav } from "../data/docs.js";
+
+const {
+  title = "elio docs",
+  description = "Quick reference for elio config files, theme files, previews, and project reference.",
+  currentPath = Astro.url.pathname,
+  eyebrow = "DOCS",
+  heading = title.replace("elio docs: ", ""),
+  lead = "Reference material for configuring, theming, and understanding elio.",
+} = Astro.props;
+
+const normalizedPath = currentPath.endsWith("/") ? currentPath : `${currentPath}/`;
+const currentIndex = docsPagerNav.findIndex((item) => item.href === normalizedPath);
+const previousPage = currentIndex > 0 ? docsPagerNav[currentIndex - 1] : null;
+const nextPage = currentIndex >= 0 && currentIndex < docsPagerNav.length - 1 ? docsPagerNav[currentIndex + 1] : null;
+---
+
+<BaseLayout title={title} description={description} headerDocsNav={docsNav} headerDocsCurrentPath={normalizedPath}>
+  <div class="docs-layout-page">
+    <div class="docs-layout-frame">
+      <div class="container docs-layout-grid">
+      <aside class="docs-sidebar" aria-label="Docs navigation">
+        <div class="docs-sidebar-card">
+          <nav>
+            <ul>
+              {
+                docsNav.map((item) => {
+                  const active = item.href === normalizedPath;
+                  return (
+                    <li>
+                      <a class:list={["docs-sidebar-link", active && "is-active"]} href={item.href} aria-current={active ? "page" : undefined}>
+                        <span>{item.label}</span>
+                      </a>
+                    </li>
+                  );
+                })
+              }
+            </ul>
+          </nav>
+        </div>
+      </aside>
+
+      <div class="docs-main-panel">
+        <section class="page-intro docs-page-intro">
+          <div class="page-lead docs-page-lead">
+            <p class="eyebrow">{eyebrow}</p>
+            <h1>{heading}</h1>
+            <p>{lead}</p>
+          </div>
+        </section>
+
+        <slot />
+
+        {(previousPage || nextPage) && (
+          <nav class="docs-prev-next" aria-label="Previous and next docs pages">
+            {previousPage ? (
+              <a class="docs-prev-next-card" href={previousPage.href}>
+                <span>Previous</span>
+                <strong>{previousPage.label}</strong>
+              </a>
+            ) : <span></span>}
+            {nextPage ? (
+              <a class="docs-prev-next-card docs-prev-next-card--next" href={nextPage.href}>
+                <span>Next</span>
+                <strong>{nextPage.label}</strong>
+              </a>
+            ) : <span></span>}
+          </nav>
+        )}
+      </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

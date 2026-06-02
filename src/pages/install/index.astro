@@ -21,17 +21,11 @@ const installIcons = {
   rust: formatInstallIcon(siRust.svg),
 };
 
-const optionalPreviewTools = [
-  { name: "Poppler", description: "PDF metadata and rendered page previews." },
-  { name: "FFmpeg", description: "Media metadata, album art, thumbnails, and wider image format support." },
-  { name: "resvg", description: "SVG inline previews." },
-  { name: "7-Zip", description: "Comic book archives, fallback archive listings, and broader archive support." },
-];
 ---
 
 <BaseLayout
   title="Install elio"
-  description="Install elio with apt, Homebrew, AUR, Fedora COPR, or Cargo, plus optional preview tools."
+  description="Install elio with apt, Homebrew, AUR, Fedora COPR, or Cargo, then add optional tools if needed."
 >
   <section class="page-intro page-intro-compact">
     <div class="container">
@@ -130,28 +124,44 @@ const optionalPreviewTools = [
           <article class="doc-card">
             <h2>Optional preview tools</h2>
             <p>
-              <code>elio</code> works out of the box. Install these helpers if you want richer previews, metadata,
-              thumbnails, and broader file format support.
+              <code>elio</code> works out of the box. Install optional tools for richer previews,
+              metadata, thumbnails, and broader file format support.
             </p>
-            <ul class="preview-tool-list">
-              {
-                optionalPreviewTools.map((tool) => (
-                  <li>
-                    <strong>{tool.name}</strong>
-                    <span>{tool.description}</span>
-                  </li>
-                ))
-              }
+            <ul class="install-tool-list" aria-label="Optional preview tools">
+              <li>
+                <strong>Poppler</strong>
+                <span>PDF metadata and rendered page previews.</span>
+              </li>
+              <li>
+                <strong>FFmpeg</strong>
+                <span>Media metadata, album art, thumbnails, and wider image format support.</span>
+              </li>
+              <li>
+                <strong>resvg</strong>
+                <span>SVG inline previews.</span>
+              </li>
+              <li>
+                <strong>7-Zip</strong>
+                <span>Comic book archives, fallback archive listings, and broader archive support.</span>
+              </li>
             </ul>
+            <p><a href="/docs/optional-tools/">View optional tools guide</a></p>
           </article>
 
           <article class="doc-card">
             <h2>Nerd Font</h2>
-            <p>Use a Nerd Font in your terminal so file icons render correctly.</p>
+            <p>Use a Nerd Font in your terminal so icons render correctly.</p>
           </article>
 
           <article class="doc-card">
-            <h2>Run from source</h2>
+            <h2>zoxide integration</h2>
+            <p>
+              Install <code>zoxide</code> if you want <code>z</code> jumps based on your directory history.
+            </p>
+          </article>
+
+          <article class="doc-card">
+            <h2>Running from source</h2>
             <p>Clone the repo, then run elio from the project directory.</p>
             <div class="command-block" data-command-block>
               <button
@@ -169,19 +179,6 @@ const optionalPreviewTools = [
 cd elio
 cargo run --release`)}></code></pre>
             </div>
-          </article>
-
-          <article class="doc-card">
-            <h2>Docs and README</h2>
-            <p>
-              For configuration, theming, and the full project reference, use the docs and README.
-            </p>
-            <p><a href="/docs">Open docs</a></p>
-            <p>
-              <a href="https://github.com/elio-fm/elio#readme" target="_blank" rel="noreferrer">
-                Read the README
-              </a>
-            </p>
           </article>
         </aside>
       </div>

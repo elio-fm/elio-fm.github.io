@@ -1,5 +1,9 @@
 ---
 import { navItems } from "../data/site.js";
+
+const { docsNav = [], docsCurrentPath = "" } = Astro.props;
+const normalizedDocsPath = docsCurrentPath.endsWith("/") ? docsCurrentPath : `${docsCurrentPath}/`;
+const currentDocsItem = docsNav.find((item) => item.href === normalizedDocsPath);
 ---
 
 <header class="site-header">
@@ -8,6 +12,31 @@ import { navItems } from "../data/site.js";
       <img src="/images/logo.png" alt="" width="40" height="40" />
       <span>elio</span>
     </a>
+
+    {
+      docsNav.length > 0 && (
+        <details class="docs-header-menu">
+          <summary aria-label="Open docs navigation">
+            <span class="docs-header-menu-icon" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+            <span>{currentDocsItem?.label ?? "Docs"}</span>
+          </summary>
+          <nav aria-label="Docs navigation">
+            {docsNav.map((item) => {
+              const active = item.href === normalizedDocsPath;
+              return (
+                <a class:list={[active && "is-active"]} href={item.href} aria-current={active ? "page" : undefined}>
+                  <span>{item.label}</span>
+                </a>
+              );
+            })}
+          </nav>
+        </details>
+      )
+    }
 
     <nav class="site-nav" aria-label="Primary">
       {
@@ -25,3 +54,35 @@ import { navItems } from "../data/site.js";
     </nav>
   </div>
 </header>
+
+<script>
+  const closeDocsMenus = (target) => {
+    document.querySelectorAll(".docs-header-menu[open]").forEach((menu) => {
+      if (!(target instanceof Node) || !menu.contains(target)) {
+        menu.removeAttribute("open");
+      }
+    });
+  };
+
+  document.addEventListener(
+    "pointerdown",
+    (event) => {
+      closeDocsMenus(event.target);
+    },
+    { capture: true },
+  );
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") return;
+
+    document.querySelectorAll(".docs-header-menu[open]").forEach((menu) => {
+      menu.removeAttribute("open");
+      menu.querySelector("summary")?.focus();
+    });
+  });
+
+  document.addEventListener("click", (event) => {
+    const link = event.target instanceof Element ? event.target.closest(".docs-header-menu nav a") : null;
+    link?.closest(".docs-header-menu")?.removeAttribute("open");
+  });
+</script>

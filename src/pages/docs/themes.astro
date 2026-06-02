@@ -1,0 +1,95 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import { builtInClasses, formatPath, themePaths, themeSections } from "../../data/docs.js";
+---
+
+<DocsLayout
+  title="elio docs: themes"
+  description="Quick reference for elio theme.toml sections, built-in classes, and matching rules."
+  currentPath="/docs/themes/"
+  eyebrow="THEME"
+  heading="Themes"
+  lead="Use theme.toml to override the built-in palette, preview colors, and file-class styling."
+>
+  <section class="docs-section docs-section-first">
+    <div class="docs-section-heading">
+      <p class="eyebrow">THEME FILE</p>
+      <h2 class="docs-section-title">Where theme.toml lives</h2>
+      <p>Use this file to override the built-in palette, preview colors, and file-class styling.</p>
+    </div>
+
+    <article class="doc-card docs-card-tight docs-theme-path-card">
+      <div class="docs-path-list">
+        {
+          themePaths.map((entry) => (
+            <div class="docs-path-row">
+              <span class="docs-path-platform">{entry.platform}</span>
+              <span class="docs-path-values">
+                <code set:html={formatPath(entry.primary)}></code>
+                {entry.secondary && (
+                  <>
+                    <span class="docs-path-or">or</span>
+                    <code set:html={formatPath(entry.secondary)}></code>
+                  </>
+                )}
+              </span>
+            </div>
+          ))
+        }
+      </div>
+      <p class="docs-note">Theme files layer on top of the built-in defaults, so you only need to set the values you want to change.</p>
+    </article>
+  </section>
+
+  <section class="docs-section">
+    <div class="docs-section-heading">
+      <p class="eyebrow">THEME.TOML</p>
+      <h2 class="docs-section-title">What goes in theme.toml</h2>
+    </div>
+
+    <article class="doc-card docs-detail-card">
+      <div class="docs-detail-grid">
+        <section class="docs-detail-block">
+          <p class="docs-block-label">Sections</p>
+          <ul class="docs-list">
+            {
+              themeSections.map((section) => (
+                <li>
+                  <code>{section.name}</code>
+                  <span>{section.body}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+
+        <section class="docs-detail-block">
+          <p class="docs-block-label">Rules</p>
+          <ul class="docs-list">
+            <li><span>Exact filename and directory rules win over extension rules, and extension rules win over class defaults.</span></li>
+            <li><span>Matching is case-insensitive.</span></li>
+            <li><span>Invalid theme files fall back to the built-in defaults.</span></li>
+            <li>
+              <span>Built-in classes</span>
+              <div class="docs-tag-row">{builtInClasses.map((item) => <code>{item}</code>)}</div>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <div class="docs-two-up">
+      <article class="doc-card docs-callout-card">
+        <h3>Use the default theme as the reference</h3>
+        <p>Copy only the values you want to change. Missing keys keep the built-in defaults.</p>
+        <a href="https://github.com/elio-fm/elio/blob/main/assets/themes/default/theme.toml" target="_blank" rel="noreferrer">View default/theme.toml</a>
+      </article>
+
+      <article class="doc-card docs-callout-card">
+        <h3>Start from a bundled theme</h3>
+        <p>The source repo includes copyable example themes you can use as starting points.</p>
+        <a href="https://github.com/elio-fm/elio/tree/main/examples/themes" target="_blank" rel="noreferrer">View bundled themes</a>
+      </article>
+    </div>
+  </section>
+</DocsLayout>

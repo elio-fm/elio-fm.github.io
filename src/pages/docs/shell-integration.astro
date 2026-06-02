@@ -1,0 +1,292 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import Prism from "prismjs";
+import "prismjs/components/prism-bash.js";
+import { Check, Copy } from "lucide-static";
+
+const highlightBash = (code) => Prism.highlight(code, Prism.languages.bash, "bash");
+const formatManagedPath = (path) => path.replaceAll("/", "/<wbr />");
+
+const defaultInstallCommand = `elio shell install`;
+const defaultUninstallCommand = `elio shell uninstall`;
+
+const shellRows = [
+  {
+    name: "bash",
+    installCommand: `elio shell install bash`,
+    uninstallCommand: `elio shell uninstall bash`,
+    initCommand: `elio shell init bash`,
+    path: "~/.bashrc",
+  },
+  {
+    name: "zsh",
+    installCommand: `elio shell install zsh`,
+    uninstallCommand: `elio shell uninstall zsh`,
+    initCommand: `elio shell init zsh`,
+    path: "$ZDOTDIR/.zshrc or ~/.zshrc",
+  },
+  {
+    name: "fish",
+    installCommand: `elio shell install fish`,
+    uninstallCommand: `elio shell uninstall fish`,
+    initCommand: `elio shell init fish`,
+    path: "$XDG_CONFIG_HOME/fish/conf.d/elio.fish or ~/.config/fish/conf.d/elio.fish",
+  },
+  {
+    name: "Nushell",
+    installCommand: `elio shell install nu`,
+    uninstallCommand: `elio shell uninstall nu`,
+    initCommand: `elio shell init nu`,
+    path: "$XDG_CONFIG_HOME/nushell/autoload/elio.nu or ~/.config/nushell/autoload/elio.nu",
+  },
+];
+---
+
+<DocsLayout
+  title="elio docs: shell integration"
+  description="Install and manage elio shell integration for changing the parent shell directory on quit."
+  currentPath="/docs/shell-integration/"
+  eyebrow="INTEGRATION"
+  heading="Shell integration"
+  lead="Leave your shell in elio's final directory when you quit."
+>
+  <section class="docs-section docs-section-first">
+    <div class="docs-section-heading">
+      <p class="eyebrow">CD ON EXIT</p>
+      <h2 class="docs-section-title">Recommended setup</h2>
+    </div>
+
+    <div class="docs-two-up docs-align-start">
+      <article class="doc-card docs-card-tight docs-detail-card docs-tight-command-card docs-recommended-card">
+        <p class="docs-inline-heading">Detects your current shell.</p>
+        <div class="command-block" data-command-block>
+          <button
+            class="command-copy"
+            type="button"
+            data-copy-command
+            data-copy-state="idle"
+            aria-label="Copy command"
+            title="Copy command"
+          >
+            <span class="command-copy-icon" data-copy-icon="copy" aria-hidden="true" set:html={Copy}></span>
+            <span class="command-copy-icon" data-copy-icon="check" aria-hidden="true" set:html={Check}></span>
+          </button>
+          <pre class="language-bash"><code class="language-bash" set:html={highlightBash(defaultInstallCommand)}></code></pre>
+        </div>
+        <div class="command-block" data-command-block>
+          <button
+            class="command-copy"
+            type="button"
+            data-copy-command
+            data-copy-state="idle"
+            aria-label="Copy command"
+            title="Copy command"
+          >
+            <span class="command-copy-icon" data-copy-icon="copy" aria-hidden="true" set:html={Copy}></span>
+            <span class="command-copy-icon" data-copy-icon="check" aria-hidden="true" set:html={Check}></span>
+          </button>
+          <pre class="language-bash"><code class="language-bash" set:html={highlightBash(defaultUninstallCommand)}></code></pre>
+        </div>
+        <p class="docs-command-note">Restart your shell, or run the command printed by the installer.</p>
+      </article>
+
+      <article class="doc-card docs-card-tight docs-detail-card">
+        <h3>Quit behavior</h3>
+        <ul class="docs-list docs-inline-key-list">
+          <li><code>q</code><span>Quit and move your shell to elio's final directory.</span></li>
+          <li><code>Q</code><span>Quit and keep the parent shell where it was.</span></li>
+          <li><span>Launch through the wrapper by typing <code>elio</code> normally.</span></li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="docs-section">
+    <div class="docs-section-heading">
+      <p class="eyebrow">SHELLS</p>
+      <h2 class="docs-section-title">Per-shell commands</h2>
+    </div>
+
+    <article class="doc-card docs-detail-card docs-install-tabs" data-docs-shell-tabs>
+      <div class="quick-start-tabs" role="tablist" aria-label="Shell integration commands">
+        {shellRows.map((row, index) => (
+          <button
+            class:list={["quick-start-tab", index === 0 && "is-active"]}
+            type="button"
+            role="tab"
+            id={`shell-tab-${index}`}
+            aria-selected={index === 0 ? "true" : "false"}
+            aria-controls={`shell-panel-${index}`}
+            data-docs-shell-tab
+          >
+            {row.name}
+          </button>
+        ))}
+      </div>
+
+      {shellRows.map((row, index) => (
+        <section
+          class="docs-install-panel"
+          id={`shell-panel-${index}`}
+          role="tabpanel"
+          aria-labelledby={`shell-tab-${index}`}
+          hidden={index !== 0}
+        >
+          <div class="docs-command-entry">
+            <div class="command-block" data-command-block>
+              <button
+                class="command-copy"
+                type="button"
+                data-copy-command
+                data-copy-state="idle"
+                aria-label="Copy command"
+                title="Copy command"
+              >
+                <span class="command-copy-icon" data-copy-icon="copy" aria-hidden="true" set:html={Copy}></span>
+                <span class="command-copy-icon" data-copy-icon="check" aria-hidden="true" set:html={Check}></span>
+              </button>
+              <pre class="language-bash"><code class="language-bash" set:html={highlightBash(row.installCommand)}></code></pre>
+            </div>
+            <div class="command-block" data-command-block>
+              <button
+                class="command-copy"
+                type="button"
+                data-copy-command
+                data-copy-state="idle"
+                aria-label="Copy command"
+                title="Copy command"
+              >
+                <span class="command-copy-icon" data-copy-icon="copy" aria-hidden="true" set:html={Copy}></span>
+                <span class="command-copy-icon" data-copy-icon="check" aria-hidden="true" set:html={Check}></span>
+              </button>
+              <pre class="language-bash"><code class="language-bash" set:html={highlightBash(row.uninstallCommand)}></code></pre>
+            </div>
+          </div>
+        </section>
+      ))}
+    </article>
+  </section>
+
+  <section class="docs-section">
+    <div class="docs-section-heading">
+      <p class="eyebrow">INSTALL SCOPE</p>
+      <h2 class="docs-section-title">Where integration is installed</h2>
+    </div>
+
+    <div class="docs-detail-stack">
+      <article class="doc-card docs-detail-card">
+        <div class="docs-managed-files-list">
+          {shellRows.map((row) => (
+            <div class="docs-managed-file-row">
+              <span class="docs-managed-file-shell">{row.name}</span>
+              <span class="docs-managed-file-paths">
+                {row.path.split(" or ").map((pathPart, partIndex) => (
+                  <>
+                    {partIndex > 0 && <span class="docs-managed-file-or">or</span>}
+                    <code set:html={formatManagedPath(pathPart)}></code>
+                  </>
+                ))}
+              </span>
+            </div>
+          ))}
+        </div>
+      </article>
+
+      <article class="doc-card docs-detail-card docs-card-tight">
+        <h3>Safety rules</h3>
+        <ul class="docs-list">
+          <li><span>For bash and zsh, elio only adds, updates, or removes its marked integration block.</span></li>
+          <li><span>Existing startup files are preserved, including symlinks used by dotfile managers.</span></li>
+          <li><span>Symlinked fish <code>conf.d</code> and Nushell <code>autoload</code> directories are preserved.</span></li>
+          <li><span>Fish and Nushell files are not overwritten unless they were previously managed by elio.</span></li>
+          <li><span><code>elio shell uninstall</code> removes only integration installed by <code>elio shell install</code>.</span></li>
+          <li><span>If you pasted output from <code>elio shell init</code>, remove that snippet manually.</span></li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="docs-section">
+    <div class="docs-section-heading">
+      <p class="eyebrow">MANUAL SETUP</p>
+      <h2 class="docs-section-title">Custom wrappers</h2>
+    </div>
+
+    <div class="docs-two-up docs-align-start">
+      <article class="doc-card docs-card-tight docs-install-tabs docs-compact-tabs" data-docs-shell-tabs>
+        <p>Print the wrapper snippet if you prefer to edit shell files yourself.</p>
+        <div class="quick-start-tabs" role="tablist" aria-label="Shell integration init commands">
+          {shellRows.map((row, index) => (
+            <button
+              class:list={["quick-start-tab", index === 0 && "is-active"]}
+              type="button"
+              role="tab"
+              id={`shell-init-tab-${index}`}
+              aria-selected={index === 0 ? "true" : "false"}
+              aria-controls={`shell-init-panel-${index}`}
+              data-docs-shell-tab
+            >
+              {row.name}
+            </button>
+          ))}
+        </div>
+
+        {shellRows.map((row, index) => (
+          <section
+            class="docs-install-panel"
+            id={`shell-init-panel-${index}`}
+            role="tabpanel"
+            aria-labelledby={`shell-init-tab-${index}`}
+            hidden={index !== 0}
+          >
+            <div class="docs-command-entry">
+              <div class="command-block" data-command-block>
+                <button
+                  class="command-copy"
+                  type="button"
+                  data-copy-command
+                  data-copy-state="idle"
+                  aria-label="Copy command"
+                  title="Copy command"
+                >
+                  <span class="command-copy-icon" data-copy-icon="copy" aria-hidden="true" set:html={Copy}></span>
+                  <span class="command-copy-icon" data-copy-icon="check" aria-hidden="true" set:html={Check}></span>
+                </button>
+                <pre class="language-bash"><code class="language-bash" set:html={highlightBash(row.initCommand)}></code></pre>
+              </div>
+            </div>
+          </section>
+        ))}
+      </article>
+      <article class="doc-card docs-card-tight">
+        <h3>Use the cwd handoff file</h3>
+        <p><code>elio --cwd-file /path/to/output-file [DIRECTORY]</code> writes the final directory on normal quit. A wrapper can read it and <code>cd</code> there. Quitting with <code>Q</code> skips writing the file.</p>
+      </article>
+    </div>
+  </section>
+
+  <script is:inline>
+    const shellTabsRoots = Array.from(document.querySelectorAll("[data-docs-shell-tabs]"));
+
+    shellTabsRoots.forEach((shellTabsRoot) => {
+      const tabs = Array.from(shellTabsRoot.querySelectorAll("[data-docs-shell-tab]"));
+      const panels = Array.from(shellTabsRoot.querySelectorAll(".docs-install-panel"));
+
+      const selectShellTab = (activeTab) => {
+        tabs.forEach((tab) => {
+          const isActive = tab === activeTab;
+          tab.classList.toggle("is-active", isActive);
+          tab.setAttribute("aria-selected", isActive ? "true" : "false");
+        });
+
+        panels.forEach((panel) => {
+          panel.hidden = panel.id !== activeTab.getAttribute("aria-controls");
+        });
+      };
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => selectShellTab(tab));
+      });
+    });
+  </script>
+</DocsLayout>

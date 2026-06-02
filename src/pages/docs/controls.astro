@@ -1,0 +1,165 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+
+const commonRows = [
+  ["Move around", ["↑/↓", "j/k", "PgUp/PgDn"], "Move through the current folder."],
+  ["Enter and leave folders", ["Enter", "→/l", "←/h/Backspace"], "Enter folders, open files, or go to the parent folder."],
+  ["Open files", ["o", "Shift+O"], "Open with the default app, or choose an app."],
+  ["Select items", ["Space", "Ctrl+A"], "Select items or select everything in the current folder."],
+  ["Cancel / clear", ["Esc"], "Close overlays, cancel prompts, or clear selection depending on context."],
+  ["Copy, cut, paste, clipboard", ["y", "x", "p", "c"], "Copy or move files, or copy names and paths."],
+  ["Create / rename", ["a", "r", "F2"], "Create files or folders, or rename one or many items."],
+  ["Trash", ["d", "r"], "Trash files, restore from Trash, or permanently delete inside Trash."],
+  ["Search", ["f", "Ctrl+F"], "Search folders or files in the current tree."],
+  ["Jump", ["g", "z"], "Jump to common places or use zoxide history."],
+  ["Shell here", ["!"], "Open your shell in the current folder, then return to elio."],
+  ["Preview pane", ["Shift+J/K", "Shift+H/L", "[ / ]"], "Scroll previews or step through documents."],
+  ["View", ["v", "+ / -", ".", "s"], "Switch view, zoom, show dotfiles, or sort."],
+  ["Help", ["?"], "Open the live help overlay."],
+  ["Quit", ["q", "Shift+Q"], "Quit, or quit without changing the parent shell directory."],
+];
+
+const fixedRows = [
+  ["Movement", "Arrow keys, vim keys, Enter, Backspace, PageUp/PageDown, Tab, history keys"],
+  ["Selection", "Space, Ctrl+A, Esc"],
+  ["Prompts", "Text editing keys such as Ctrl+←/→, Ctrl+Backspace, Ctrl+Del, Ctrl+W, Alt+D"],
+  ["Preview/page stepping", "[ / ], + / -"],
+  ["Help", "? / Esc"],
+];
+---
+
+<DocsLayout
+  title="elio docs: default controls"
+  description="Useful elio controls, the in-app help overlay, mouse behavior, and how key rebinding works."
+  currentPath="/docs/controls/"
+  eyebrow="USING ELIO"
+  heading="Default controls"
+  lead="Common keys, fixed controls, and rebinding notes. Press ? in elio for the live list."
+>
+  <section class="docs-section docs-section-first">
+    <div class="docs-section-heading">
+      <p class="eyebrow">SHORTCUTS</p>
+      <h2 class="docs-section-title">Checking bindings in elio</h2>
+    </div>
+
+    <article class="doc-card docs-detail-card">
+      <div class="docs-detail-grid">
+        <section class="docs-detail-block">
+          <p class="docs-block-label">Help overlay</p>
+          <ul class="docs-list docs-inline-key-list">
+            <li><code>?</code><span>Press ? to see the current bindings, including your overrides.</span></li>
+          </ul>
+        </section>
+
+        <section class="docs-detail-block">
+          <p class="docs-block-label">Close or cancel</p>
+          <ul class="docs-list docs-inline-key-list">
+            <li><code>Esc</code><span>Closes the overlay, cancels prompts, or clears selection depending on context.</span></li>
+          </ul>
+        </section>
+      </div>
+    </article>
+  </section>
+
+  <section class="docs-section">
+    <div class="docs-section-heading">
+      <p class="eyebrow">DEFAULTS</p>
+      <h2 class="docs-section-title">Default controls</h2>
+    </div>
+
+    <article class="doc-card docs-detail-card">
+      <table class="docs-table docs-controls-table">
+        <colgroup>
+          <col class="docs-controls-use-case" />
+          <col class="docs-controls-keys" />
+          <col class="docs-controls-description" />
+        </colgroup>
+        <thead>
+          <tr>
+            <th>Use case</th>
+            <th>Keys</th>
+            <th>What it does</th>
+          </tr>
+        </thead>
+        <tbody>
+          {commonRows.map(([name, keys, body]) => (
+            <tr>
+              <td data-label="Use case"><strong>{name}</strong></td>
+              <td data-label="Keys">
+                <span class="docs-key-sequence">
+                  {keys.map((key) => <code>{key}</code>)}
+                </span>
+              </td>
+              <td data-label="What it does">{body}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </article>
+  </section>
+
+  <section class="docs-section">
+    <div class="docs-section-heading">
+      <p class="eyebrow">MOUSE</p>
+      <h2 class="docs-section-title">Mouse controls</h2>
+    </div>
+
+    <div class="docs-two-up">
+      <article class="doc-card docs-card-tight">
+        <h3>Pointer</h3>
+        <ul class="docs-list">
+          <li><span>Click selects an item.</span></li>
+          <li><span>Double-click opens or enters the clicked item.</span></li>
+        </ul>
+      </article>
+
+      <article class="doc-card docs-card-tight">
+        <h3>Scrolling</h3>
+        <ul class="docs-list">
+          <li><span>Scroll moves the browser or preview.</span></li>
+          <li><code>Shift+Scroll</code><span>Scrolls the preview sideways.</span></li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="docs-section">
+    <div class="docs-section-heading">
+      <p class="eyebrow">REBINDING</p>
+      <h2 class="docs-section-title">Rebindable controls</h2>
+    </div>
+
+    <div class="docs-detail-stack">
+      <article class="doc-card docs-callout-card">
+        <h3>Rebinding keys</h3>
+        <p>Add custom shortcuts under <code>[keys]</code> in <code>config.toml</code>.</p>
+        <p>Most browser actions are rebindable, including file operations, search, zoxide, shell, opening files, sorting, view toggles, hidden files, and preview scrolling.</p>
+        <p>Invalid or conflicting keys are ignored with a warning, so elio can keep using the defaults. See <a href="/docs/configuration/">Configuration</a> for the config path and examples.</p>
+      </article>
+
+      <article class="doc-card docs-card-tight">
+        <h3>Fixed controls</h3>
+        <table class="docs-table docs-table-compact docs-fixed-table">
+          <colgroup>
+            <col class="docs-fixed-area" />
+            <col class="docs-fixed-examples" />
+          </colgroup>
+          <thead>
+            <tr>
+              <th>Area</th>
+              <th>Examples</th>
+            </tr>
+          </thead>
+          <tbody>
+            {fixedRows.map(([area, examples]) => (
+              <tr>
+                <td data-label="Area"><strong>{area}</strong></td>
+                <td data-label="Examples">{examples}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </article>
+    </div>
+  </section>
+</DocsLayout>

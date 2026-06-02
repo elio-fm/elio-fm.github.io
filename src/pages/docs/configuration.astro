@@ -1,0 +1,83 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import { configPaths, configSections, formatPath } from "../../data/docs.js";
+---
+
+<DocsLayout
+  title="elio docs: configuration"
+  description="Quick reference for elio config.toml sections and rules."
+  currentPath="/docs/configuration/"
+  eyebrow="CONFIG"
+  heading="Configuration"
+  lead="Use config.toml for startup behavior, Places, pane layout, and browser action keys."
+>
+  <section class="docs-section docs-section-first">
+    <div class="docs-section-heading">
+      <p class="eyebrow">CONFIG FILE</p>
+      <h2 class="docs-section-title">Where config.toml lives</h2>
+      <p>Use this file for startup behavior, Places, pane layout, and browser action key overrides.</p>
+    </div>
+
+    <article class="doc-card docs-card-tight">
+      <div class="docs-path-list">
+        {
+          configPaths.map((entry) => (
+            <div class="docs-path-row">
+              <span class="docs-path-platform">{entry.platform}</span>
+              <span class="docs-path-values">
+                <code set:html={formatPath(entry.primary)}></code>
+                {entry.secondary && (
+                  <>
+                    <span class="docs-path-or">or</span>
+                    <code set:html={formatPath(entry.secondary)}></code>
+                  </>
+                )}
+              </span>
+            </div>
+          ))
+        }
+      </div>
+    </article>
+  </section>
+
+  <section class="docs-section">
+    <div class="docs-section-heading">
+      <p class="eyebrow">CONFIG.TOML</p>
+      <h2 class="docs-section-title">What goes in config.toml</h2>
+    </div>
+
+    <article class="doc-card docs-detail-card">
+      <div class="docs-detail-grid">
+        <section class="docs-detail-block">
+          <p class="docs-block-label">Sections</p>
+          <ul class="docs-list">
+            {
+              configSections.map((section) => (
+                <li>
+                  <code>{section.name}</code>
+                  <span>{section.body}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+
+        <section class="docs-detail-block">
+          <p class="docs-block-label">Rules</p>
+          <ul class="docs-list">
+            <li><span>Leave a section out to keep the built-in default behavior.</span></li>
+            <li><span><code>grid_zoom</code> is clamped to <code>0</code>, <code>1</code>, or <code>2</code>.</span></li>
+            <li><span><code>places.entries</code> can use built-ins like <code>downloads</code> or custom paths starting with <code>~/</code>.</span></li>
+            <li><span>In <code>[layout.panes]</code>, <code>places = 0</code> hides Places and <code>preview = 0</code> hides Preview, but <code>files</code> must stay above <code>0</code>.</span></li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="doc-card docs-callout-card">
+      <h3>Open the annotated example</h3>
+      <p>The source repo keeps the complete example config with comments and current defaults.</p>
+      <a href="https://github.com/elio-fm/elio/blob/main/examples/config.toml" target="_blank" rel="noreferrer">View examples/config.toml</a>
+    </article>
+  </section>
+</DocsLayout>

@@ -1,0 +1,226 @@
+---
+import DocsLayout from "../layouts/DocsLayout.astro";
+import Prism from "prismjs";
+import "prismjs/components/prism-bash.js";
+import { Check, Copy } from "lucide-static";
+import { optionalPreviewTools, fallbackPreviewTools } from "../data/docs.js";
+
+const { currentPath = "/docs/optional-tools/" } = Astro.props;
+
+const highlightBash = (code) => Prism.highlight(code, Prism.languages.bash, "bash");
+
+const installRows = [
+  { platform: "Arch", command: "sudo pacman -S poppler ffmpeg resvg 7zip" },
+  { platform: "Fedora", command: "sudo dnf install poppler-utils ffmpeg resvg 7zip" },
+  {
+    platform: "Debian / Ubuntu",
+    command: "sudo apt install poppler-utils ffmpeg resvg 7zip",
+    note: "resvg availability varies by distro release. Without it, elio still works; SVG previews use fallback paths when available.",
+  },
+  { platform: "Homebrew", command: "brew install poppler ffmpeg resvg sevenzip" },
+  { platform: "FreeBSD", command: "pkg install poppler-utils ffmpeg resvg 7-zip" },
+  {
+    platform: "Windows",
+    commands: [
+      { label: "Scoop", command: "scoop install poppler ffmpeg resvg 7zip" },
+      {
+        label: "WinGet",
+        command: "winget install --id oschwartz10612.Poppler -e\nwinget install --id Gyan.FFmpeg -e\nwinget install --id 7zip.7zip -e",
+      },
+    ],
+    note: "WinGet covers Poppler, FFmpeg, and 7-Zip. Install resvg separately if you need SVG previews.",
+  },
+];
+
+---
+
+<DocsLayout
+  title="elio docs: optional tools"
+  description="Optional tools that make elio previews, icons, and zoxide jumps richer."
+  currentPath={currentPath}
+  eyebrow="SETUP"
+  heading="Optional tools"
+  lead="Install tools for the features you use"
+>
+  <section class="docs-section docs-section-first">
+    <div class="docs-section-heading">
+      <p class="eyebrow">TOOLS</p>
+      <h2 class="docs-section-title">Optional feature tools</h2>
+    </div>
+
+    <div class="docs-three-up">
+      <article class="doc-card docs-card-tight">
+        <h3>Preview</h3>
+        <p>Install these for broader file preview support.</p>
+      </article>
+      <article class="doc-card docs-card-tight">
+        <h3>Nerd Font</h3>
+        <p>Use a Nerd Font in your terminal so icons render correctly.</p>
+      </article>
+      <article class="doc-card docs-card-tight">
+        <h3>zoxide</h3>
+        <p>Install it if you want <code>z</code> to jump through your directory history.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="docs-section">
+    <div class="docs-section-heading">
+      <p class="eyebrow">PREVIEW</p>
+      <h2 class="docs-section-title">Preview tools</h2>
+    </div>
+
+    <article class="doc-card docs-detail-card">
+      <table class="docs-table docs-helpers-table">
+        <colgroup>
+          <col class="docs-helpers-tool" />
+          <col class="docs-helpers-command" />
+          <col class="docs-helpers-description" />
+        </colgroup>
+        <thead>
+          <tr>
+            <th>Tool</th>
+            <th>Commands elio uses</th>
+            <th>What it adds</th>
+          </tr>
+        </thead>
+        <tbody>
+          {optionalPreviewTools.map((tool) => (
+            <tr>
+              <td><strong>{tool.name}</strong></td>
+              <td><code>{tool.commands}</code></td>
+              <td>{tool.enables}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </article>
+  </section>
+
+  <section class="docs-section">
+    <div class="docs-section-heading">
+      <p class="eyebrow">INSTALL</p>
+      <h2 class="docs-section-title">Install preview tools</h2>
+    </div>
+
+    <article class="doc-card docs-detail-card docs-install-tabs" data-docs-install-tabs>
+      <div class="quick-start-tabs" role="tablist" aria-label="Preview tool install commands">
+        {installRows.map((row, index) => (
+          <button
+            class:list={["quick-start-tab", index === 0 && "is-active"]}
+            type="button"
+            role="tab"
+            id={`preview-tools-tab-${index}`}
+            aria-selected={index === 0 ? "true" : "false"}
+            aria-controls={`preview-tools-panel-${index}`}
+            data-docs-install-tab
+          >
+            {row.platform}
+          </button>
+        ))}
+      </div>
+
+      {installRows.map((row, index) => (
+        <section
+          class="docs-install-panel"
+          id={`preview-tools-panel-${index}`}
+          role="tabpanel"
+          aria-labelledby={`preview-tools-tab-${index}`}
+          hidden={index !== 0}
+        >
+          <div class="docs-command-card-header">
+            <h3>{row.platform}</h3>
+          </div>
+          {row.command || row.commands ? (
+            <>
+              {(row.commands ?? [{ command: row.command }]).map((entry) => (
+                <div class="docs-command-entry">
+                  {entry.label && <p class="docs-command-label">{entry.label}</p>}
+                  <div class="command-block" data-command-block>
+                    <button
+                      class="command-copy"
+                      type="button"
+                      data-copy-command
+                      data-copy-state="idle"
+                      aria-label="Copy command"
+                      title="Copy command"
+                    >
+                      <span class="command-copy-icon" data-copy-icon="copy" aria-hidden="true" set:html={Copy}></span>
+                      <span class="command-copy-icon" data-copy-icon="check" aria-hidden="true" set:html={Check}></span>
+                    </button>
+                    <pre class="language-bash"><code class="language-bash" set:html={highlightBash(entry.command)}></code></pre>
+                  </div>
+                </div>
+              ))}
+              {row.note && <p class="docs-command-note">{row.note}</p>}
+            </>
+          ) : (
+            <p class="docs-command-note">{row.note}</p>
+          )}
+        </section>
+      ))}
+    </article>
+  </section>
+
+  <section class="docs-section">
+    <div class="docs-section-heading">
+      <p class="eyebrow">FALLBACKS</p>
+      <h2 class="docs-section-title">Fallback preview tools</h2>
+      <p>
+        Install these only if a specific preview format still needs another path on your system.
+      </p>
+    </div>
+
+    <article class="doc-card docs-detail-card">
+      <table class="docs-table docs-fallback-table">
+        <colgroup>
+          <col class="docs-fallback-tool" />
+          <col class="docs-fallback-command" />
+          <col class="docs-fallback-description" />
+        </colgroup>
+        <thead>
+          <tr>
+            <th>Tool</th>
+            <th>Command</th>
+            <th>Used for</th>
+          </tr>
+        </thead>
+        <tbody>
+          {fallbackPreviewTools.map((tool) => (
+            <tr>
+              <td><strong>{tool.name}</strong></td>
+              <td><code>{tool.command}</code></td>
+              <td>{tool.usedFor}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </article>
+  </section>
+
+  <script is:inline>
+    const installTabsRoot = document.querySelector("[data-docs-install-tabs]");
+
+    if (installTabsRoot) {
+      const tabs = Array.from(installTabsRoot.querySelectorAll("[data-docs-install-tab]"));
+      const panels = Array.from(installTabsRoot.querySelectorAll(".docs-install-panel"));
+
+      const selectInstallTab = (activeTab) => {
+        tabs.forEach((tab) => {
+          const isActive = tab === activeTab;
+          tab.classList.toggle("is-active", isActive);
+          tab.setAttribute("aria-selected", isActive ? "true" : "false");
+        });
+
+        panels.forEach((panel) => {
+          panel.hidden = panel.id !== activeTab.getAttribute("aria-controls");
+        });
+      };
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => selectInstallTab(tab));
+      });
+    }
+  </script>
+</DocsLayout>
+

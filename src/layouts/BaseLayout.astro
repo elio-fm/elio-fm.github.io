@@ -9,6 +9,8 @@ const {
   ogSiteName = "elio fm",
   description = "elio is a terminal file manager (TUI) with a three-pane layout, rich previews, and inline image previews.",
   structuredData = null,
+  headerDocsNav = [],
+  headerDocsCurrentPath = Astro.url.pathname,
 } = Astro.props;
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url).toString();
@@ -51,7 +53,7 @@ const socialImageAlt = "elio terminal file manager interface with three panes an
   </head>
   <body>
     <div class="page-shell">
-      <Header />
+      <Header docsNav={headerDocsNav} docsCurrentPath={headerDocsCurrentPath} />
       <main>
         <slot />
       </main>

@@ -1,0 +1,339 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+
+const workflowRows = [
+  ["Open", "Enter / o / Shift+O", "Enter folders, open files with the platform default app, or choose an app with Open With."],
+  ["Clipboard", "c", "Copy names, paths, or directory paths using OSC52 or a platform clipboard tool."],
+  ["Go-to", "g", "Jump to common destinations such as Home, Downloads, config, Trash, or the top of the folder."],
+  ["Trash", "d / r", "Trash items, permanently delete from Trash, or restore trashed files."],
+  ["Fuzzy search", "f / Ctrl+F", "Search folders or files in the current tree without leaving elio."],
+  ["zoxide", "z", "Jump through zoxide's directory history when zoxide is installed and has data."],
+  ["Shell", "!", "Temporarily open your shell in the current folder, then return to elio."],
+];
+
+const openRows = [
+  ["Enter", "Enter folders. Open files with the default app."],
+  ["o", "Open the focused item or selection with the default app."],
+  ["Shift+O", "Choose an app for the focused file or selection."],
+];
+
+const launcherRows = [
+  ["macOS", "open"],
+  ["Windows", "cmd /c start"],
+  ["Linux / BSD desktop sessions", "gio, with xdg-open as fallback"],
+];
+
+const clipboardRows = [
+  ["Terminal", "OSC52 when supported"],
+  ["Wayland", "wl-copy"],
+  ["X11", "xclip or xsel"],
+  ["macOS", "pbcopy"],
+  ["Windows", "clip"],
+];
+
+const configRows = [
+  ["Linux / BSD", "~/.config", "Uses $XDG_CONFIG_HOME when set."],
+  ["macOS", "~/Library/Application Support", ""],
+  ["Windows", "%APPDATA%", ""],
+];
+
+const trashRows = [
+  ["Linux", "Uses gio trash when available, then falls back to the Freedesktop Trash layout."],
+  ["BSD", "Uses the Freedesktop Trash layout."],
+  ["macOS", "Moves items to ~/.Trash and stores restore metadata for items trashed by elio."],
+  ["Windows", "Moves items to the Recycle Bin. The Recycle Bin is not shown as a browsable Trash view yet."],
+];
+---
+
+<DocsLayout
+  title="elio docs: workflow"
+  description="How common elio workflows behave: opening files, clipboard, go-to, Trash, fuzzy search, zoxide, and shell."
+  currentPath="/docs/workflow/"
+  eyebrow="USING ELIO"
+  heading="Workflow"
+  lead="Opening files, copying paths, search, Trash, zoxide, and shell here."
+>
+  <section class="docs-section docs-section-first">
+    <div class="docs-section-heading">
+      <p class="eyebrow">START HERE</p>
+      <h2 class="docs-section-title">Common actions</h2>
+    </div>
+
+    <article class="doc-card docs-detail-card">
+      <table class="docs-table docs-workflow-table">
+        <colgroup>
+          <col class="docs-workflow-name" />
+          <col class="docs-workflow-key" />
+          <col class="docs-workflow-description" />
+        </colgroup>
+        <thead>
+          <tr>
+            <th>Action</th>
+            <th>Key</th>
+            <th>What it does</th>
+          </tr>
+        </thead>
+        <tbody>
+          {workflowRows.map(([name, key, body]) => (
+            <tr>
+              <td><strong>{name}</strong></td>
+              <td><code>{key}</code></td>
+              <td>{body}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </article>
+  </section>
+
+  <section class="docs-section">
+    <div class="docs-section-heading">
+      <p class="eyebrow">OPEN</p>
+      <h2 class="docs-section-title">Opening files</h2>
+      <p>elio has two ways to open files: use the default app, or choose one.</p>
+    </div>
+
+    <div class="docs-detail-stack">
+      <article class="doc-card docs-detail-card">
+        <table class="docs-table docs-open-table">
+          <colgroup>
+            <col class="docs-open-key" />
+            <col class="docs-open-behavior" />
+          </colgroup>
+          <thead>
+            <tr>
+              <th>Key</th>
+              <th>Behavior</th>
+            </tr>
+          </thead>
+          <tbody>
+            {openRows.map(([key, body]) => (
+              <tr>
+                <td><code>{key}</code></td>
+                <td>{body}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </article>
+
+      <article class="doc-card docs-card-tight">
+        <h3>Platform launchers</h3>
+        <table class="docs-table docs-table-compact docs-platform-table">
+          <thead>
+            <tr>
+              <th>Platform</th>
+              <th>Default launcher</th>
+            </tr>
+          </thead>
+          <tbody>
+            {launcherRows.map(([platform, launcher]) => (
+              <tr>
+                <td>{platform}</td>
+                <td><code>{launcher}</code></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <p class="docs-note">Open With shows a chooser when multiple matching apps are found. If there is only one match, elio opens it directly. If no match is found, or on platforms without app discovery, elio falls back to the default opener.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="docs-section">
+    <div class="docs-section-heading">
+      <p class="eyebrow">CLIPBOARD</p>
+      <h2 class="docs-section-title">Copy to clipboard</h2>
+      <p><code>c</code> opens a menu to copy names, paths, or directory paths for the focused item or selection.</p>
+    </div>
+
+    <article class="doc-card docs-detail-card">
+      <table class="docs-table docs-clipboard-table">
+        <thead>
+          <tr>
+            <th>Environment</th>
+            <th>Clipboard method</th>
+          </tr>
+        </thead>
+        <tbody>
+          {clipboardRows.map(([environment, path]) => (
+            <tr>
+              <td><strong>{environment}</strong></td>
+              <td><code>{path}</code></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </article>
+  </section>
+
+  <section class="docs-section">
+    <div class="docs-section-heading">
+      <p class="eyebrow">GO TO</p>
+      <h2 class="docs-section-title">Go-to menu</h2>
+      <p><code>g</code> opens shortcuts to common locations.</p>
+    </div>
+
+    <article class="doc-card docs-detail-card">
+      <div class="docs-detail-grid">
+        <section class="docs-detail-block">
+          <p class="docs-block-label">Destinations</p>
+          <ul class="docs-list">
+            <li><span>Top of the current folder</span></li>
+            <li><span>Downloads</span></li>
+            <li><span>Home</span></li>
+            <li><span>Platform config folder</span></li>
+            <li><span>Trash</span></li>
+          </ul>
+        </section>
+        <section class="docs-detail-block">
+          <p class="docs-block-label">Config folder</p>
+          <table class="docs-table docs-goto-table">
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Path</th>
+              </tr>
+            </thead>
+            <tbody>
+              {configRows.map(([platform, path, note]) => (
+                <tr>
+                  <td><strong>{platform}</strong></td>
+                  <td><code>{path}</code>{note && <span class="docs-secondary-path">{note}</span>}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </section>
+      </div>
+    </article>
+  </section>
+
+  <section class="docs-section">
+    <div class="docs-section-heading">
+      <p class="eyebrow">TRASH</p>
+      <h2 class="docs-section-title">Trash and restore</h2>
+      <p>Trash behavior depends on the platform.</p>
+    </div>
+
+    <div class="docs-detail-stack">
+      <article class="doc-card docs-detail-card">
+        <table class="docs-table docs-trash-table">
+          <thead>
+            <tr>
+              <th>Platform</th>
+              <th>Behavior</th>
+            </tr>
+          </thead>
+          <tbody>
+            {trashRows.map(([platform, body]) => (
+              <tr>
+                <td><strong>{platform}</strong></td>
+                <td>{body}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </article>
+      <article class="doc-card docs-callout-card">
+        <h3>Freedesktop filename collisions</h3>
+        <p>On Freedesktop Trash systems, the stored filename may change to avoid collisions, for example <code>photo.jpg.2</code>. elio reads the matching .trashinfo metadata, so the file is still shown, previewed, opened, and restored as the original <code>photo.jpg</code>.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="docs-section">
+    <div class="docs-section-heading">
+      <p class="eyebrow">SEARCH</p>
+      <h2 class="docs-section-title">Fuzzy search</h2>
+      <p>elio can search the current directory tree without leaving the browser.</p>
+    </div>
+
+    <article class="doc-card docs-detail-card docs-search-card">
+      <div class="docs-search-actions">
+        <div class="docs-search-action">
+          <code>f</code>
+          <span>Search folders</span>
+        </div>
+        <div class="docs-search-action">
+          <code>Ctrl+F</code>
+          <span>Search files</span>
+        </div>
+      </div>
+
+      <div class="docs-search-grid">
+        <ul class="docs-list">
+          <li><span>Follows the current hidden-file setting.</span></li>
+          <li><span>Includes symlinks as leaf entries, but does not descend into linked directories.</span></li>
+          <li><span>Skips <code>.git</code>, <code>node_modules</code>, <code>target</code>, and other generated folders.</span></li>
+          <li><span>Streams results while scanning and refreshes when the directory changes.</span></li>
+          <li><span>Caps very large trees so search stays responsive and shows when the scan limit is reached.</span></li>
+        </ul>
+      </div>
+    </article>
+  </section>
+
+  <section class="docs-section">
+    <div class="docs-section-heading">
+      <p class="eyebrow">JUMPS</p>
+      <h2 class="docs-section-title">Zoxide</h2>
+      <p><code>z</code> opens an interactive zoxide picker.</p>
+    </div>
+
+    <article class="doc-card docs-detail-card docs-zoxide-card">
+      <div class="docs-detail-grid">
+        <section class="docs-detail-block">
+          <p class="docs-block-label">Requires</p>
+          <ul class="docs-list">
+            <li><span><code>zoxide</code> installed and available in <code>PATH</code>.</span></li>
+            <li><span>Recorded directory history before useful results appear.</span></li>
+          </ul>
+          <p class="docs-note">Install zoxide from <a href="/docs/optional-tools/">Optional tools</a>.</p>
+        </section>
+        <section class="docs-detail-block">
+          <p class="docs-block-label">Behavior</p>
+          <ul class="docs-list docs-inline-key-list">
+            <li><code>zoxide query -i</code><span>Runs the interactive picker.</span></li>
+            <li><code>current folder</code><span>Excluded from the picker.</span></li>
+            <li><code>ELIO_ZOXIDE_OPTS</code><span>Appends extra picker options.</span></li>
+          </ul>
+        </section>
+      </div>
+    </article>
+  </section>
+
+  <section class="docs-section">
+    <div class="docs-section-heading">
+      <p class="eyebrow">SHELL</p>
+      <h2 class="docs-section-title">Shell here</h2>
+      <p><code>!</code> suspends elio and starts a shell in the current folder.</p>
+    </div>
+
+    <article class="doc-card docs-detail-card docs-shell-card">
+      <div class="docs-detail-grid">
+        <section class="docs-detail-block">
+          <p class="docs-block-label">Return</p>
+          <ul class="docs-list docs-inline-key-list">
+            <li><code>exit</code><span>Return to elio.</span></li>
+            <li><code>Ctrl+D</code><span>Return on an empty prompt in most shells.</span></li>
+          </ul>
+        </section>
+        <section class="docs-detail-block">
+          <p class="docs-block-label">Shell used</p>
+          <ul class="docs-list docs-inline-key-list">
+            <li><code>$SHELL</code><span>Linux, macOS, BSD, and WSL. Falls back to <code>/bin/sh</code>.</span></li>
+            <li><code>COMSPEC</code><span>Windows. Falls back to <code>PowerShell</code>, then <code>cmd</code>.</span></li>
+          </ul>
+        </section>
+      </div>
+      <div class="docs-shell-env">
+        <p class="docs-block-label">Environment variables</p>
+        <ul class="docs-list docs-inline-key-list">
+          <li><code>ELIO_SHELL=1</code><span>Set inside the child shell.</span></li>
+          <li><code>ELIO_LEVEL</code><span>Nesting counter for prompts and shell startup files.</span></li>
+        </ul>
+      </div>
+      <p class="docs-note">Changing directories here only affects the child shell. When it exits, elio resumes in the folder where you opened it. <a href="/docs/shell-integration/">Shell integration</a> is separate: it lets quitting elio update the parent shell's directory on quit.</p>
+    </article>
+  </section>
+</DocsLayout>
