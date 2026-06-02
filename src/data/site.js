@@ -1,7 +1,7 @@
 export const navItems = [
   { href: "/", label: "Home" },
   { href: "/install", label: "Install" },
-  { href: "/docs", label: "Docs" },
+  { href: "/docs/optional-tools/", label: "Docs" },
   { href: "https://github.com/elio-fm/elio", label: "GitHub", external: true },
 ];
 
@@ -37,6 +37,8 @@ https://elio-fm.github.io/elio-apt stable main" \\
 sudo apt update
 sudo apt install elio`,
     note: "Official apt repository",
+    optionalToolsCommand: "sudo apt install poppler-utils ffmpeg resvg 7zip",
+    optionalToolsNote: "resvg availability varies by distro release. Without it, elio still works; SVG previews use fallback paths when available.",
   },
   {
     name: "Homebrew",

@@ -314,6 +314,11 @@ const homeStructuredData = {
 
       const updateThemeControls = () => {
         const maxScroll = themeCarousel.scrollWidth - themeCarousel.clientWidth;
+        const atStart = maxScroll <= 1 || themeCarousel.scrollLeft <= 1;
+        const atEnd = maxScroll <= 1 || themeCarousel.scrollLeft >= maxScroll - 1;
+
+        themeCarousel.dataset.scrollStart = atStart ? "true" : "false";
+        themeCarousel.dataset.scrollEnd = atEnd ? "true" : "false";
 
         scrollButtons.forEach((button) => {
           if (!(button instanceof HTMLButtonElement)) {
@@ -321,10 +326,7 @@ const homeStructuredData = {
           }
 
           const direction = button.dataset.themeScroll;
-          const disabled =
-            maxScroll <= 1 ||
-            (direction === "previous" && themeCarousel.scrollLeft <= 1) ||
-            (direction === "next" && themeCarousel.scrollLeft >= maxScroll - 1);
+          const disabled = direction === "previous" ? atStart : atEnd;
 
           button.disabled = disabled;
         });
