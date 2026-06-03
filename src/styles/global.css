@@ -1656,8 +1656,8 @@ h2 {
 
 .docs-layout-grid {
   display: grid;
-  grid-template-columns: 230px minmax(0, var(--container));
-  gap: clamp(18px, 2.4vw, 34px);
+  grid-template-columns: 190px minmax(0, var(--container));
+  gap: clamp(14px, 2vw, 26px);
   align-items: start;
   justify-content: start;
   width: 100%;
@@ -3395,7 +3395,7 @@ h2 {
 
 @media (min-width: 1720px) {
   .docs-layout-frame {
-    width: min(calc(var(--container) + 560px), calc(100% - 32px));
+    width: min(calc(var(--container) + 460px), calc(100% - 32px));
   }
 
   .docs-layout-grid {
@@ -3407,8 +3407,8 @@ h2 {
     grid-column: 1;
     grid-row: 1;
     justify-self: start;
-    width: 230px;
-    transform: translateX(calc(-100% - clamp(18px, 2.4vw, 34px)));
+    width: 190px;
+    transform: translateX(calc(-100% - clamp(14px, 2vw, 26px)));
   }
 
   .docs-main-panel {
