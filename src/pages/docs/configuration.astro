@@ -1,21 +1,53 @@
 ---
 import DocsLayout from "../../layouts/DocsLayout.astro";
+import Prism from "prismjs";
+import "prismjs/components/prism-toml.js";
+import { Check, Copy } from "lucide-static";
 import { configPaths, configSections, formatPath } from "../../data/docs.js";
+
+const highlightToml = (code) => Prism.highlight(code, Prism.languages.toml, "toml");
+
+const uiSnippet = `[ui]
+show_top_bar = true  # show top bar (default hidden)
+show_hidden = true   # show dotfiles by default
+start_in_grid = true # start in grid view
+grid_zoom = 1        # grid density, 0–2`;
+
+const placesSnippet = `[places]
+show_devices = true # show Devices below Places
+entries = [        # replaces the pinned Places list
+  "home",         # built-in Place, default icon
+  { builtin = "downloads", icon = "" },
+  { title = "Projects", path = "~/workspace", icon = "󰚝" },
+  "trash",
+]`;
+
+const layoutSnippet = `[layout.panes]
+places = 10  # Places width; 0 hides it
+files = 45   # Files width; must be > 0
+preview = 45 # Preview width; 0 hides it`;
+
+const keysSnippet = `[keys]
+trash = "d"         # trash selected entries
+rename = "r"        # rename selected entry
+toggle_view = "v"   # switch grid/list view
+toggle_hidden = "." # show or hide dotfiles
+open_with = "O"     # choose an app to open with`;
 ---
 
 <DocsLayout
   title="elio docs: configuration"
-  description="Quick reference for elio config.toml sections and rules."
+  description="Configure elio by creating a config.toml file and overriding only what you need."
   currentPath="/docs/configuration/"
   eyebrow="CONFIG"
   heading="Configuration"
-  lead="Use config.toml for startup behavior, Places, pane layout, and browser action keys."
+  lead="Configure elio by creating a config.toml file and overriding only what you need."
 >
   <section class="docs-section docs-section-first">
     <div class="docs-section-heading">
       <p class="eyebrow">CONFIG FILE</p>
       <h2 class="docs-section-title">Where config.toml lives</h2>
-      <p>Use this file for startup behavior, Places, pane layout, and browser action key overrides.</p>
+      <p>Create <code>config.toml</code> in your config directory. You only need to include the settings you want to change.</p>
     </div>
 
     <article class="doc-card docs-card-tight">
@@ -46,37 +78,139 @@ import { configPaths, configSections, formatPath } from "../../data/docs.js";
       <h2 class="docs-section-title">What goes in config.toml</h2>
     </div>
 
-    <article class="doc-card docs-detail-card">
-      <div class="docs-detail-grid">
-        <section class="docs-detail-block">
-          <p class="docs-block-label">Sections</p>
-          <ul class="docs-list">
-            {
-              configSections.map((section) => (
-                <li>
-                  <code>{section.name}</code>
-                  <span>{section.body}</span>
-                </li>
-              ))
-            }
-          </ul>
-        </section>
-
-        <section class="docs-detail-block">
-          <p class="docs-block-label">Rules</p>
-          <ul class="docs-list">
-            <li><span>Leave a section out to keep the built-in default behavior.</span></li>
-            <li><span><code>grid_zoom</code> is clamped to <code>0</code>, <code>1</code>, or <code>2</code>.</span></li>
-            <li><span><code>places.entries</code> can use built-ins like <code>downloads</code> or custom paths starting with <code>~/</code>.</span></li>
-            <li><span>In <code>[layout.panes]</code>, <code>places = 0</code> hides Places and <code>preview = 0</code> hides Preview, but <code>files</code> must stay above <code>0</code>.</span></li>
-          </ul>
-        </section>
-      </div>
+    <article class="doc-card docs-detail-card docs-config-sections-card">
+      <section class="docs-detail-block">
+        <p class="docs-block-label">Sections</p>
+        <ul class="docs-list docs-config-section-list">
+          {
+            configSections.map((section) => (
+              <li>
+                <code>{section.name}</code>
+                <span>{section.body}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
     </article>
+  </section>
 
+  <section class="docs-section">
+    <div class="docs-section-heading">
+      <p class="eyebrow">EXAMPLES</p>
+      <h2 class="docs-section-title">Config examples</h2>
+      <p>Start with these snippets and override only what you need.</p>
+    </div>
+
+    <div class="docs-config-examples">
+      <article class="doc-card docs-card-tight docs-detail-card docs-config-example-card docs-config-ui-card">
+        <div class="docs-config-example-heading">
+          <h3>UI defaults</h3>
+        </div>
+
+        <div class="command-block docs-config-code" data-command-block>
+          <button class="command-copy" type="button" data-copy-command data-copy-state="idle" aria-label="Copy UI config" title="Copy UI config">
+            <span class="command-copy-icon" data-copy-icon="copy" aria-hidden="true" set:html={Copy}></span>
+            <span class="command-copy-icon" data-copy-icon="check" aria-hidden="true" set:html={Check}></span>
+          </button>
+          <pre class="language-toml"><code class="language-toml" set:html={highlightToml(uiSnippet)}></code></pre>
+        </div>
+        <p class="docs-note docs-config-runtime-note docs-config-inline-key-note">
+          <span>These are startup defaults;</span>
+          <span class="docs-config-pill-row docs-config-inline-key-pills" aria-label="Runtime view keys">
+            <code>v</code>
+            <code>.</code>
+            <code>+</code>
+            <code>-</code>
+          </span>
+          <span>still change view mode, hidden files, and grid zoom while elio is running.</span>
+        </p>
+      </article>
+
+      <article class="doc-card docs-card-tight docs-detail-card docs-config-example-card docs-config-places-card">
+        <div class="docs-config-example-heading">
+          <h3>Places entries and icons</h3>
+        </div>
+
+        <div class="command-block docs-config-code docs-config-places-code" data-command-block>
+          <button class="command-copy" type="button" data-copy-command data-copy-state="idle" aria-label="Copy Places config" title="Copy Places config">
+            <span class="command-copy-icon" data-copy-icon="copy" aria-hidden="true" set:html={Copy}></span>
+            <span class="command-copy-icon" data-copy-icon="check" aria-hidden="true" set:html={Check}></span>
+          </button>
+          <pre class="language-toml"><code class="language-toml" set:html={highlightToml(placesSnippet)}></code></pre>
+        </div>
+
+        <p class="docs-note docs-config-runtime-note">Use built-in ids like <code>downloads</code>, not display names like <code>Downloads</code>. Custom paths must be absolute or start with <code>~/</code>.</p>
+        <div class="docs-config-pill-row docs-config-places-builtins" aria-label="Built-in Place ids">
+          <code>home</code>
+          <code>desktop</code>
+          <code>documents</code>
+          <code>downloads</code>
+          <code>pictures</code>
+          <code>music</code>
+          <code>videos</code>
+          <code>root</code>
+          <code>trash</code>
+        </div>
+      </article>
+
+      <article class="doc-card docs-card-tight docs-detail-card docs-config-example-card">
+        <div class="docs-config-example-heading">
+          <h3>Pane layout</h3>
+        </div>
+
+        <div class="command-block docs-config-code" data-command-block>
+          <button class="command-copy" type="button" data-copy-command data-copy-state="idle" aria-label="Copy pane layout config" title="Copy pane layout config">
+            <span class="command-copy-icon" data-copy-icon="copy" aria-hidden="true" set:html={Copy}></span>
+            <span class="command-copy-icon" data-copy-icon="check" aria-hidden="true" set:html={Check}></span>
+          </button>
+          <pre class="language-toml"><code class="language-toml" set:html={highlightToml(layoutSnippet)}></code></pre>
+        </div>
+
+        <p class="docs-note docs-config-runtime-note">Values are relative weights, not fixed columns. On tight terminals, Preview can stack below Files when there is enough height.</p>
+      </article>
+
+      <article class="doc-card docs-card-tight docs-detail-card docs-config-example-card">
+        <div class="docs-config-example-heading">
+          <h3>Key bindings</h3>
+        </div>
+
+        <div class="command-block docs-config-code" data-command-block>
+          <button class="command-copy" type="button" data-copy-command data-copy-state="idle" aria-label="Copy keys config" title="Copy keys config">
+            <span class="command-copy-icon" data-copy-icon="copy" aria-hidden="true" set:html={Copy}></span>
+            <span class="command-copy-icon" data-copy-icon="check" aria-hidden="true" set:html={Check}></span>
+          </button>
+          <pre class="language-toml"><code class="language-toml" set:html={highlightToml(keysSnippet)}></code></pre>
+        </div>
+
+        <p class="docs-note docs-config-runtime-note">This snippet shows common overrides; see the annotated config for every key action.</p>
+        <div class="docs-config-runtime-note docs-config-key-reserved">
+          <p class="docs-note">Use one printable, unique, non-reserved character per action. Reserved:</p>
+          <div class="docs-config-pill-row docs-config-key-pills" aria-label="Reserved keys">
+            <code>h</code>
+            <code>j</code>
+            <code>k</code>
+            <code>l</code>
+            <code>g</code>
+            <code>G</code>
+            <code>?</code>
+            <code>[</code>
+            <code>]</code>
+            <code>+</code>
+            <code>=</code>
+            <code>-</code>
+            <code>_</code>
+            <code>Space</code>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="docs-section">
     <article class="doc-card docs-callout-card">
       <h3>Open the annotated example</h3>
-      <p>The source repo keeps the complete example config with comments and current defaults.</p>
+      <p>The source repo keeps a complete commented config with every supported key and the current defaults.</p>
       <a href="https://github.com/elio-fm/elio/blob/main/examples/config.toml" target="_blank" rel="noreferrer">View examples/config.toml</a>
     </article>
   </section>
