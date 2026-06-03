@@ -110,6 +110,10 @@ export const themeShots = [
     image: "/images/navi.webp",
   },
   {
+    name: "Terminal ANSI",
+    image: "/images/terminal-ansi.webp",
+  },
+  {
     name: "Tokyo Night",
     image: "/images/tokyo-night.webp",
   },
