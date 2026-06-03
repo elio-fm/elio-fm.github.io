@@ -1,6 +1,9 @@
 ---
 import DocsLayout from "../../layouts/DocsLayout.astro";
 import { builtInClasses, formatPath, themePaths, themeSections } from "../../data/docs.js";
+import { themeShots } from "../../data/site.js";
+
+const themeSlug = (name) => name.toLowerCase().replaceAll(" ", "-");
 ---
 
 <DocsLayout
@@ -87,9 +90,37 @@ import { builtInClasses, formatPath, themePaths, themeSections } from "../../dat
 
       <article class="doc-card docs-callout-card">
         <h3>Start from a bundled theme</h3>
-        <p>The source repo includes copyable example themes you can use as starting points.</p>
-        <a href="https://github.com/elio-fm/elio/tree/main/examples/themes" target="_blank" rel="noreferrer">View bundled themes</a>
+        <p>Copy an example theme.toml into your config directory, then override the values you want to change.</p>
+        <a href="https://github.com/elio-fm/elio/tree/main/examples/themes" target="_blank" rel="noreferrer">Browse examples/themes</a>
       </article>
+    </div>
+  </section>
+
+  <section class="docs-section">
+    <div class="docs-section-heading">
+      <p class="eyebrow">BUNDLED THEMES</p>
+      <h2 class="docs-section-title">Bundled examples</h2>
+      <p>Click a theme to open its source folder and copy its theme.toml.</p>
+    </div>
+
+    <div class="docs-theme-gallery" aria-label="Bundled theme examples">
+      {
+        themeShots.map((shot) => {
+          const slug = themeSlug(shot.name);
+
+          return (
+            <a
+              class="doc-card docs-theme-card"
+              href={`https://github.com/elio-fm/elio/tree/main/examples/themes/${slug}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img src={shot.image} alt={`${shot.name} theme screenshot`} loading="lazy" width="1920" height="1080" />
+              <span>{shot.name}</span>
+            </a>
+          );
+        })
+      }
     </div>
   </section>
 </DocsLayout>
