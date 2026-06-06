@@ -5,7 +5,7 @@ const workflowRows = [
   ["Open", "Enter / o / Shift+O", "Enter folders, open files with the platform default app, or choose an app with Open With."],
   ["Clipboard", "c", "Copy names, paths, or directory paths using OSC52 or a platform clipboard tool."],
   ["Go-to", "g", "Jump to common destinations such as Home, Downloads, config, Trash, or the top of the folder."],
-  ["Trash", "d / r", "Trash items, permanently delete from Trash, or restore trashed files."],
+  ["Trash", "d / Shift+D / r", "Trash items, permanently delete, or restore trashed files."],
   ["Fuzzy search", "f / Ctrl+F", "Search folders or files in the current tree without leaving elio."],
   ["zoxide", "z", "Jump through zoxide's directory history when zoxide is installed and has data."],
   ["Shell", "!", "Temporarily open your shell in the current folder, then return to elio."],
@@ -213,7 +213,7 @@ const trashRows = [
     <div class="docs-section-heading">
       <p class="eyebrow">TRASH</p>
       <h2 class="docs-section-title">Trash and restore</h2>
-      <p>Trash behavior depends on the platform.</p>
+      <p>Trash behavior depends on the platform. Use <code>d</code> to move entries to Trash, <code>Shift+D</code> to delete selected entries permanently, and <code>r</code> to restore entries from the Trash view.</p>
     </div>
 
     <div class="docs-detail-stack">

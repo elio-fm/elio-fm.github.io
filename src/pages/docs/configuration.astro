@@ -28,11 +28,12 @@ files = 45   # Files width; must be > 0
 preview = 45 # Preview width; 0 hides it`;
 
 const keysSnippet = `[keys]
-trash = "d"         # trash selected entries
-rename = "r"        # rename selected entry
-toggle_view = "v"   # switch grid/list view
-toggle_hidden = "." # show or hide dotfiles
-open_with = "O"     # choose an app to open with`;
+open_with = ["O", "w"]                  # list = multiple keys
+rename = ["r", "F2"]                    # named keys work too
+search_files = "ctrl+f"                 # ctrl/alt/shift modifiers
+nav_right = []                          # [] removes a default binding
+open_or_enter = ["enter", "l", "right"] # reuse keys you freed
+delete_permanently = "D"                # uppercase = shifted letter`;
 ---
 
 <DocsLayout
@@ -183,34 +184,16 @@ open_with = "O"     # choose an app to open with`;
           <pre class="language-toml"><code class="language-toml" set:html={highlightToml(keysSnippet)}></code></pre>
         </div>
 
-        <p class="docs-note docs-config-runtime-note">This snippet shows common overrides; see the annotated config for every key action.</p>
-        <div class="docs-config-runtime-note docs-config-key-reserved">
-          <p class="docs-note">Use one printable, unique, non-reserved character per action. Reserved:</p>
-          <div class="docs-config-pill-row docs-config-key-pills" aria-label="Reserved keys">
-            <code>h</code>
-            <code>j</code>
-            <code>k</code>
-            <code>l</code>
-            <code>g</code>
-            <code>G</code>
-            <code>?</code>
-            <code>[</code>
-            <code>]</code>
-            <code>+</code>
-            <code>=</code>
-            <code>-</code>
-            <code>_</code>
-            <code>Space</code>
-          </div>
-        </div>
+        <p class="docs-note docs-config-runtime-note">Actions you omit keep their defaults. Setting an action replaces its full default list.</p>
+        <p class="docs-note docs-config-runtime-note">Invalid bindings, conflicts, and unknown action names print warnings.</p>
       </article>
     </div>
   </section>
 
   <section class="docs-section">
     <article class="doc-card docs-callout-card">
-      <h3>Open the annotated example</h3>
-      <p>The source repo keeps a complete commented config with every supported key and the current defaults.</p>
+      <h3>Full annotated config</h3>
+      <p>Your <code>config.toml</code> only needs overrides. Use the annotated example for every supported option, key action, and default binding.</p>
       <a href="https://github.com/elio-fm/elio/blob/main/examples/config.toml" target="_blank" rel="noreferrer">View examples/config.toml</a>
     </article>
   </section>

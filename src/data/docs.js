@@ -104,7 +104,7 @@ export const configSections = [
   },
   {
     name: "[keys]",
-    body: "Single-character overrides for browser action keys.",
+    body: "Browser action bindings: single keys, lists, named keys, modifiers, and unbound actions.",
   },
 ];
 
