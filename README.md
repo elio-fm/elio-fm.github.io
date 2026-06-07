@@ -1,39 +1,39 @@
 # elio-fm.github.io
 
-Landing page for elio.
+Website and documentation for [elio](https://github.com/elio-fm/elio), built with [Astro](https://astro.build/).
 
 Live: https://elio-fm.github.io
 
-## Pages
-
-- `/` — Main landing page with hero, visuals, feature overview, and install CTA
-- `/install` — Dedicated install page with package manager commands and notes
-- `/docs` — Minimal docs page with config paths, theme links, and reference links
-
-## Tech Stack
-
-- Astro — Static site generator
-- GitHub Pages — Hosting
-- Custom CSS — No UI framework
-
 ## Development
+
+Install dependencies:
 
 ```bash
 npm install
+```
+
+Start the local development server:
+
+```bash
 npm run dev
+```
+
+Expose the development server on your network for testing from another device:
+
+```bash
+npm run dev -- --host 0.0.0.0
 ```
 
 ## Build
 
 ```bash
 npm run build
-npm run preview
 ```
 
 ## Deploy
 
-Automatically deployed to GitHub Pages on push to `main` via GitHub Actions.
+The site is deployed to GitHub Pages from `main` via GitHub Actions.
 
-## Related
+## License
 
-- [elio](https://github.com/elio-fm/elio) — Main repository
+[MIT](LICENSE-MIT)
