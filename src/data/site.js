@@ -43,9 +43,9 @@ sudo apt install elio`,
   {
     name: "Homebrew",
     icon: "homebrew",
-    command: "brew install elio-fm/elio/elio",
+    command: "brew install elio",
     optionalToolsCommand: "brew install poppler ffmpeg resvg sevenzip",
-    note: "Install from the Homebrew tap",
+    note: "Install from Homebrew",
   },
   {
     name: "Cargo",
