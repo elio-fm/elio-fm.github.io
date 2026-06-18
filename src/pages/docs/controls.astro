@@ -3,15 +3,20 @@ import DocsLayout from "../../layouts/DocsLayout.astro";
 
 const commonRows = [
   ["Move around", ["↑/↓", "j/k", "PgUp/PgDn"], "Move through the current folder."],
-  ["Enter and leave folders", ["Enter", "→/l", "←/h/Backspace"], "Enter folders, open files, or go to the parent folder."],
-  ["Open files", ["o", "Shift+O"], "Open with the default app, or choose an app."],
+  ["Open or enter", ["Enter", "→/l"], "Enter folders, or open files/current selection with the default app."],
+  ["Leave folders", ["←/h/Backspace"], "Go to the parent folder."],
+  ["Open", ["o"], "Open the focused item or current selection with the default app."],
+  ["Open With", ["O"], "Choose an app for the focused item."],
   ["Select items", ["Space", "Ctrl+A"], "Select items or select everything in the current folder."],
-  ["Cancel / clear", ["Esc"], "Close overlays, cancel prompts, or clear selection depending on context."],
-  ["Copy, cut, paste, clipboard", ["y", "x", "p", "c"], "Copy or move files, or copy names and paths."],
-  ["Create / rename", ["a", "r", "F2"], "Create files or folders, or rename one or many items."],
-  ["Trash", ["d", "Shift+D", "r"], "Trash files, delete permanently, or restore from Trash."],
+  ["Cancel / clear", ["Esc"], "Close overlays, cancel prompts, or clear selection."],
+  ["Copy, cut, paste, clipboard", ["y", "x", "p", "-", "_", "c"], "Copy, move, symlink, or copy names and paths."],
+  ["Create", ["a"], "Create files or folders."],
+  ["Rename", ["r", "F2"], "Rename the focused item, or bulk rename selected items."],
+  ["Trash", ["d", "Del", "Shift+D", "Shift+Del", "r"], "Trash items, delete permanently, or restore from Trash."],
   ["Search", ["f", "Ctrl+F"], "Search folders or files in the current tree."],
-  ["Jump", ["g", "z"], "Jump to common places or use zoxide history."],
+  ["Go to", ["g"], "Open the Go-to menu for common folder jumps."],
+  ["Zoxide", ["z"], "Jump using zoxide history."],
+  ["Cycle places", ["Tab", "Shift+Tab"], "Move through Places."],
   ["Shell here", ["!"], "Open your shell in the current folder, then return to elio."],
   ["Preview pane", ["Shift+J/K", "Shift+H/L", "[ / ]"], "Scroll previews or step through documents."],
   ["View", ["v", "+ / -", ".", "s"], "Switch view, zoom, show dotfiles, or sort."],
@@ -54,7 +59,7 @@ const fixedRows = [
         <section class="docs-detail-block">
           <p class="docs-block-label">Close or cancel</p>
           <ul class="docs-list docs-inline-key-list">
-            <li><code>Esc</code><span>Closes the overlay, cancels prompts, or clears selection depending on context.</span></li>
+            <li><code>Esc</code><span>Closes overlays, cancels prompts, or clears selection.</span></li>
           </ul>
         </section>
       </div>
