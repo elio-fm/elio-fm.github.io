@@ -90,6 +90,25 @@ import { environmentVariables, imagePreviewSupport, previewCoverage } from "../.
 
   <section class="docs-section">
     <div class="docs-section-heading">
+      <p class="eyebrow">TERMINAL MULTIPLEXERS</p>
+      <h2 class="docs-section-title">Using elio inside tmux or Zellij</h2>
+    </div>
+
+    <div class="docs-two-up docs-align-start">
+      <article class="doc-card docs-card-tight docs-preview-summary">
+        <h3>tmux</h3>
+        <p>elio enables tmux passthrough automatically for the current pane when image previews are active.</p>
+      </article>
+
+      <article class="doc-card docs-card-tight docs-preview-summary">
+        <h3>Zellij</h3>
+        <p>Inside Zellij, image previews are currently limited to Sixel-compatible setups, so the host terminal must support Sixel too.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="docs-section">
+    <div class="docs-section-heading">
       <p class="eyebrow">SSH</p>
       <h2 class="docs-section-title">Using elio over SSH</h2>
     </div>
