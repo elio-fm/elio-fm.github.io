@@ -1,0 +1,142 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import Prism from "prismjs";
+import "prismjs/components/prism-toml.js";
+import { Check, Copy } from "lucide-static";
+
+const highlightToml = (code) => Prism.highlight(code, Prism.languages.toml, "toml");
+
+const startupRows = [
+  ["elio", "Open the current directory."],
+  ["elio example.png", "Open the current directory and focus a file."],
+  ["elio Downloads", "Start in a directory."],
+  ["elio Downloads/example.pdf", "Open Downloads and focus a file."],
+];
+
+const chooserRows = [
+  ["elio --chooser-file /path/to/choice-file", "Write selected paths to a file."],
+  ["elio --chooser-file -", "Write selected paths to stdout."],
+  ["elio --chooser-file - Downloads", "Start in Downloads and write to stdout."],
+];
+
+const cwdRows = [
+  ["elio --cwd-file /path/to/cwd-file", "Save the directory where elio exits."],
+  ["elio --cwd-file /path/to/cwd-file Downloads", "Start in Downloads and save the directory you end in."],
+];
+
+const chooseSnippet = `choose = "enter"`;
+---
+
+<DocsLayout
+  title="elio docs: CLI"
+  description="Use elio from the command line, start at paths, return chooser selections, and write the final current directory."
+  currentPath="/docs/cli/"
+  eyebrow="COMMAND LINE"
+  heading="CLI"
+  lead="Start elio at a path, return selected paths to scripts, or hand the final directory back to a wrapper."
+>
+  <section class="docs-section docs-section-first">
+    <div class="docs-section-heading">
+      <p class="eyebrow">STARTUP PATHS</p>
+      <h2 class="docs-section-title">Open a path</h2>
+    </div>
+
+    <article class="doc-card docs-detail-card">
+      <table class="docs-table docs-table-compact">
+        <thead>
+          <tr>
+            <th>Command</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {startupRows.map(([command, action]) => (
+            <tr>
+              <td data-label="Command"><code>{command}</code></td>
+              <td data-label="Action">{action}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </article>
+  </section>
+
+  <section class="docs-section">
+    <div class="docs-section-heading">
+      <p class="eyebrow">CHOOSER MODE</p>
+      <h2 class="docs-section-title">Return selected paths</h2>
+      <p>Use <code>--chooser-file</code> to run elio as a picker and send the chosen paths back to a script or launcher.</p>
+    </div>
+
+    <article class="doc-card docs-detail-card">
+      <table class="docs-table docs-table-compact">
+        <thead>
+          <tr>
+            <th>Command</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {chooserRows.map(([command, action]) => (
+            <tr>
+              <td data-label="Command"><code>{command}</code></td>
+              <td data-label="Action">{action}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </article>
+
+    <div class="docs-detail-stack docs-cli-chooser-notes">
+      <article class="doc-card docs-callout-card docs-cli-chooser-callout">
+        <h3>Choosing items</h3>
+        <p>Double-click confirms the clicked item. <code>Enter</code> confirms the active selection, or the focused item when nothing is selected.</p>
+        <p>Remap the key in <code>config.toml</code>. See <a href="/docs/configuration/">Configuration</a>.</p>
+        <div class="command-block docs-config-code" data-command-block>
+          <button class="command-copy" type="button" data-copy-command data-copy-state="idle" aria-label="Copy chooser key config" title="Copy chooser key config">
+            <span class="command-copy-icon" data-copy-icon="copy" aria-hidden="true" set:html={Copy}></span>
+            <span class="command-copy-icon" data-copy-icon="check" aria-hidden="true" set:html={Check}></span>
+          </button>
+          <pre class="language-toml"><code class="language-toml" set:html={highlightToml(chooseSnippet)}></code></pre>
+        </div>
+      </article>
+
+      <article class="doc-card docs-callout-card docs-cli-chooser-callout">
+        <h3>Output format</h3>
+        <p>Confirmed selections are written as absolute paths, one per line. Cancel exits nonzero and writes nothing.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="docs-section">
+    <div class="docs-section-heading">
+      <p class="eyebrow">CURRENT DIRECTORY</p>
+      <h2 class="docs-section-title">Write the final directory on exit</h2>
+      <p>Use <code>--cwd-file</code> to save the directory where elio closes, so another script can read it.</p>
+    </div>
+
+    <article class="doc-card docs-detail-card">
+      <table class="docs-table docs-table-compact">
+        <thead>
+          <tr>
+            <th>Command</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {cwdRows.map(([command, action]) => (
+            <tr>
+              <td data-label="Command"><code>{command}</code></td>
+              <td data-label="Action">{action}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </article>
+
+    <article class="doc-card docs-callout-card docs-cli-cwd-callout">
+      <h3>Want cd-on-exit? <a href="/docs/shell-integration/">Use Shell integration.</a></h3>
+      <p>It installs a wrapper that runs elio with <code>--cwd-file</code>, reads the saved directory, and moves your shell there after quitting elio.</p>
+    </article>
+  </section>
+</DocsLayout>

@@ -1742,6 +1742,7 @@ h2 {
 
 .docs-main-panel {
   grid-column: 2;
+  width: 100%;
   max-width: var(--container);
   min-width: 0;
   margin: 0 auto;
@@ -3128,6 +3129,30 @@ h2 {
   margin: 0;
   color: var(--muted);
   line-height: 1.65;
+}
+
+.docs-cli-behavior {
+  margin: 12px 0 0;
+  color: var(--text);
+  font-size: 0.98rem;
+  line-height: 1.55;
+}
+
+.docs-cli-chooser-notes {
+  margin-top: clamp(12px, 1.8vw, 18px);
+}
+
+.docs-cli-chooser-notes .docs-callout-card {
+  margin-top: 0;
+}
+
+.docs-cli-chooser-callout .command-block code {
+  color: inherit;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
 }
 
 .docs-install-tabs .quick-start-tabs {

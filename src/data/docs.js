@@ -1,4 +1,5 @@
 import {
+  Command as CommandIcon,
   FileCode2,
   Image as ImageIcon,
   Keyboard,
@@ -18,6 +19,11 @@ export const docsNav = [
     label: "Shell integration",
     href: "/docs/shell-integration/",
     description: "cd-on-exit wrappers for bash, zsh, fish, and Nu.",
+  },
+  {
+    label: "CLI",
+    href: "/docs/cli/",
+    description: "Startup paths, chooser output, and cwd handoff flags.",
   },
   {
     label: "Workflow",
@@ -264,6 +270,13 @@ export const overviewCards = [
     body: "Install cd-on-exit wrappers and learn q/Q behavior.",
     href: "/docs/shell-integration/",
     icon: Shell,
+    tone: "mint",
+  },
+  {
+    title: "CLI",
+    body: "Start at paths, write chooser selections, and use cwd handoff flags.",
+    href: "/docs/cli/",
+    icon: CommandIcon,
     tone: "mint",
   },
   {
