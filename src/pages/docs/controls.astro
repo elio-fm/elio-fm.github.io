@@ -10,11 +10,13 @@ const commonRows = [
   ["Select items", ["Space", "Ctrl+A"], "Select items or select everything in the current folder."],
   ["Cancel / clear", ["Esc"], "Close overlays, cancel prompts, or clear selection."],
   ["Copy, cut, paste, clipboard", ["y", "x", "p", "-", "_", "c"], "Copy, move, symlink, or copy names and paths."],
+  ["Extract archive", ["e"], "Extract the focused archive into a new folder."],
   ["Create", ["a"], "Create files or folders."],
   ["Rename", ["r", "F2"], "Rename the focused item, or bulk rename selected items."],
   ["Trash", ["d", "Del", "Shift+D", "Shift+Del", "r"], "Trash items, delete permanently, or restore from Trash."],
-  ["Search", ["f", "Ctrl+F"], "Search folders or files in the current tree."],
-  ["Go to", ["g"], "Open the Go-to menu for common folder jumps."],
+  ["Fuzzy Find", ["f", "Ctrl+F"], "Search folders or files in the current tree."],
+  ["Filter", ["/"], "Hide non-matching entries in the current directory."],
+  ["Go to", ["g"], "Open the Go-to menu for built-in or custom jumps."],
   ["Zoxide", ["z"], "Jump using zoxide history."],
   ["Cycle places", ["Tab", "Shift+Tab"], "Move through Places."],
   ["Shell here", ["!"], "Open your shell in the current folder, then return to elio."],
@@ -138,7 +140,7 @@ const fixedRows = [
       <article class="doc-card docs-callout-card">
         <h3>Rebinding keys</h3>
         <p>Add custom shortcuts under <code>[keys]</code> in <code>config.toml</code>.</p>
-        <p>Most browser actions are rebindable, including file operations, search, zoxide, shell, opening files, sorting, view toggles, hidden files, and preview scrolling.</p>
+        <p>Most browser actions are rebindable, including file operations, Fuzzy Find, filter, zoxide, shell, opening files, sorting, view toggles, hidden files, and preview scrolling.</p>
         <p>Invalid or conflicting keys are ignored with a warning, so elio can keep using the defaults. See <a href="/docs/configuration/">Configuration</a> for the config path and examples.</p>
       </article>
 
