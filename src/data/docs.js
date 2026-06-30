@@ -193,7 +193,7 @@ export const optionalPreviewTools = [
   { name: "Poppler", commands: "pdfinfo, pdftocairo", enables: "PDF metadata and rendered page previews" },
   { name: "FFmpeg", commands: "ffprobe, ffmpeg", enables: "Audio/video metadata, album art, video thumbnails, and wider image support" },
   { name: "resvg", commands: "resvg", enables: "SVG inline previews" },
-  { name: "7-Zip", commands: "7z", enables: "Archive previews, fallback archive listings, additional archive formats, and comic book archives" },
+  { name: "7-Zip", commands: "7z, 7zz, or 7za", enables: "Archive previews, fallback archive listings, additional archive formats, comic book archives, and RAR extraction" },
 ];
 
 export const fallbackPreviewTools = [
@@ -306,7 +306,7 @@ export const overviewCards = [
   },
   {
     title: "Configuration",
-    body: "Startup behavior, Places, pane layout, and key overrides.",
+    body: "Startup behavior, Places, Go-to, pane layout, and key overrides.",
     href: "/docs/configuration/",
     icon: FileCode2,
     tone: "blue",
