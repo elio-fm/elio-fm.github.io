@@ -4,7 +4,7 @@ import DocsLayout from "../../layouts/DocsLayout.astro";
 const workflowRows = [
   ["Open", "Enter / o / Shift+O", "Enter folders, open items with the platform default app, or choose an app for the focused item."],
   ["Clipboard", "c", "Copy names, paths, or directory paths using OSC52 or a platform clipboard tool."],
-  ["Go-to", "g", "Jump to common destinations such as Home, Downloads, config, Trash, or the top of the folder."],
+  ["Go-to", "g", "Jump to built-in or custom destinations."],
   ["Trash", "d / Shift+D / r", "Trash items, permanently delete, or restore trashed files."],
   ["Fuzzy Find", "f / Ctrl+F", "Search folders or files in the current tree without leaving elio."],
   ["Filter", "/", "Filter the current directory's entries without scanning the tree."],
@@ -173,42 +173,49 @@ const trashRows = [
     <div class="docs-section-heading">
       <p class="eyebrow">GO TO</p>
       <h2 class="docs-section-title">Go-to menu</h2>
-      <p><code>g</code> opens shortcuts to common locations.</p>
+      <p><code>g</code> opens shortcuts to built-in or custom locations.</p>
     </div>
 
-    <article class="doc-card docs-detail-card">
-      <div class="docs-detail-grid">
-        <section class="docs-detail-block">
-          <p class="docs-block-label">Destinations</p>
-          <ul class="docs-list">
-            <li><span>Top of the current folder</span></li>
-            <li><span>Downloads</span></li>
-            <li><span>Home</span></li>
-            <li><span>Platform config folder</span></li>
-            <li><span>Trash</span></li>
-          </ul>
-        </section>
-        <section class="docs-detail-block">
-          <p class="docs-block-label">Config folder</p>
-          <table class="docs-table docs-goto-table">
-            <thead>
-              <tr>
-                <th>Platform</th>
-                <th>Path</th>
-              </tr>
-            </thead>
-            <tbody>
-              {configRows.map(([platform, path, note]) => (
+    <div class="docs-detail-stack">
+      <article class="doc-card docs-detail-card">
+        <div class="docs-detail-grid">
+          <section class="docs-detail-block">
+            <p class="docs-block-label">Default destinations</p>
+            <ul class="docs-list">
+              <li><span>Top of the current folder</span></li>
+              <li><span>Downloads</span></li>
+              <li><span>Home</span></li>
+              <li><span>Platform config folder</span></li>
+              <li><span>Trash</span></li>
+            </ul>
+          </section>
+          <section class="docs-detail-block">
+            <p class="docs-block-label">Config folder</p>
+            <table class="docs-table docs-goto-table">
+              <thead>
                 <tr>
-                  <td><strong>{platform}</strong></td>
-                  <td><code>{path}</code>{note && <span class="docs-secondary-path">{note}</span>}</td>
+                  <th>Platform</th>
+                  <th>Path</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </section>
-      </div>
-    </article>
+              </thead>
+              <tbody>
+                {configRows.map(([platform, path, note]) => (
+                  <tr>
+                    <td><strong>{platform}</strong></td>
+                    <td><code>{path}</code>{note && <span class="docs-secondary-path">{note}</span>}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </section>
+        </div>
+      </article>
+
+      <article class="doc-card docs-callout-card">
+        <h3>Custom Go-to entries</h3>
+        <p>Use <code>[goto]</code> in <code>config.toml</code> to reorder built-ins, change keys, or add custom paths. See <a href="/docs/configuration/">Configuration</a>.</p>
+      </article>
+    </div>
   </section>
 
   <section class="docs-section">

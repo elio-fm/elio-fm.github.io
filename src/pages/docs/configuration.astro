@@ -22,6 +22,16 @@ entries = [        # replaces the pinned Places list
   "trash",
 ]`;
 
+const gotoSnippet = `[goto]
+entries = [
+  "top",
+  { builtin = "downloads", key = "D" },
+  "home",
+  "config",
+  "trash",
+  { title = "tmp", path = "/tmp", key = "T" },
+]`;
+
 const layoutSnippet = `[layout.panes]
 places = 10  # Places width; 0 hides it
 files = 45   # Files width; must be > 0
@@ -151,6 +161,29 @@ delete_permanently = "D"                # uppercase = shifted letter`;
           <code>music</code>
           <code>videos</code>
           <code>root</code>
+          <code>trash</code>
+        </div>
+      </article>
+
+      <article class="doc-card docs-card-tight docs-detail-card docs-config-example-card">
+        <div class="docs-config-example-heading">
+          <h3>Go-to entries</h3>
+        </div>
+
+        <div class="command-block docs-config-code" data-command-block>
+          <button class="command-copy" type="button" data-copy-command data-copy-state="idle" aria-label="Copy Go-to config" title="Copy Go-to config">
+            <span class="command-copy-icon" data-copy-icon="copy" aria-hidden="true" set:html={Copy}></span>
+            <span class="command-copy-icon" data-copy-icon="check" aria-hidden="true" set:html={Check}></span>
+          </button>
+          <pre class="language-toml"><code class="language-toml" set:html={highlightToml(gotoSnippet)}></code></pre>
+        </div>
+
+        <p class="docs-note docs-config-runtime-note">Use built-in ids like <code>downloads</code>, or add custom absolute / <code>~/</code> paths with shortcut keys.</p>
+        <div class="docs-config-pill-row docs-config-places-builtins" aria-label="Built-in Go-to ids">
+          <code>top</code>
+          <code>downloads</code>
+          <code>home</code>
+          <code>config</code>
           <code>trash</code>
         </div>
       </article>

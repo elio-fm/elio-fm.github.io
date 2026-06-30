@@ -43,7 +43,7 @@ export const docsNav = [
   {
     label: "Configuration",
     href: "/docs/configuration/",
-    description: "Startup behavior, Places, layout, and keys.",
+    description: "Startup behavior, Places, Go-to, layout, and keys.",
   },
   {
     label: "Themes",
@@ -103,6 +103,10 @@ export const configSections = [
   {
     name: "[places]",
     body: "Pinned sidebar entries and whether the Devices section stays visible.",
+  },
+  {
+    name: "[goto]",
+    body: "Go-to menu entries, custom paths, and shortcut keys.",
   },
   {
     name: "[layout.panes]",
