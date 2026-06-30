@@ -6,7 +6,9 @@ const workflowRows = [
   ["Clipboard", "c", "Copy names, paths, or directory paths using OSC52 or a platform clipboard tool."],
   ["Go-to", "g", "Jump to common destinations such as Home, Downloads, config, Trash, or the top of the folder."],
   ["Trash", "d / Shift+D / r", "Trash items, permanently delete, or restore trashed files."],
-  ["Fuzzy search", "f / Ctrl+F", "Search folders or files in the current tree without leaving elio."],
+  ["Fuzzy Find", "f / Ctrl+F", "Search folders or files in the current tree without leaving elio."],
+  ["Filter", "/", "Filter the current directory's entries without scanning the tree."],
+  ["Extract archive", "e", "Extract the focused archive into a new folder, with progress and cancellation."],
   ["zoxide", "z", "Jump through zoxide's directory history when zoxide is installed and has data."],
   ["Shell", "!", "Temporarily open your shell in the current folder, then return to elio."],
 ];
@@ -245,7 +247,7 @@ const trashRows = [
   <section class="docs-section">
     <div class="docs-section-heading">
       <p class="eyebrow">SEARCH</p>
-      <h2 class="docs-section-title">Fuzzy search</h2>
+      <h2 class="docs-section-title">Fuzzy Find</h2>
       <p>elio can search the current directory tree without leaving the browser.</p>
     </div>
 
@@ -269,6 +271,53 @@ const trashRows = [
           <li><span>Streams results while scanning and refreshes when the directory changes.</span></li>
           <li><span>Caps very large trees so search stays responsive and shows when the scan limit is reached.</span></li>
         </ul>
+      </div>
+    </article>
+  </section>
+
+  <section class="docs-section">
+    <div class="docs-section-heading">
+      <p class="eyebrow">FILTER</p>
+      <h2 class="docs-section-title">Filter the current directory</h2>
+      <p><code>/</code> hides non-matching entries.</p>
+    </div>
+
+    <article class="doc-card docs-detail-card docs-search-card">
+      <div class="docs-search-grid">
+        <ul class="docs-list">
+          <li><span>Works only on the current folder; it does not scan subfolders.</span></li>
+          <li><span>Keeps matching entries visible and hides the rest.</span></li>
+          <li><span>From the filter prompt, <code>Esc</code> or <code>Ctrl+C</code> clears the filter. Changing directories clears it too.</span></li>
+        </ul>
+      </div>
+    </article>
+  </section>
+
+  <section class="docs-section">
+    <div class="docs-section-heading">
+      <p class="eyebrow">ARCHIVES</p>
+      <h2 class="docs-section-title">Extract archives</h2>
+      <p><code>e</code> extracts the focused archive into a new folder.</p>
+    </div>
+
+    <article class="doc-card docs-detail-card">
+      <div class="docs-detail-grid">
+        <section class="docs-detail-block">
+          <p class="docs-block-label">Supported formats</p>
+          <ul class="docs-list">
+            <li><span><code>.zip</code>, <code>.7z</code>, and <code>.rar</code></span></li>
+            <li><span><code>.tar</code>, <code>.tar.gz</code> / <code>.tgz</code>, <code>.tar.xz</code> / <code>.txz</code></span></li>
+            <li><span><code>.tar.bz2</code> / <code>.tbz2</code> / <code>.tbz</code>, and <code>.tar.zst</code> / <code>.tzst</code></span></li>
+          </ul>
+        </section>
+        <section class="docs-detail-block">
+          <p class="docs-block-label">Behavior</p>
+          <ul class="docs-list">
+            <li><span>Extraction runs in the background and shows progress in the status chips.</span></li>
+            <li><span>Encrypted ZIP, 7z, and RAR5 archives prompt for a password when needed.</span></li>
+            <li><span>RAR extraction uses an external 7-Zip backend: <code>7z</code>, <code>7zz</code>, or <code>7za</code>.</span></li>
+          </ul>
+        </section>
       </div>
     </article>
   </section>
