@@ -67,9 +67,9 @@ export const features = [
     body: "Text, code, data, docs, media, archives, and more.",
   },
   {
-    icon: "image",
-    title: "Inline images",
-    body: "Supported terminals render images directly in the preview pane.",
+    icon: "archive",
+    title: "Archive extraction",
+    body: "Extract ZIP, 7z, TAR, and RAR archives with progress and password prompts.",
   },
   {
     icon: "actions",

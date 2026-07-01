@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { actionPreviews, features, installOptions, themeShots } from "../data/site.js";
-import { Check, ChevronLeft, ChevronRight, Command as CommandIcon, Copy, Image as ImageIcon, LayoutGrid, PanelsLeftRight, ScanEye, Trash2 } from "lucide-static";
+import { Archive, Check, ChevronLeft, ChevronRight, Command as CommandIcon, Copy, Image as ImageIcon, LayoutGrid, PanelsLeftRight, Trash2 } from "lucide-static";
 
 const heroTitle = "elio";
 const homeUrl = "https://elio-fm.github.io/";
@@ -13,8 +13,8 @@ const quickStartOptions = installOptions.map(({ name, quickStartLabel, command }
 }));
 const featureIcons = {
   panels: PanelsLeftRight,
-  preview: ScanEye,
-  image: ImageIcon,
+  preview: ImageIcon,
+  archive: Archive,
   actions: CommandIcon,
   trash: Trash2,
   views: LayoutGrid,
