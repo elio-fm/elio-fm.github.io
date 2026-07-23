@@ -32,6 +32,27 @@ entries = [
   { title = "tmp", path = "/tmp", key = "T" },
 ]`;
 
+const openSnippet = `[open]
+rules = [
+  { ext = "md", command = "markdown-app" },
+  { type = ["text", "code", "config"], command = "$EDITOR", terminal = true },
+]`;
+
+const openTypes = [
+  "folder",
+  "text",
+  "code",
+  "config",
+  "document",
+  "image",
+  "audio",
+  "video",
+  "archive",
+  "font",
+  "data",
+  "file",
+];
+
 const layoutSnippet = `[layout.panes]
 places = 10  # Places width; 0 hides it
 files = 45   # Files width; must be > 0
@@ -48,10 +69,10 @@ delete_permanently = "D"                # uppercase = shifted letter`;
 
 <DocsLayout
   title="elio docs: configuration"
-  description="Configure elio by creating a config.toml file and overriding only what you need."
+  description="Configure elio with UI defaults, custom locations, open rules, pane layouts, and key bindings."
   currentPath="/docs/configuration/"
   heading="Configuration"
-  lead="Configure elio by creating a config.toml file and overriding only what you need."
+  lead="Configure elio with UI defaults, custom locations, open rules, pane layouts, and key bindings."
 >
   <section class="docs-section docs-section-first">
     <div class="docs-section-heading">
@@ -184,6 +205,27 @@ delete_permanently = "D"                # uppercase = shifted letter`;
           <code>home</code>
           <code>config</code>
           <code>trash</code>
+        </div>
+      </article>
+
+      <article class="doc-card docs-card-tight docs-detail-card docs-config-example-card">
+        <div class="docs-config-example-heading">
+          <h3>Open rules</h3>
+          <p>Override elio’s open action without changing your system defaults.</p>
+        </div>
+
+        <div class="command-block docs-config-code" data-command-block>
+          <button class="command-copy" type="button" data-copy-command data-copy-state="idle" aria-label="Copy open rules config" title="Copy open rules config">
+            <span class="command-copy-icon" data-copy-icon="copy" aria-hidden="true" set:html={Copy}></span>
+            <span class="command-copy-icon" data-copy-icon="check" aria-hidden="true" set:html={Check}></span>
+          </button>
+          <pre class="language-toml"><code class="language-toml" set:html={highlightToml(openSnippet)}></code></pre>
+        </div>
+
+        <p class="docs-note docs-config-runtime-note">Rules are checked top-to-bottom; the first match wins, otherwise elio uses the system opener. Match by <code>ext</code>, <code>type</code>, and, optionally, <code>platform</code>; set <code>terminal = true</code> for terminal apps.</p>
+
+        <div class="docs-config-pill-row docs-config-places-builtins" aria-label="Supported open rule types">
+          {openTypes.map((type) => <code>{type}</code>)}
         </div>
       </article>
 

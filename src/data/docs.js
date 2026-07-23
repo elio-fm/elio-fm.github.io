@@ -71,7 +71,8 @@ export const configPaths = [
   },
   {
     platform: "macOS",
-    primary: "~/Library/Application Support/elio/config.toml",
+    primary: "~/.config/elio/config.toml",
+    secondary: "~/Library/Application Support/elio/config.toml",
   },
   {
     platform: "Windows",
@@ -87,7 +88,8 @@ export const themePaths = [
   },
   {
     platform: "macOS",
-    primary: "~/Library/Application Support/elio/theme.toml",
+    primary: "~/.config/elio/theme.toml",
+    secondary: "~/Library/Application Support/elio/theme.toml",
   },
   {
     platform: "Windows",
@@ -107,6 +109,10 @@ export const configSections = [
   {
     name: "[goto]",
     body: "Go-to menu entries, custom paths, and shortcut keys.",
+  },
+  {
+    name: "[open]",
+    body: "Ordered rules for opening matching file types or extensions with custom applications.",
   },
   {
     name: "[layout.panes]",
@@ -306,7 +312,7 @@ export const overviewCards = [
   },
   {
     title: "Configuration",
-    body: "Startup behavior, Places, Go-to, pane layout, and key overrides.",
+    body: "Startup behavior, Places, Go-to, open rules, pane layout, and key overrides.",
     href: "/docs/configuration/",
     icon: FileCode2,
     tone: "blue",
