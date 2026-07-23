@@ -64,12 +64,12 @@ export const features = [
   {
     icon: "preview",
     title: "Rich previews",
-    body: "Text, code, data, docs, media, archives, and more.",
+    body: "Images, media, text, code, data, documents, archives, and more.",
   },
   {
     icon: "archive",
-    title: "Archive extraction",
-    body: "Extract ZIP, 7z, TAR, and RAR archives with progress and password prompts.",
+    title: "Archive management",
+    body: "Create and extract common archive formats, with password support for encrypted archives.",
   },
   {
     icon: "actions",
