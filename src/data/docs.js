@@ -26,14 +26,14 @@ export const docsNav = [
     description: "Startup paths, chooser output, and cwd handoff flags.",
   },
   {
-    label: "Workflow",
-    href: "/docs/workflow/",
-    description: "Opening files, clipboard, go-to, Trash, search, zoxide, and shell.",
-  },
-  {
     label: "Default controls",
     href: "/docs/controls/",
-    description: "Default controls, file actions, rebinding, and help overlay.",
+    description: "Default bindings, mouse behavior, and the help overlay.",
+  },
+  {
+    label: "File operations",
+    href: "/docs/file-operations/",
+    description: "Archives, opening files, Trash, and clipboard actions.",
   },
   {
     label: "Previews",
@@ -284,16 +284,16 @@ export const overviewCards = [
     tone: "mint",
   },
   {
-    title: "Workflow",
-    body: "Opening files, clipboard, go-to, Trash, fuzzy search, zoxide, and shell-here behavior.",
-    href: "/docs/workflow/",
+    title: "Controls",
+    body: "Default bindings, mouse behavior, and the live help overlay.",
+    href: "/docs/controls/",
     icon: Keyboard,
     tone: "amber",
   },
   {
-    title: "Controls",
-    body: "Default bindings, file actions, rebindable keys, mouse behavior, and the help overlay.",
-    href: "/docs/controls/",
+    title: "File operations",
+    body: "Manage archives, open files, use Trash, and copy paths.",
+    href: "/docs/file-operations/",
     icon: Keyboard,
     tone: "amber",
   },

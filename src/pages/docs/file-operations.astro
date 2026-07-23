@@ -1,0 +1,204 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+
+const openRows = [
+  ["Enter", "Enter folders, or open files/active selection with the default app."],
+  ["o", "Open the focused item or active selection with the default app."],
+  ["O", "Show matching apps for the focused item."],
+];
+
+const launcherRows = [
+  ["macOS", "open"],
+  ["Windows", "cmd /c start"],
+  ["Linux / BSD desktop sessions", "gio, with xdg-open as fallback"],
+];
+
+const clipboardRows = [
+  ["Terminal", "OSC52 when supported"],
+  ["Wayland", "wl-copy"],
+  ["X11", "xclip or xsel"],
+  ["macOS", "pbcopy"],
+  ["Windows", "clip"],
+];
+
+const trashRows = [
+  ["Linux", "Uses gio trash when available, then falls back to the Freedesktop Trash layout."],
+  ["BSD", "Uses the Freedesktop Trash layout."],
+  ["macOS", "Moves items to ~/.Trash and stores restore metadata for items trashed by elio."],
+  ["Windows", "Moves items to the Recycle Bin. The Recycle Bin is not shown as a browsable Trash view yet."],
+];
+---
+
+<DocsLayout
+  title="elio docs: file operations"
+  description="How elio handles archives, opening files, Trash, and clipboard actions."
+  currentPath="/docs/file-operations/"
+  heading="File operations"
+  lead="Manage archives, open files, use Trash, and copy paths."
+>
+  <section class="docs-section docs-section-first">
+    <div class="docs-section-heading">
+      <p class="eyebrow">ARCHIVES</p>
+      <h2 class="docs-section-title">Archive management</h2>
+      <p><code>C</code> creates an archive from the focused item or selection. <code>e</code> extracts the focused archive into a new folder.</p>
+    </div>
+
+    <div class="docs-two-up docs-align-start">
+      <article class="doc-card docs-card-tight docs-detail-card">
+        <h3>Extract</h3>
+        <div>
+          <p class="docs-block-label">Formats</p>
+          <div class="docs-tag-row docs-archive-format-row">
+            <code>.zip</code>
+            <code>.7z</code>
+            <code>.rar</code>
+            <code>.tar</code>
+            <code>.tar.gz / .tgz</code>
+            <code>.tar.xz / .txz</code>
+            <code>.tar.bz2 / .tbz2 / .tbz</code>
+            <code>.tar.zst / .tzst</code>
+          </div>
+        </div>
+        <ul class="docs-list">
+          <li><span>Encrypted ZIP, 7z, and RAR5 archives prompt for a password when needed.</span></li>
+          <li><span>RAR extraction uses external 7-Zip.</span></li>
+        </ul>
+      </article>
+
+      <article class="doc-card docs-card-tight docs-detail-card">
+        <h3>Create</h3>
+        <div>
+          <p class="docs-block-label">Formats</p>
+          <div class="docs-tag-row docs-archive-format-row">
+            <code>.zip</code>
+            <code>.7z</code>
+            <code>.tar</code>
+            <code>.tar.gz / .tgz</code>
+            <code>.tar.xz / .txz</code>
+            <code>.tar.bz2 / .tbz2 / .tbz</code>
+          </div>
+        </div>
+        <ul class="docs-list">
+          <li><span>Choose the archive name.</span></li>
+          <li><span>Add password protection to ZIP or 7z archives.</span></li>
+        </ul>
+      </article>
+    </div>
+
+  </section>
+
+  <section class="docs-section">
+    <div class="docs-section-heading">
+      <p class="eyebrow">OPEN</p>
+      <h2 class="docs-section-title">Opening files and folders</h2>
+      <p>elio opens items with the default app, or lets you choose one.</p>
+    </div>
+
+    <div class="docs-detail-stack">
+      <article class="doc-card docs-detail-card">
+        <table class="docs-table docs-open-table">
+          <colgroup>
+            <col class="docs-open-key" />
+            <col class="docs-open-behavior" />
+          </colgroup>
+          <thead>
+            <tr>
+              <th>Key</th>
+              <th>Behavior</th>
+            </tr>
+          </thead>
+          <tbody>
+            {openRows.map(([key, body]) => (
+              <tr>
+                <td><code>{key}</code></td>
+                <td>{body}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </article>
+
+      <article class="doc-card docs-card-tight">
+        <h3>Platform launchers</h3>
+        <table class="docs-table docs-table-compact docs-platform-table">
+          <thead>
+            <tr>
+              <th>Platform</th>
+              <th>Default launcher</th>
+            </tr>
+          </thead>
+          <tbody>
+            {launcherRows.map(([platform, launcher]) => (
+              <tr>
+                <td>{platform}</td>
+                <td><code>{launcher}</code></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <p class="docs-note">Open With works for files and folders. It shows a chooser when multiple matching apps are found. If there is only one match, it opens it directly. If no match is found, or on platforms without app discovery, elio falls back to the default opener.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="docs-section">
+    <div class="docs-section-heading">
+      <p class="eyebrow">TRASH</p>
+      <h2 class="docs-section-title">Trash and restore</h2>
+      <p>Trash behavior depends on the platform. Use <code>d</code> to move entries to Trash, <code>D</code> to delete selected entries permanently, and <code>r</code> to restore entries from the Trash view.</p>
+    </div>
+
+    <div class="docs-detail-stack">
+      <article class="doc-card docs-detail-card">
+        <table class="docs-table docs-trash-table">
+          <thead>
+            <tr>
+              <th>Platform</th>
+              <th>Behavior</th>
+            </tr>
+          </thead>
+          <tbody>
+            {trashRows.map(([platform, body]) => (
+              <tr>
+                <td><strong>{platform}</strong></td>
+                <td>{body}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </article>
+      <article class="doc-card docs-callout-card">
+        <h3>Freedesktop filename collisions</h3>
+        <p>On Freedesktop Trash systems, the stored filename may change to avoid collisions, for example <code>photo.jpg.2</code>. elio reads the matching .trashinfo metadata, so the file is still shown, previewed, opened, and restored as the original <code>photo.jpg</code>.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="docs-section">
+    <div class="docs-section-heading">
+      <p class="eyebrow">CLIPBOARD</p>
+      <h2 class="docs-section-title">Copy to clipboard</h2>
+      <p><code>c</code> opens a menu to copy names, paths, or directory paths for the focused item or selection.</p>
+    </div>
+
+    <article class="doc-card docs-detail-card">
+      <table class="docs-table docs-clipboard-table">
+        <thead>
+          <tr>
+            <th>Environment</th>
+            <th>Clipboard method</th>
+          </tr>
+        </thead>
+        <tbody>
+          {clipboardRows.map(([environment, path]) => (
+            <tr>
+              <td><strong>{environment}</strong></td>
+              <td><code>{path}</code></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </article>
+  </section>
+
+</DocsLayout>
