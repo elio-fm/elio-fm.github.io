@@ -1,43 +1,102 @@
 ---
 import DocsLayout from "../../layouts/DocsLayout.astro";
 
-const commonRows = [
-  ["Move around", ["↑/↓", "j/k", "PgUp/PgDn"], "Move through the current folder."],
-  ["Open or enter", ["Enter", "→/l"], "Enter folders, or open files/active selection with the default app."],
-  ["Leave folders", ["←/h/Backspace"], "Go to the parent folder."],
-  ["Open", ["o"], "Open the focused item or active selection with the default app."],
-  ["Open With", ["O"], "Choose an app for the focused item."],
-  ["Select items", ["Space", "Ctrl+A"], "Select items or select everything in the current folder."],
-  ["Cancel / clear", ["Esc"], "Close overlays, cancel prompts, or clear selection."],
-  ["Copy, cut, paste, clipboard", ["y", "x", "p", "-", "_", "c"], "Copy, move, symlink, or copy names and paths."],
-  ["Extract archive", ["e"], "Extract the focused archive into a new folder."],
-  ["Create", ["a"], "Create files or folders."],
-  ["Rename", ["r", "F2"], "Rename the focused item, or bulk rename selected items."],
-  ["Trash", ["d", "Del", "Shift+D", "Shift+Del", "r"], "Trash items, delete permanently, or restore from Trash."],
-  ["Fuzzy Find", ["f", "Ctrl+F"], "Search folders or files in the current tree."],
-  ["Filter", ["/"], "Hide non-matching entries in the current directory."],
-  ["Go to", ["g"], "Open the Go-to menu for built-in or custom jumps."],
-  ["Zoxide", ["z"], "Jump using zoxide history."],
-  ["Cycle places", ["Tab", "Shift+Tab"], "Move through Places."],
-  ["Shell here", ["!"], "Open your shell in the current folder, then return to elio."],
-  ["Preview pane", ["Shift+J/K", "Shift+H/L", "[ / ]"], "Scroll previews or step through documents."],
-  ["View", ["v", "+ / -", ".", "s"], "Switch view, zoom, show dotfiles, or sort."],
-  ["Help", ["?"], "Open the live help overlay."],
-  ["Quit", ["q", "Shift+Q"], "Quit, or quit without changing the parent shell directory."],
+const controlColumns = [
+  [
+    {
+      title: "Navigate",
+      rows: [
+        [["k / ↑"], "Move focus up."],
+        [["j / ↓"], "Move focus down."],
+        [["h / ← / Backspace"], "Go to the parent folder."],
+        [["l / →"], "Enter the focused folder."],
+        [["Enter"], "Enter a folder, or open a file or selection."],
+        [["g"], "Open the Go-to menu."],
+        [["/"], "Filter the current folder."],
+        [["Home"], "Jump to the first item."],
+        [["G / End"], "Jump to the last item."],
+        [["PgUp / PgDn"], "Move one page up or down."],
+        [["Tab / Shift+Tab"], "Cycle through Places."],
+        [["Alt+← / Alt+→"], "Go back or forward in folder history."],
+      ],
+    },
+    {
+      title: "Mouse",
+      rows: [
+        [["Click"], "Focus an item."],
+        [["Double-click"], "Open a file or enter a folder."],
+        [["Scroll"], "Move through files or scroll the preview."],
+        [["Shift+Scroll"], "Scroll the preview sideways."],
+      ],
+    },
+    {
+      title: "Selection & Clipboard",
+      rows: [
+        [["Space"], "Add or remove the focused item from the selection."],
+        [["Ctrl+A"], "Select everything in the current folder."],
+        [["Esc"], "Clear the selection."],
+        [["y"], "Yank (copy)."],
+        [["c"], "Copy path details to the clipboard."],
+        [["x"], "Cut."],
+        [["p"], "Paste."],
+        [["-"], "Create absolute symlinks."],
+        [["_"], "Create relative symlinks."],
+      ],
+    },
+  ],
+  [
+    {
+      title: "Search",
+      rows: [
+        [["z"], "Jump using zoxide history."],
+        [["f"], "Fuzzy-find folders in the current tree."],
+        [["Ctrl+F"], "Fuzzy-find files in the current tree."],
+      ],
+    },
+    {
+      title: "File Actions",
+      rows: [
+        [["a"], "Create files or folders."],
+        [["d / Del"], "Move items to Trash; delete permanently when already in Trash."],
+        [["D / Shift+Del"], "Delete permanently."],
+        [["r / F2"], "Rename, or bulk rename selected items."],
+        [["R / Shift+F2"], "Rename in your editor."],
+        [["r"], "Restore from Trash when viewing Trash."],
+        [["e"], "Extract the focused archive."],
+        [["C"], "Create an archive."],
+        [["!"], "Open your shell in the current folder."],
+        [["o"], "Open with the default app."],
+        [["O"], "Choose an app with Open With."],
+      ],
+    },
+    {
+      title: "Preview",
+      rows: [
+        [["K / ["], "Go to the previous page or scroll the preview up."],
+        [["J / ]"], "Go to the next page or scroll the preview down."],
+        [["H / L"], "Scroll the preview left or right."],
+      ],
+    },
+    {
+      title: "View",
+      rows: [
+        [["v"], "Switch between grid and list view."],
+        [["Ctrl++ / Ctrl+-"], "Zoom the grid in or out."],
+        [["."], "Show or hide dotfiles."],
+        [["s"], "Cycle the sort order."],
+        [["?"], "Open the live help overlay."],
+        [["q"], "Quit."],
+        [["Q"], "Quit without changing the parent shell directory."],
+      ],
+    },
+  ],
 ];
 
-const fixedRows = [
-  ["Movement", "Arrow keys, vim keys, Enter, Backspace, PageUp/PageDown, Tab, history keys"],
-  ["Selection", "Space, Ctrl+A, Esc"],
-  ["Prompts", "Text editing keys such as Ctrl+←/→, Ctrl+Backspace, Ctrl+Del, Ctrl+W, Alt+D"],
-  ["Preview/page stepping", "[ / ], + / -"],
-  ["Help", "? / Esc"],
-];
 ---
 
 <DocsLayout
   title="elio docs: default controls"
-  description="Useful elio controls, the in-app help overlay, mouse behavior, and how key rebinding works."
+  description="Useful elio keyboard and mouse controls, plus the in-app help overlay."
   currentPath="/docs/controls/"
   heading="Default controls"
 >
@@ -68,99 +127,31 @@ const fixedRows = [
       <h2 class="docs-section-title">Default controls</h2>
     </div>
 
-    <article class="doc-card docs-detail-card">
-      <table class="docs-table docs-controls-table">
-        <colgroup>
-          <col class="docs-controls-use-case" />
-          <col class="docs-controls-keys" />
-          <col class="docs-controls-description" />
-        </colgroup>
-        <thead>
-          <tr>
-            <th>Use case</th>
-            <th>Keys</th>
-            <th>What it does</th>
-          </tr>
-        </thead>
-        <tbody>
-          {commonRows.map(([name, keys, body]) => (
-            <tr>
-              <td data-label="Use case"><strong>{name}</strong></td>
-              <td data-label="Keys">
-                <span class="docs-key-sequence">
-                  {keys.map((key) => <code>{key}</code>)}
-                </span>
-              </td>
-              <td data-label="What it does">{body}</td>
-            </tr>
+    <div class="docs-two-up docs-align-start">
+      {controlColumns.map((column) => (
+        <div class="docs-detail-stack">
+          {column.map(({ title, rows }) => (
+            <article class="doc-card docs-card-tight">
+              <h3>{title}</h3>
+              <table class="docs-table docs-table-compact docs-control-card-table" aria-label={`${title} controls`}>
+                <tbody>
+                  {rows.map(([keys, body]) => (
+                    <tr>
+                      <th scope="row">
+                        <span class="docs-key-sequence">
+                          {keys.map((key) => <code>{key}</code>)}
+                        </span>
+                      </th>
+                      <td>{body}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </article>
           ))}
-        </tbody>
-      </table>
-    </article>
-  </section>
-
-  <section class="docs-section">
-    <div class="docs-section-heading">
-      <p class="eyebrow">MOUSE</p>
-      <h2 class="docs-section-title">Mouse controls</h2>
-    </div>
-
-    <div class="docs-two-up">
-      <article class="doc-card docs-card-tight">
-        <h3>Pointer</h3>
-        <ul class="docs-list">
-          <li><span>Click selects an item.</span></li>
-          <li><span>Double-click opens or enters the clicked item.</span></li>
-        </ul>
-      </article>
-
-      <article class="doc-card docs-card-tight">
-        <h3>Scrolling</h3>
-        <ul class="docs-list">
-          <li><span>Scroll moves the browser or preview.</span></li>
-          <li><code>Shift+Scroll</code><span>Scrolls the preview sideways.</span></li>
-        </ul>
-      </article>
+        </div>
+      ))}
     </div>
   </section>
 
-  <section class="docs-section">
-    <div class="docs-section-heading">
-      <p class="eyebrow">REBINDING</p>
-      <h2 class="docs-section-title">Rebindable controls</h2>
-    </div>
-
-    <div class="docs-detail-stack">
-      <article class="doc-card docs-callout-card">
-        <h3>Rebinding keys</h3>
-        <p>Add custom shortcuts under <code>[keys]</code> in <code>config.toml</code>.</p>
-        <p>Most browser actions are rebindable, including file operations, Fuzzy Find, filter, zoxide, shell, opening files, sorting, view toggles, hidden files, and preview scrolling.</p>
-        <p>Invalid or conflicting keys are ignored with a warning, so elio can keep using the defaults. See <a href="/docs/configuration/">Configuration</a> for the config path and examples.</p>
-      </article>
-
-      <article class="doc-card docs-card-tight">
-        <h3>Fixed controls</h3>
-        <table class="docs-table docs-table-compact docs-fixed-table">
-          <colgroup>
-            <col class="docs-fixed-area" />
-            <col class="docs-fixed-examples" />
-          </colgroup>
-          <thead>
-            <tr>
-              <th>Area</th>
-              <th>Examples</th>
-            </tr>
-          </thead>
-          <tbody>
-            {fixedRows.map(([area, examples]) => (
-              <tr>
-                <td data-label="Area"><strong>{area}</strong></td>
-                <td data-label="Examples">{examples}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </article>
-    </div>
-  </section>
 </DocsLayout>

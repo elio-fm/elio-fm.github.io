@@ -4100,6 +4100,18 @@ h2 {
     padding-bottom: 2px;
   }
 
+  .docs-table.docs-control-card-table th,
+  .docs-table.docs-control-card-table td {
+    display: table-cell;
+    width: auto;
+    padding: 10px 0;
+  }
+
+  .docs-table.docs-control-card-table th {
+    width: 42%;
+    padding-right: 14px;
+  }
+
   .docs-controls-table,
   .docs-workflow-table,
   .docs-open-table,
