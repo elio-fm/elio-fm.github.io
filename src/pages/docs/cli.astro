@@ -3,6 +3,7 @@ import DocsLayout from "../../layouts/DocsLayout.astro";
 import Prism from "prismjs";
 import "prismjs/components/prism-toml.js";
 import { Check, Copy } from "lucide-static";
+import { environmentVariables } from "../../data/docs.js";
 
 const highlightToml = (code) => Prism.highlight(code, Prism.languages.toml, "toml");
 
@@ -29,10 +30,10 @@ const chooseSnippet = `choose = "enter"`;
 
 <DocsLayout
   title="elio docs: CLI"
-  description="Use elio from the command line, start at paths, return chooser selections, and write the final current directory."
+  description="Use elio from the command line, start at paths, return chooser selections, write the final directory, and set runtime environment options."
   currentPath="/docs/cli/"
   heading="CLI"
-  lead="Start elio at a path, return selected paths to scripts, or hand the final directory back to a wrapper."
+  lead="Launch elio at a path, return selections, and integrate it with your shell."
 >
   <section class="docs-section docs-section-first">
     <div class="docs-section-heading">
@@ -136,6 +137,34 @@ const chooseSnippet = `choose = "enter"`;
     <article class="doc-card docs-callout-card docs-cli-cwd-callout">
       <h3>Want cd-on-exit? <a href="/docs/shell-integration/">Use Shell integration.</a></h3>
       <p>It installs a wrapper that runs elio with <code>--cwd-file</code>, reads the saved directory, and moves your shell there after quitting elio.</p>
+    </article>
+  </section>
+
+  <section class="docs-section">
+    <div class="docs-section-heading">
+      <p class="eyebrow">ENVIRONMENT</p>
+      <h2 class="docs-section-title">Environment variables</h2>
+    </div>
+
+    <article class="doc-card docs-card-tight docs-detail-card docs-support-card">
+      <div class="docs-support-scroller">
+        <table class="docs-table docs-support-table">
+          <thead>
+            <tr>
+              <th scope="col">Variable</th>
+              <th scope="col">Effect</th>
+            </tr>
+          </thead>
+          <tbody>
+            {environmentVariables.map((item) => (
+              <tr>
+                <th scope="row"><code>{item.name}</code></th>
+                <td>{item.effect}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </article>
   </section>
 </DocsLayout>

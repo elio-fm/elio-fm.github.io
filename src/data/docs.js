@@ -23,7 +23,7 @@ export const docsNav = [
   {
     label: "CLI",
     href: "/docs/cli/",
-    description: "Startup paths, chooser output, and cwd handoff flags.",
+    description: "Startup paths, chooser output, cwd handoff, and environment variables.",
   },
   {
     label: "Default controls",
@@ -38,7 +38,7 @@ export const docsNav = [
   {
     label: "Previews",
     href: "/docs/previews/",
-    description: "Preview coverage, image protocols, and SSH notes.",
+    description: "Preview coverage, image protocols, multiplexers, and SSH.",
   },
   {
     label: "Configuration",
@@ -284,7 +284,7 @@ export const overviewCards = [
   },
   {
     title: "CLI",
-    body: "Start at paths, write chooser selections, and use cwd handoff flags.",
+    body: "Start at paths, return selections, hand off the cwd, and set environment options.",
     href: "/docs/cli/",
     icon: CommandIcon,
     tone: "mint",

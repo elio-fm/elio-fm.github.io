@@ -39,31 +39,8 @@ const installRows = [
   description="Optional tools that make elio previews, icons, and zoxide jumps richer."
   currentPath={currentPath}
   heading="Optional tools"
-  lead="Install tools for the features you use"
 >
   <section class="docs-section docs-section-first">
-    <div class="docs-section-heading">
-      <p class="eyebrow">TOOLS</p>
-      <h2 class="docs-section-title">Optional feature tools</h2>
-    </div>
-
-    <div class="docs-three-up">
-      <article class="doc-card docs-card-tight">
-        <h3>Preview</h3>
-        <p>Install these for broader file preview support.</p>
-      </article>
-      <article class="doc-card docs-card-tight">
-        <h3>Nerd Font</h3>
-        <p>Use a Nerd Font in your terminal so icons render correctly.</p>
-      </article>
-      <article class="doc-card docs-card-tight">
-        <h3>zoxide</h3>
-        <p>Install it if you want <code>z</code> to jump through your directory history.</p>
-      </article>
-    </div>
-  </section>
-
-  <section class="docs-section">
     <div class="docs-section-heading">
       <p class="eyebrow">PREVIEW</p>
       <h2 class="docs-section-title">Preview tools</h2>
@@ -197,6 +174,45 @@ const installRows = [
     </article>
   </section>
 
+  <section class="docs-section">
+    <div class="docs-section-heading">
+      <p class="eyebrow">ICONS</p>
+      <h2 class="docs-section-title">Nerd Font</h2>
+    </div>
+
+    <article class="doc-card docs-card-tight docs-nerd-font-card">
+      <p>Use a Nerd Font in your terminal so elio’s icons render correctly.</p>
+    </article>
+  </section>
+
+  <section class="docs-section">
+    <div class="docs-section-heading">
+      <p class="eyebrow">JUMPS</p>
+      <h2 class="docs-section-title">Zoxide</h2>
+      <p><code>z</code> opens the interactive zoxide picker.</p>
+    </div>
+
+    <article class="doc-card docs-detail-card docs-zoxide-card">
+      <div class="docs-detail-grid">
+        <section class="docs-detail-block">
+          <p class="docs-block-label">Requires</p>
+          <ul class="docs-list">
+            <li><span><code>zoxide</code> installed and available in <code>PATH</code>.</span></li>
+            <li><span>Recorded directory history before useful results appear.</span></li>
+          </ul>
+        </section>
+        <section class="docs-detail-block">
+          <p class="docs-block-label">Behavior</p>
+          <ul class="docs-list docs-inline-key-list">
+            <li><code>zoxide query -i</code><span>Runs the interactive picker.</span></li>
+            <li><code>current folder</code><span>Excluded from the picker.</span></li>
+            <li><code>ELIO_ZOXIDE_OPTS</code><span>Appends extra picker options.</span></li>
+          </ul>
+        </section>
+      </div>
+    </article>
+  </section>
+
   <script is:inline>
     const installTabsRoot = document.querySelector("[data-docs-install-tabs]");
 
@@ -222,4 +238,3 @@ const installRows = [
     }
   </script>
 </DocsLayout>
-

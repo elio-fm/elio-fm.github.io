@@ -1,14 +1,14 @@
 ---
 import DocsLayout from "../../layouts/DocsLayout.astro";
-import { environmentVariables, imagePreviewSupport, previewCoverage } from "../../data/docs.js";
+import { imagePreviewSupport, previewCoverage } from "../../data/docs.js";
 ---
 
 <DocsLayout
   title="elio docs: previews"
-  description="Preview coverage, inline image support, terminal protocols, and SSH behavior in elio."
+  description="Preview coverage, inline image support, terminal multiplexers, and SSH behavior in elio."
   currentPath="/docs/previews/"
   heading="Previews"
-  lead="Preview coverage, image support, SSH behavior, and useful environment options."
+  lead="Preview coverage, image support, terminal multiplexers, and SSH behavior."
 >
   <section class="docs-section docs-section-first">
     <div class="docs-section-heading">
@@ -80,6 +80,7 @@ import { environmentVariables, imagePreviewSupport, previewCoverage } from "../.
       <article class="doc-card docs-card-tight docs-preview-summary">
         <h3>Notes</h3>
         <ul class="docs-list">
+          <li><span>On an unrecognized terminal with Kitty Graphics Protocol support, set <code>ELIO_IMAGE_PREVIEWS=1</code> to force-enable image previews.</span></li>
           <li><span>Sixel terminals can render large or first-time previews more slowly than Kitty Graphics or iTerm2 Inline backends.</span></li>
           <li><span>In Konsole, inline previews are temporarily cleared while modal popups are open to avoid rendering artifacts.</span></li>
         </ul>
@@ -118,31 +119,4 @@ import { environmentVariables, imagePreviewSupport, previewCoverage } from "../.
     </article>
   </section>
 
-  <section class="docs-section">
-    <div class="docs-section-heading">
-      <p class="eyebrow">ENVIRONMENT</p>
-      <h2 class="docs-section-title">Useful environment variables</h2>
-    </div>
-
-    <article class="doc-card docs-card-tight docs-detail-card docs-support-card">
-      <div class="docs-support-scroller">
-        <table class="docs-table docs-support-table">
-          <thead>
-            <tr>
-              <th scope="col">Variable</th>
-              <th scope="col">Effect</th>
-            </tr>
-          </thead>
-          <tbody>
-            {environmentVariables.map((item) => (
-              <tr>
-                <th scope="row"><code>{item.name}</code></th>
-                <td>{item.effect}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </article>
-  </section>
 </DocsLayout>
