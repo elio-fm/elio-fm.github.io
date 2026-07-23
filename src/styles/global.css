@@ -1749,8 +1749,13 @@ h2 {
 }
 
 .docs-page-intro {
-  padding-top: clamp(8px, 1.2vw, 14px);
-  padding-bottom: 18px;
+  padding-top: clamp(14px, 1.8vw, 22px);
+  padding-bottom: 0;
+  margin-bottom: -14px;
+}
+
+.docs-page-lead h1:last-child {
+  margin-bottom: 0;
 }
 
 .docs-page-lead {
@@ -1759,6 +1764,7 @@ h2 {
 }
 
 .docs-page-lead p {
+  margin-top: 12px;
   margin-left: 0;
   margin-right: 0;
 }
@@ -1959,6 +1965,10 @@ h2 {
 }
 
 .docs-section-heading {
+  margin-bottom: 18px;
+}
+
+.docs-section-heading .eyebrow {
   margin-bottom: 18px;
 }
 
