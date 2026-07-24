@@ -1,3 +1,34 @@
+@font-face {
+  font-family: "Elio Sans";
+  src:
+    local("Noto Sans Regular"),
+    local("Noto Sans"),
+    url("/fonts/elio-sans-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Elio Sans";
+  src:
+    local("Noto Sans Medium"),
+    url("/fonts/elio-sans-medium.woff2") format("woff2");
+  font-weight: 500 649;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Elio Sans";
+  src:
+    local("Noto Sans Bold"),
+    url("/fonts/elio-sans-bold.woff2") format("woff2");
+  font-weight: 650 800;
+  font-style: normal;
+  font-display: block;
+}
+
 :root {
   color-scheme: dark;
   --root-bg: linear-gradient(180deg, #010207 0, #030712 320px, #050b16 620px, #02050d 980px, #010204 100%, #010204);
@@ -78,6 +109,12 @@ body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+}
+
+@media (max-width: 620px) and (hover: none), (max-width: 620px) and (pointer: coarse) {
+  body {
+    font-family: "Elio Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
 }
 
 a {
@@ -3515,28 +3552,6 @@ h2 {
 @media (max-width: 620px) {
   :root {
     --header-offset: 60px;
-  }
-
-  body {
-    -webkit-font-smoothing: auto;
-  }
-
-  .brand,
-  h1,
-  h2,
-  h3,
-  .eyebrow,
-  .docs-header-summary,
-  .docs-mobile-nav a,
-  .quick-start-tab {
-    font-family: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  }
-
-  .brand,
-  h1,
-  h2,
-  h3 {
-    font-weight: 700;
   }
 
   .container,
