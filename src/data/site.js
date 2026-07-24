@@ -30,7 +30,9 @@ export const installOptions = [
 curl -fsSL https://elio-fm.github.io/elio-apt/elio-archive-keyring.gpg \\
   | sudo tee /etc/apt/keyrings/elio-archive-keyring.gpg >/dev/null
 
-echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/elio-archive-keyring.gpg] \\
+arch="$(dpkg --print-architecture)"
+
+echo "deb [arch=\${arch} signed-by=/etc/apt/keyrings/elio-archive-keyring.gpg] \\
 https://elio-fm.github.io/elio-apt stable main" \\
   | sudo tee /etc/apt/sources.list.d/elio.list
 
