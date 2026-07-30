@@ -50,6 +50,13 @@ sudo apt install elio`,
     note: "Install from Homebrew",
   },
   {
+    name: "FreeBSD",
+    icon: "freebsd",
+    command: "pkg install elio",
+    optionalToolsCommand: "pkg install poppler-utils ffmpeg resvg 7-zip",
+    note: "FreeBSD package",
+  },
+  {
     name: "Cargo",
     icon: "rust",
     command: "cargo install elio",

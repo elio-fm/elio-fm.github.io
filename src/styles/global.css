@@ -437,6 +437,10 @@ main {
   display: block;
 }
 
+.hero .container {
+  width: min(1240px, calc(100% - 32px));
+}
+
 .hero-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -446,11 +450,11 @@ main {
 
 .hero-split {
   display: grid;
-  grid-template-columns: minmax(0, 1.18fr) minmax(500px, 0.95fr);
+  grid-template-columns: minmax(0, 1.12fr) minmax(560px, 0.95fr);
   align-items: center;
   gap: 24px;
   width: 100%;
-  max-width: 1180px;
+  max-width: 1240px;
   position: relative;
 }
 
@@ -640,6 +644,7 @@ h2 {
 .quick-start.hero-quick-start {
   max-width: none;
   margin: 0;
+  padding-inline: 18px;
   border-color: rgba(145, 176, 230, 0.17);
   background: linear-gradient(180deg, rgba(13, 21, 36, 0.998), rgba(6, 11, 21, 0.999));
   box-shadow:
@@ -674,6 +679,12 @@ h2 {
 
 .hero-quick-start .quick-start-tabs {
   justify-content: flex-start;
+  gap: 8px;
+}
+
+.hero-quick-start .quick-start-tab {
+  min-height: 38px;
+  padding: 0 10px;
 }
 
 .motion-showcase {
@@ -1395,6 +1406,10 @@ h2 {
 .install-icon--homebrew .install-icon-mark svg {
   width: 26px;
   height: 26px;
+}
+
+.install-icon--freebsd {
+  color: #d45a56;
 }
 
 .install-icon--rust {

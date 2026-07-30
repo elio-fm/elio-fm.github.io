@@ -3,7 +3,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import Prism from "prismjs";
 import "prismjs/components/prism-bash.js";
 import { installOptions } from "../../data/site.js";
-import { siArchlinux, siDebian, siFedora, siHomebrew, siRust } from "simple-icons";
+import { siArchlinux, siDebian, siFedora, siFreebsd, siHomebrew, siRust } from "simple-icons";
 import { Check, Copy } from "lucide-static";
 
 const highlightBash = (code) => Prism.highlight(code, Prism.languages.bash, "bash");
@@ -17,6 +17,7 @@ const installIcons = {
   archlinux: formatInstallIcon(siArchlinux.svg),
   debian: formatInstallIcon(siDebian.svg),
   fedora: formatInstallIcon(siFedora.svg),
+  freebsd: formatInstallIcon(siFreebsd.svg),
   homebrew: formatInstallIcon(siHomebrew.svg),
   rust: formatInstallIcon(siRust.svg),
 };
@@ -25,7 +26,7 @@ const installIcons = {
 
 <BaseLayout
   title="Install elio"
-  description="Install elio with apt, Homebrew, AUR, Fedora COPR, or Cargo, then add optional tools if needed."
+  description="Install elio with apt, Homebrew, AUR, Fedora COPR, FreeBSD pkg, or Cargo, then add optional tools if needed."
 >
   <section class="page-intro page-intro-compact">
     <div class="container">
