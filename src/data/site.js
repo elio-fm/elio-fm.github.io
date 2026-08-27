@@ -134,6 +134,10 @@ export const themeShots = [
     name: "Default Light",
     image: "/images/default-light.webp",
   },
+  {
+    name: "Nord",
+    image: "/images/nord.webp",
+  },
 ];
 
 export const actionPreviews = [
