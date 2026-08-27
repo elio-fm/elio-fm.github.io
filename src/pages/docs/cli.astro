@@ -14,6 +14,12 @@ const startupRows = [
   ["elio Downloads/example.pdf", "Open Downloads and focus a file."],
 ];
 
+const overrideRows = [
+  ["elio --config FILE", "Load configuration from a custom file."],
+  ["elio --theme FILE", "Load a theme from a custom file."],
+  ["elio --config FILE --theme FILE", "Use both custom files."],
+];
+
 const chooserRows = [
   ["elio --chooser-file /path/to/choice-file", "Write selected paths to a file."],
   ["elio --chooser-file -", "Write selected paths to stdout."],
@@ -63,6 +69,43 @@ const chooseSnippet = `choose = "enter"`;
 
   <section class="docs-section">
     <div class="docs-section-heading">
+      <p class="eyebrow">CUSTOM FILES</p>
+      <h2 class="docs-section-title">Configuration overrides</h2>
+    </div>
+
+    <article class="doc-card docs-detail-card">
+      <table class="docs-table docs-table-compact">
+        <thead>
+          <tr>
+            <th>Command</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {overrideRows.map(([command, action]) => (
+            <tr>
+              <td data-label="Command"><code>{command}</code></td>
+              <td data-label="Action">{action}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </article>
+  </section>
+
+  <section class="docs-section">
+    <div class="docs-section-heading">
+      <p class="eyebrow">ELEVATED PRIVILEGES</p>
+      <h2 class="docs-section-title">sudo and doas</h2>
+    </div>
+
+    <article class="doc-card docs-detail-card">
+      <p>Launching elio with <code>sudo</code> or <code>doas</code> keeps elevated filesystem access while using the invoking user’s configuration, places, shell, applications, editor, zoxide history, and trash. Launching directly as root uses root’s own state.</p>
+    </article>
+  </section>
+
+  <section class="docs-section">
+    <div class="docs-section-heading">
       <p class="eyebrow">CHOOSER MODE</p>
       <h2 class="docs-section-title">Return selected paths</h2>
       <p>Use <code>--chooser-file</code> to run elio as a picker and send the chosen paths back to a script or launcher.</p>
@@ -90,7 +133,7 @@ const chooseSnippet = `choose = "enter"`;
     <div class="docs-detail-stack docs-cli-chooser-notes">
       <article class="doc-card docs-callout-card docs-cli-chooser-callout">
         <h3>Choosing items</h3>
-        <p>Double-click confirms the clicked item. <code>Enter</code> confirms the active selection, or the focused item when nothing is selected.</p>
+        <p>Double-click chooses a file or enters a folder. <code>Enter</code> confirms the active selection, or the focused item when nothing is selected.</p>
         <p>Remap the key in <code>config.toml</code>. See <a href="/docs/configuration/">Configuration</a>.</p>
         <div class="command-block docs-config-code" data-command-block>
           <button class="command-copy" type="button" data-copy-command data-copy-state="idle" aria-label="Copy chooser key config" title="Copy chooser key config">
