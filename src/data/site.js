@@ -83,7 +83,7 @@ export const features = [
   {
     icon: "actions",
     title: "Quick actions",
-    body: "Go-to, Open With, search, copy, and bulk actions stay close at hand.",
+    body: "Go-to, Open With, Duplicate Finder, search, copy, and bulk actions stay close at hand.",
   },
   {
     icon: "trash",

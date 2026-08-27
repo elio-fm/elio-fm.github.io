@@ -30,6 +30,40 @@ const controlColumns = [
       ],
     },
     {
+      title: "Preview",
+      rows: [
+        [["K / Shift+↑"], "Scroll the preview up."],
+        [["J / Shift+↓"], "Scroll the preview down."],
+        [["H / Shift+←"], "Scroll the preview left."],
+        [["L / Shift+→"], "Scroll the preview right."],
+        [["V"], "Show or hide the preview pane."],
+        [["P"], "Toggle fullscreen preview."],
+      ],
+    },
+    {
+      title: "View",
+      rows: [
+        [["v"], "Switch between grid and list view."],
+        [["Ctrl++ / Ctrl+-"], "Zoom the grid in or out."],
+        [["."], "Show or hide dotfiles."],
+        [["s"], "Cycle the sort order."],
+        [["?"], "Open the live help overlay."],
+        [["q"], "Quit."],
+        [["Q"], "Quit without changing the parent shell directory."],
+      ],
+    },
+  ],
+  [
+    {
+      title: "Search",
+      rows: [
+        [["f"], "Fuzzy-find folders in the current tree."],
+        [["Ctrl+F"], "Fuzzy-find files in the current tree."],
+        [["Alt+D"], "Find duplicate files by content."],
+        [["z"], "Jump with zoxide directory history."],
+      ],
+    },
+    {
       title: "Selection & Clipboard",
       rows: [
         [["Space"], "Add or remove the focused item from the selection."],
@@ -43,16 +77,6 @@ const controlColumns = [
         [["_"], "Create relative symlinks."],
       ],
     },
-  ],
-  [
-    {
-      title: "Search",
-      rows: [
-        [["z"], "Jump using zoxide history."],
-        [["f"], "Fuzzy-find folders in the current tree."],
-        [["Ctrl+F"], "Fuzzy-find files in the current tree."],
-      ],
-    },
     {
       title: "File Actions",
       rows: [
@@ -62,31 +86,11 @@ const controlColumns = [
         [["r / F2"], "Rename, or bulk rename selected items."],
         [["R / Shift+F2"], "Rename in your editor."],
         [["r"], "Restore from Trash when viewing Trash."],
-        [["e"], "Extract the focused archive."],
+        [["e"], "Extract the focused archive or selected archives."],
         [["C"], "Create an archive."],
         [["!"], "Open your shell in the current folder."],
         [["o"], "Open with the default app."],
         [["O"], "Choose an app with Open With."],
-      ],
-    },
-    {
-      title: "Preview",
-      rows: [
-        [["K / ["], "Go to the previous page or scroll the preview up."],
-        [["J / ]"], "Go to the next page or scroll the preview down."],
-        [["H / L"], "Scroll the preview left or right."],
-      ],
-    },
-    {
-      title: "View",
-      rows: [
-        [["v"], "Switch between grid and list view."],
-        [["Ctrl++ / Ctrl+-"], "Zoom the grid in or out."],
-        [["."], "Show or hide dotfiles."],
-        [["s"], "Cycle the sort order."],
-        [["?"], "Open the live help overlay."],
-        [["q"], "Quit."],
-        [["Q"], "Quit without changing the parent shell directory."],
       ],
     },
   ],
