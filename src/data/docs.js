@@ -231,6 +231,12 @@ export const imagePreviewSupport = [
     tone: "auto",
   },
   {
+    terminal: "Rio",
+    protocol: "Kitty Graphics Protocol",
+    status: "Auto-detected",
+    tone: "auto",
+  },
+  {
     terminal: "Warp",
     protocol: "Kitty direct-placement protocol",
     status: "Auto-detected",
