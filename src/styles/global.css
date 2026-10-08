@@ -2091,8 +2091,27 @@ h2 {
   max-width: 100%;
 }
 
-.docs-config-section-list {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+.docs-list.docs-config-section-list {
+  grid-template-columns: 1fr;
+  padding-left: 0;
+  list-style: none;
+}
+
+.docs-config-section-list > li {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.docs-config-section-list > li > code {
+  flex-shrink: 0;
+}
+
+@media (max-width: 620px) {
+  .docs-config-section-list > li {
+    flex-direction: column;
+    gap: 4px;
+  }
 }
 
 .docs-config-example-card {

@@ -103,6 +103,10 @@ export const configSections = [
     body: "Startup options like top bar, hidden files, grid view, and grid zoom.",
   },
   {
+    name: "[preview]",
+    body: "Tab width for text and code previews.",
+  },
+  {
     name: "[places]",
     body: "Pinned sidebar entries and whether the Devices section stays visible.",
   },

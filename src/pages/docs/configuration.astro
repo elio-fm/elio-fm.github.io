@@ -13,6 +13,9 @@ show_hidden = true   # show dotfiles by default
 start_in_grid = true # start in grid view
 grid_zoom = 1        # grid density, 0–2`;
 
+const previewSnippet = `[preview]
+tab_width = 4 # tab-stop width in columns, 1–16 (default 4)`;
+
 const placesSnippet = `[places]
 show_devices = true # show Devices below Places
 entries = [        # replaces the pinned Places list
@@ -69,10 +72,10 @@ delete_permanently = "D"                # uppercase = shifted letter`;
 
 <DocsLayout
   title="elio docs: configuration"
-  description="Configure elio with UI defaults, custom locations, open rules, pane layouts, and key bindings."
+  description="Customize elio’s interface, previews, navigation, and key bindings."
   currentPath="/docs/configuration/"
   heading="Configuration"
-  lead="Configure elio with UI defaults, custom locations, open rules, pane layouts, and key bindings."
+  lead="Customize elio’s interface, previews, navigation, and key bindings."
 >
   <section class="docs-section docs-section-first">
     <div class="docs-section-heading">
@@ -157,6 +160,21 @@ delete_permanently = "D"                # uppercase = shifted letter`;
           </span>
           <span>still change view mode, hidden files, and grid zoom while elio is running.</span>
         </p>
+      </article>
+
+      <article class="doc-card docs-card-tight docs-detail-card docs-config-example-card">
+        <div class="docs-config-example-heading">
+          <h3>Preview</h3>
+          <p>Set the tab-stop width for text and code previews. Each tab advances to the next tab stop.</p>
+        </div>
+
+        <div class="command-block docs-config-code" data-command-block>
+          <button class="command-copy" type="button" data-copy-command data-copy-state="idle" aria-label="Copy preview config" title="Copy preview config">
+            <span class="command-copy-icon" data-copy-icon="copy" aria-hidden="true" set:html={Copy}></span>
+            <span class="command-copy-icon" data-copy-icon="check" aria-hidden="true" set:html={Check}></span>
+          </button>
+          <pre class="language-toml"><code class="language-toml" set:html={highlightToml(previewSnippet)}></code></pre>
+        </div>
       </article>
 
       <article class="doc-card docs-card-tight docs-detail-card docs-config-example-card docs-config-places-card">
