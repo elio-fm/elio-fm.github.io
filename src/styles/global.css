@@ -678,13 +678,15 @@ h2 {
 }
 
 .hero-quick-start .quick-start-tabs {
-  justify-content: flex-start;
-  gap: 8px;
+  justify-content: center;
+  margin-inline: -14px;
+  gap: 6px;
 }
 
 .hero-quick-start .quick-start-tab {
+  min-width: 52px;
   min-height: 38px;
-  padding: 0 10px;
+  padding: 0 8px;
 }
 
 .motion-showcase {
@@ -1412,6 +1414,10 @@ h2 {
   color: #d45a56;
 }
 
+.install-icon--nixos {
+  color: #7ebae4;
+}
+
 .install-icon--rust {
   color: #e89464;
 }
@@ -1536,8 +1542,8 @@ h2 {
   margin-top: clamp(12px, 1.4vw, 16px);
 }
 
-.install-command-label {
-  margin-top: clamp(18px, 2.1vw, 24px);
+.install-tooling-label.install-command-label {
+  margin-top: 14px;
 }
 
 .install-card .install-command-label + .command-block {
@@ -1560,6 +1566,11 @@ h2 {
 .language-bash .token.shebang {
   color: rgba(160, 186, 234, 0.5);
   font-style: italic;
+}
+
+.language-bash.nix-installables .token.comment {
+  color: inherit;
+  font-style: normal;
 }
 
 .language-bash .token.string,
