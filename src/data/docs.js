@@ -233,6 +233,12 @@ export const imagePreviewSupport = [
     tone: "auto",
   },
   {
+    terminal: "Konsole",
+    protocol: "Kitty direct-placement protocol",
+    status: "Auto-detected",
+    tone: "auto",
+  },
+  {
     terminal: "WezTerm",
     protocol: "iTerm2 Inline Protocol",
     status: "Auto-detected",
@@ -241,12 +247,6 @@ export const imagePreviewSupport = [
   {
     terminal: "iTerm2",
     protocol: "iTerm2 Inline Protocol",
-    status: "Auto-detected",
-    tone: "auto",
-  },
-  {
-    terminal: "Konsole",
-    protocol: "Kitty direct-placement protocol",
     status: "Auto-detected",
     tone: "auto",
   },
