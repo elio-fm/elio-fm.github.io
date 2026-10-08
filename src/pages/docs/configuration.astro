@@ -8,10 +8,12 @@ import { configPaths, configSections, formatPath } from "../../data/docs.js";
 const highlightToml = (code) => Prism.highlight(code, Prism.languages.toml, "toml");
 
 const uiSnippet = `[ui]
-show_top_bar = true  # show top bar (default hidden)
-show_hidden = true   # show dotfiles by default
-start_in_grid = true # start in grid view
-grid_zoom = 1        # grid density, 0–2`;
+show_top_bar = true        # show top bar (default hidden)
+show_hidden = true         # show dotfiles by default
+start_in_grid = true       # start in grid view
+grid_zoom = 1              # grid density, 0–2
+folders_first = false      # mix folders and files (default true)
+default_sort = "modified"  # initial sort: name, modified, or size`;
 
 const previewSnippet = `[preview]
 tab_width = 4 # tab-stop width in columns, 1–16 (default 4)`;
@@ -157,8 +159,9 @@ delete_permanently = "D"                # uppercase = shifted letter`;
             <code>.</code>
             <code>+</code>
             <code>-</code>
+            <code>s</code>
           </span>
-          <span>still change view mode, hidden files, and grid zoom while elio is running.</span>
+          <span>still change view mode, hidden files, grid zoom, and sort order while elio is running.</span>
         </p>
       </article>
 
