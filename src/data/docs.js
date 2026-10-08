@@ -107,6 +107,10 @@ export const configSections = [
     body: "Tab width for text and code previews.",
   },
   {
+    name: "[portal]",
+    body: "Terminal launcher for the XDG FileChooser portal.",
+  },
+  {
     name: "[places]",
     body: "Pinned sidebar entries and whether the Devices section stays visible.",
   },

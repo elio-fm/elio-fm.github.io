@@ -18,6 +18,9 @@ default_sort = "modified"  # initial sort: name, modified, or size`;
 const previewSnippet = `[preview]
 tab_width = 4 # tab-stop width in columns, 1–16 (default 4)`;
 
+const portalSnippet = `[portal]
+terminal = "kitty"  # detected and set automatically by elio portal enable; change if needed`;
+
 const placesSnippet = `[places]
 show_devices = true # show Devices below Places
 entries = [        # replaces the pinned Places list
@@ -177,6 +180,33 @@ delete_permanently = "D"                # uppercase = shifted letter`;
             <span class="command-copy-icon" data-copy-icon="check" aria-hidden="true" set:html={Check}></span>
           </button>
           <pre class="language-toml"><code class="language-toml" set:html={highlightToml(previewSnippet)}></code></pre>
+        </div>
+      </article>
+
+      <article class="doc-card docs-card-tight docs-detail-card docs-config-example-card">
+        <div class="docs-config-example-heading">
+          <h3>Portal</h3>
+          <p>Selects the terminal used by the FileChooser portal.</p>
+        </div>
+
+        <div class="command-block docs-config-code" data-command-block>
+          <button class="command-copy" type="button" data-copy-command data-copy-state="idle" aria-label="Copy portal config" title="Copy portal config">
+            <span class="command-copy-icon" data-copy-icon="copy" aria-hidden="true" set:html={Copy}></span>
+            <span class="command-copy-icon" data-copy-icon="check" aria-hidden="true" set:html={Check}></span>
+          </button>
+          <pre class="language-toml"><code class="language-toml" set:html={highlightToml(portalSnippet)}></code></pre>
+        </div>
+
+        <div class="docs-config-pill-row docs-config-places-builtins" aria-label="Supported portal terminals">
+          <code>kitty</code>
+          <code>ghostty</code>
+          <code>foot</code>
+          <code>wezterm</code>
+          <code>alacritty</code>
+          <code>rio</code>
+          <code>konsole</code>
+          <code>gnome-terminal</code>
+          <code>xterm</code>
         </div>
       </article>
 
