@@ -1,6 +1,7 @@
 import {
   Command as CommandIcon,
   FileCode2,
+  FolderOpen,
   Image as ImageIcon,
   Keyboard,
   ListChecks,
@@ -19,6 +20,11 @@ export const docsNav = [
     label: "Shell integration",
     href: "/docs/shell-integration/",
     description: "cd-on-exit wrappers for bash, zsh, fish, and Nu.",
+  },
+  {
+    label: "File chooser",
+    href: "/docs/file-chooser/",
+    description: "Use elio as your XDG FileChooser portal for desktop applications.",
   },
   {
     label: "CLI",
@@ -287,6 +293,13 @@ export const overviewCards = [
     body: "Understand preview tools, Nerd Fonts, and zoxide.",
     href: "/docs/optional-tools/",
     icon: Wrench,
+    tone: "mint",
+  },
+  {
+    title: "File chooser",
+    body: "Use elio as your XDG FileChooser portal for desktop applications.",
+    href: "/docs/file-chooser/",
+    icon: FolderOpen,
     tone: "mint",
   },
   {

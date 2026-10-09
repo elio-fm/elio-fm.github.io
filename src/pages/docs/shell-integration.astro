@@ -1,10 +1,16 @@
 ---
 import DocsLayout from "../../layouts/DocsLayout.astro";
 import Prism from "prismjs";
-import "prismjs/components/prism-bash.js";
 import { Check, Copy } from "lucide-static";
 
-const highlightBash = (code) => Prism.highlight(code, Prism.languages.bash, "bash");
+const highlightShellCommand = (code) => Prism.highlight(code, {
+  "shell-name": {
+    pattern: /(?<=\belio\s+shell\s+(?:install|uninstall|init)\s+)(?:bash|zsh|fish|nu)\b/,
+  },
+  "shell-action": {
+    pattern: /(?<=\belio\s+shell\s+)(?:install|uninstall|init)\b/,
+  },
+}, "shell-command");
 const formatManagedPath = (path) => path.replaceAll("/", "/<wbr />");
 
 const defaultInstallCommand = `elio shell install`;
@@ -70,7 +76,7 @@ const shellRows = [
             <span class="command-copy-icon" data-copy-icon="copy" aria-hidden="true" set:html={Copy}></span>
             <span class="command-copy-icon" data-copy-icon="check" aria-hidden="true" set:html={Check}></span>
           </button>
-          <pre class="language-bash"><code class="language-bash" set:html={highlightBash(defaultInstallCommand)}></code></pre>
+          <pre class="language-bash"><code class="language-bash" set:html={highlightShellCommand(defaultInstallCommand)}></code></pre>
         </div>
         <div class="command-block" data-command-block>
           <button
@@ -84,7 +90,7 @@ const shellRows = [
             <span class="command-copy-icon" data-copy-icon="copy" aria-hidden="true" set:html={Copy}></span>
             <span class="command-copy-icon" data-copy-icon="check" aria-hidden="true" set:html={Check}></span>
           </button>
-          <pre class="language-bash"><code class="language-bash" set:html={highlightBash(defaultUninstallCommand)}></code></pre>
+          <pre class="language-bash"><code class="language-bash" set:html={highlightShellCommand(defaultUninstallCommand)}></code></pre>
         </div>
         <p class="docs-command-note">Restart your shell, or run the command printed by the installer.</p>
       </article>
@@ -144,7 +150,7 @@ const shellRows = [
                 <span class="command-copy-icon" data-copy-icon="copy" aria-hidden="true" set:html={Copy}></span>
                 <span class="command-copy-icon" data-copy-icon="check" aria-hidden="true" set:html={Check}></span>
               </button>
-              <pre class="language-bash"><code class="language-bash" set:html={highlightBash(row.installCommand)}></code></pre>
+              <pre class="language-bash"><code class="language-bash" set:html={highlightShellCommand(row.installCommand)}></code></pre>
             </div>
             <div class="command-block" data-command-block>
               <button
@@ -158,7 +164,7 @@ const shellRows = [
                 <span class="command-copy-icon" data-copy-icon="copy" aria-hidden="true" set:html={Copy}></span>
                 <span class="command-copy-icon" data-copy-icon="check" aria-hidden="true" set:html={Check}></span>
               </button>
-              <pre class="language-bash"><code class="language-bash" set:html={highlightBash(row.uninstallCommand)}></code></pre>
+              <pre class="language-bash"><code class="language-bash" set:html={highlightShellCommand(row.uninstallCommand)}></code></pre>
             </div>
           </div>
         </section>
@@ -251,7 +257,7 @@ const shellRows = [
                   <span class="command-copy-icon" data-copy-icon="copy" aria-hidden="true" set:html={Copy}></span>
                   <span class="command-copy-icon" data-copy-icon="check" aria-hidden="true" set:html={Check}></span>
                 </button>
-                <pre class="language-bash"><code class="language-bash" set:html={highlightBash(row.initCommand)}></code></pre>
+                <pre class="language-bash"><code class="language-bash" set:html={highlightShellCommand(row.initCommand)}></code></pre>
               </div>
             </div>
           </section>

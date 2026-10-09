@@ -1587,8 +1587,14 @@ h2 {
   color: #82c8ff;
 }
 
-.language-bash .token.keyword {
+.language-bash .token.keyword,
+.language-bash .token.portal-subcommand,
+.language-bash .token.shell-action {
   color: #c5a8e8;
+}
+
+.language-bash .token.shell-name {
+  color: #82c8ff;
 }
 
 .language-bash .token.operator {
@@ -1608,6 +1614,30 @@ h2 {
 .language-bash .token.number,
 .language-bash .token.boolean {
   color: #e89464;
+}
+
+.language-lua {
+  color: rgba(232, 226, 214, 0.96);
+}
+
+.language-lua .token.string {
+  color: #a8d49b;
+}
+
+.language-lua .token.function {
+  color: #82c8ff;
+}
+
+.language-lua .token.keyword {
+  color: #c5a8e8;
+}
+
+.language-lua .token.operator {
+  color: #d6b574;
+}
+
+.language-lua .token.punctuation {
+  color: rgba(158, 170, 190, 0.78);
 }
 
 .language-toml {
@@ -1880,6 +1910,10 @@ h2 {
   color: var(--accent-bright);
 }
 
+.docs-config-example-card#portal {
+  scroll-margin-top: clamp(96px, 18vh, 180px);
+}
+
 .docs-theme-gallery {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -2065,6 +2099,10 @@ h2 {
 
 .docs-two-up {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.docs-two-up.docs-portal-management-cards {
+  grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
 }
 
 .docs-align-start {
@@ -2600,12 +2638,17 @@ h2 {
 .docs-table code,
 .docs-list code,
 .docs-tag-row code,
-.docs-callout-card code {
+.docs-callout-card code,
+.docs-window-title,
+.docs-inline-code {
   color: #e9f1ff;
   background: var(--inline-code-surface);
   border: 1px solid rgba(160, 186, 234, 0.12);
   border-radius: 8px;
-  padding: 0.16rem 0.42rem;
+  padding: 0.22rem 0.42rem 0.10rem;
+  font-size: 0.9em;
+  line-height: 1.2;
+  vertical-align: middle;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.018),
     0 2px 8px rgba(0, 0, 0, 0.05);
@@ -3464,7 +3507,8 @@ h2 {
 
   .docs-two-up,
   .docs-three-up,
-  .docs-link-grid {
+  .docs-link-grid,
+  .docs-two-up.docs-portal-management-cards {
     grid-template-columns: 1fr;
   }
 
