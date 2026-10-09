@@ -20,6 +20,11 @@ const installRows = [
   { platform: "Homebrew", command: "brew install poppler ffmpeg resvg sevenzip" },
   { platform: "FreeBSD", command: "pkg install poppler-utils ffmpeg resvg 7-zip" },
   {
+    platform: "Nix",
+    command: "nix profile add nixpkgs#poppler-utils nixpkgs#ffmpeg nixpkgs#resvg nixpkgs#_7zz",
+    commandClass: "nix-installables",
+  },
+  {
     platform: "Windows",
     commands: [
       { label: "Scoop", command: "scoop install poppler ffmpeg resvg 7zip" },
@@ -109,7 +114,7 @@ const installRows = [
           </div>
           {row.command || row.commands ? (
             <>
-              {(row.commands ?? [{ command: row.command }]).map((entry) => (
+              {(row.commands ?? [{ command: row.command, commandClass: row.commandClass }]).map((entry) => (
                 <div class="docs-command-entry">
                   {entry.label && <p class="docs-command-label">{entry.label}</p>}
                   <div class="command-block" data-command-block>
@@ -124,7 +129,7 @@ const installRows = [
                       <span class="command-copy-icon" data-copy-icon="copy" aria-hidden="true" set:html={Copy}></span>
                       <span class="command-copy-icon" data-copy-icon="check" aria-hidden="true" set:html={Check}></span>
                     </button>
-                    <pre class="language-bash"><code class="language-bash" set:html={highlightBash(entry.command)}></code></pre>
+                    <pre class="language-bash"><code class:list={["language-bash", entry.commandClass]} set:html={highlightBash(entry.command)}></code></pre>
                   </div>
                 </div>
               ))}
