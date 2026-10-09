@@ -4283,6 +4283,12 @@ h2 {
     -webkit-overflow-scrolling: touch;
   }
 
+  .hero-quick-start .quick-start-tabs {
+    justify-content: flex-start;
+    margin-inline: -18px;
+    gap: 8px;
+  }
+
   .quick-start-tabs::-webkit-scrollbar {
     display: none;
   }
