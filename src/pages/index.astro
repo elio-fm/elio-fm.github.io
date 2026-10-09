@@ -158,7 +158,7 @@ const homeStructuredData = {
                     preload="metadata"
                     aria-label={`${preview.label} workflow demo in elio`}
                   >
-                    <source src={preview.video} type="video/webm" />
+                    <source src={preview.video} type={preview.videoType ?? "video/webm"} />
                   </video>
                 </div>
 
