@@ -4092,6 +4092,32 @@ h2 {
     width: 100%;
   }
 
+  .docs-helpers-table tr {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    column-gap: 12px;
+  }
+
+  .docs-helpers-table td {
+    width: auto;
+  }
+
+  .docs-helpers-table td:nth-child(1),
+  .docs-helpers-table td:nth-child(2) {
+    padding-top: 0;
+    padding-bottom: 0;
+    align-self: center;
+  }
+
+  .docs-helpers-table td:nth-child(2) {
+    min-width: 0;
+  }
+
+  .docs-helpers-table td:nth-child(3) {
+    grid-column: 1 / -1;
+    padding-top: 10px;
+  }
+
   .docs-open-table tr,
   .docs-shell-files-table tr,
   .docs-platform-table tr,
