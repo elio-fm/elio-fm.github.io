@@ -145,12 +145,12 @@ hl.window_rule({
 
     <div class="docs-detail-stack">
       <article class="doc-card docs-card-tight docs-detail-card">
-        <p>Many tiling window managers support per-window rules. Depending on the window manager, rules can match the chooser’s app ID/class <code class="docs-inline-code">io.github.elio_fm.elio.filechooser</code> or title <code class="docs-inline-code">elio File Chooser</code>.</p>
+        <p>Many tiling window managers support per-window rules. The chooser identity depends on the terminal: it may expose the app ID/class <code class="docs-inline-code">io.github.elio_fm.elio.filechooser</code>, the title <code class="docs-inline-code">elio File Chooser</code>, or both.</p>
       </article>
 
       <article class="doc-card docs-card-tight docs-detail-card">
         <h3>Hyprland example</h3>
-        <p>This example matches both identifiers and makes the chooser floating and centered.</p>
+        <p>This example uses separate rules for both identifiers, so the chooser is floating and centered regardless of which supported terminal launches it.</p>
         <div class="command-block docs-config-code" data-command-block>
           <button class="command-copy" type="button" data-copy-command data-copy-state="idle" aria-label="Copy Hyprland window rule" title="Copy Hyprland window rule">
             <span class="command-copy-icon" data-copy-icon="copy" aria-hidden="true" set:html={Copy}></span>
