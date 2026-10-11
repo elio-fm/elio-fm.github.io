@@ -49,7 +49,7 @@ import { imagePreviewSupport, previewCoverage } from "../../data/docs.js";
   <section class="docs-section">
     <div class="docs-section-heading">
       <p class="eyebrow">IMAGE PREVIEWS</p>
-      <h2 class="docs-section-title">Inline visual previews</h2>
+      <h2 class="docs-section-title">Image Preview Compatibility</h2>
     </div>
 
     <div class="docs-preview-grid">
@@ -80,9 +80,7 @@ import { imagePreviewSupport, previewCoverage } from "../../data/docs.js";
       <article class="doc-card docs-card-tight docs-preview-summary">
         <h3>Notes</h3>
         <ul class="docs-list">
-          <li><span>On an unrecognized terminal with Kitty Graphics Protocol support, set <code>ELIO_IMAGE_PREVIEWS=1</code> to force-enable image previews.</span></li>
-          <li><span>Sixel terminals can render large or first-time previews more slowly than Kitty Graphics or iTerm2 Inline backends.</span></li>
-          <li><span>In Konsole, inline previews are temporarily cleared while modal popups are open to avoid rendering artifacts.</span></li>
+          <li><span>For other terminals that support the Kitty Graphics Protocol, set <code>ELIO_IMAGE_PREVIEWS=1</code> to enable image previews.</span></li>
         </ul>
       </article>
     </div>
@@ -97,12 +95,12 @@ import { imagePreviewSupport, previewCoverage } from "../../data/docs.js";
     <div class="docs-two-up docs-align-start">
       <article class="doc-card docs-card-tight docs-preview-summary">
         <h3>tmux</h3>
-        <p>elio enables tmux passthrough automatically for the current pane when image previews are active.</p>
+        <p>Image previews work in all supported terminals. elio configures passthrough automatically for the current pane.</p>
       </article>
 
       <article class="doc-card docs-card-tight docs-preview-summary">
         <h3>Zellij</h3>
-        <p>In Zellij 0.45+, image previews work with Kitty, Ghostty, WezTerm, and Sixel-compatible terminals.</p>
+        <p>In Zellij 0.45+, image previews work with Kitty, Ghostty, Rio, Warp, Konsole, WezTerm, foot, and Windows Terminal.</p>
       </article>
     </div>
   </section>
