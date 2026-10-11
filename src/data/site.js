@@ -78,23 +78,38 @@ sudo apt install elio`,
 export const features = [
   {
     icon: "panels",
-    title: "Three panes",
-    body: "Browse places, files, and previews in one flow.",
+    title: "Adaptive layout",
+    body: "Panes adapt to terminal size for the layout to stay clear and readable.",
   },
   {
     icon: "preview",
-    title: "Rich previews",
-    body: "Images, media, text, code, data, documents, archives, and more.",
+    title: "Preview coverage",
+    body: "Images, PDFs, ebooks, comics, media, archives, Markdown, text, code, and more.",
   },
   {
     icon: "archive",
     title: "Archive management",
-    body: "Create and extract common archive formats, with password support for encrypted archives.",
+    body: "Create and extract archives, including password-protected ones.",
   },
   {
-    icon: "actions",
-    title: "Quick actions",
-    body: "Go-to, Open With, Duplicate Finder, search, copy, and bulk actions stay close at hand.",
+    icon: "bulk",
+    title: "Bulk actions",
+    body: "Create, rename, copy, move, trash, or delete multiple items at once.",
+  },
+  {
+    icon: "goto",
+    title: "Go-to",
+    body: "Save destinations and jump to any of them in a few keystrokes.",
+  },
+  {
+    icon: "open-with",
+    title: "Open With",
+    body: "Choose from the applications installed on your system.",
+  },
+  {
+    icon: "duplicates",
+    title: "Duplicate Finder",
+    body: "Find files with identical contents and safely choose what to keep.",
   },
   {
     icon: "trash",
@@ -104,7 +119,7 @@ export const features = [
   {
     icon: "views",
     title: "Grid and list views",
-    body: "Switch between list and grid views, then zoom the grid when you want more density.",
+    body: "Switch between list and grid views, and zoom the grid as needed.",
   },
 ];
 

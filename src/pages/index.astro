@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { actionPreviews, features, installOptions, themeShots } from "../data/site.js";
-import { Archive, Check, ChevronLeft, ChevronRight, Command as CommandIcon, Copy, Image as ImageIcon, LayoutGrid, PanelsLeftRight, Trash2 } from "lucide-static";
+import { AppWindow, Archive, Check, ChevronLeft, ChevronRight, Copy, CopyPlus, Image as ImageIcon, LayoutGrid, PanelsLeftRight, Trash2, Waypoints } from "lucide-static";
 
 const heroTitle = "elio";
 const homeUrl = "https://elio-fm.github.io/";
@@ -15,7 +15,10 @@ const featureIcons = {
   panels: PanelsLeftRight,
   preview: ImageIcon,
   archive: Archive,
-  actions: CommandIcon,
+  bulk: CopyPlus,
+  goto: Waypoints,
+  "open-with": AppWindow,
+  duplicates: Copy,
   trash: Trash2,
   views: LayoutGrid,
 };
@@ -34,8 +37,8 @@ const homeStructuredData = {
   image: `${homeUrl}images/logo.png`,
   screenshot: `${homeUrl}images/default.webp`,
   featureList: [
-    "Three-pane layout",
-    "Rich previews",
+    "Adaptive layout",
+    "Preview coverage",
     "Inline image previews",
     "Keyboard-first workflows",
     "Copy, cut, and paste file actions",
