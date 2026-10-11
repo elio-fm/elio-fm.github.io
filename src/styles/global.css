@@ -678,9 +678,9 @@ h2 {
 }
 
 .hero-quick-start .quick-start-tabs {
+  flex-wrap: nowrap;
   justify-content: center;
-  margin-inline: -14px;
-  gap: 6px;
+  gap: 4px;
 }
 
 .hero-quick-start .quick-start-tab {
