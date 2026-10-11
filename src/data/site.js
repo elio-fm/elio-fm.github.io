@@ -153,18 +153,18 @@ export const themeShots = [
 
 export const actionPreviews = [
   {
-    id: "bulk-add",
-    eyebrow: "Bulk add",
-    label: "Bulk add",
-    title: "Create files in bulk",
+    id: "fuzzy-find",
+    eyebrow: "Fuzzy Find",
+    label: "Fuzzy Find",
+    title: "Fuzzy Find",
     body: "A short real workflow capture from inside elio.",
-    video: "/videos/bulk-add.webm",
+    video: "/videos/fuzzy-find.webm",
     note: "",
-    chips: ["Keyboard-first", "Batch workflow", "Preview stays visible"],
+    chips: ["Built-in", "Live results", "No external tools"],
     highlights: [
-      "Build up a selection quickly without modal hopping.",
-      "Keep spatial context while you decide what to do next.",
-      "Stay inside the same keyboard loop from selection to action.",
+      "Search files and folders without leaving elio.",
+      "Keep paths and preview context visible while filtering.",
+      "Use the built-in finder without an external dependency.",
     ],
   },
   {

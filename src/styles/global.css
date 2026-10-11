@@ -837,6 +837,10 @@ h2 {
   margin-right: auto;
 }
 
+.section-heading--plain {
+  padding-top: 16px;
+}
+
 .feature-section-heading {
   margin-bottom: 50px;
 }
@@ -870,9 +874,15 @@ h2 {
   gap: 0;
 }
 
-.motion-showcase-heading,
-.feature-section-heading,
 .themes-section .section-heading {
+  margin-bottom: 20px;
+}
+
+.motion-showcase-heading {
+  margin-bottom: 32px;
+}
+
+.feature-section-heading {
   margin-bottom: 32px;
 }
 
@@ -3960,9 +3970,17 @@ h2 {
     margin-bottom: 20px;
   }
 
-  .motion-showcase-heading,
+  .themes-section .section-heading {
+    margin-bottom: 20px;
+  }
+
+  .motion-showcase-heading {
+    /* The carousel adds 4px of top padding for its scroll affordance. */
+    margin-bottom: 28px;
+  }
+
   .feature-section-heading {
-    margin-bottom: 26px;
+    margin-bottom: 32px;
   }
 
   .feature-section {
@@ -3980,10 +3998,6 @@ h2 {
 
   .themes-section {
     padding-top: 13px;
-  }
-
-  .themes-section .section-heading {
-    margin-bottom: 26px;
   }
 
   .quick-start {
