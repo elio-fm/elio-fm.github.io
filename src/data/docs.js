@@ -144,6 +144,10 @@ export const themeSections = [
     body: "App-wide colors for chrome, panels, borders, text, and selection.",
   },
   {
+    name: "[focused_entry]",
+    body: "Bold, italic, and underline styles for focused browser entry names.",
+  },
+  {
     name: "[preview.code]",
     body: "Syntax colors for code previews.",
   },

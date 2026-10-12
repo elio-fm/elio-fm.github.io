@@ -42,6 +42,11 @@ yank_bar = "ansi-green"      # copied item bar
 cut_bar = "ansi-red"         # cut item bar
 progress_bar = "#41a0dc"     # background operation progress`;
 
+const focusedEntrySnippet = `[focused_entry]
+bold = true
+italic = false
+underline = false`;
+
 const previewSnippet = `[preview.code]
 bg = "none"                 # preview background; none = transparent
 fg = "#d7e3f4"              # normal code text
@@ -163,6 +168,23 @@ color = "#6f7d8d"  # directory color`;
 
         <p class="docs-note docs-config-runtime-note">These colors control the main interface, from panels and text to selections and status markers.</p>
       </article>
+
+      <article class="doc-card docs-card-tight docs-detail-card docs-config-example-card">
+        <div class="docs-config-example-heading">
+          <h3>Focused entry</h3>
+        </div>
+
+        <div class="command-block docs-config-code" data-command-block>
+          <button class="command-copy" type="button" data-copy-command data-copy-state="idle" aria-label="Copy focused entry theme" title="Copy focused entry theme">
+            <span class="command-copy-icon" data-copy-icon="copy" aria-hidden="true" set:html={Copy}></span>
+            <span class="command-copy-icon" data-copy-icon="check" aria-hidden="true" set:html={Check}></span>
+          </button>
+          <pre class="language-toml"><code class="language-toml" set:html={highlightToml(focusedEntrySnippet)}></code></pre>
+        </div>
+
+        <p class="docs-note docs-config-runtime-note">These modifiers apply only to focused browser entry names in list and grid views. They can be combined.</p>
+      </article>
+
       <article class="doc-card docs-card-tight docs-detail-card docs-config-example-card">
         <div class="docs-config-example-heading">
           <h3>Code previews</h3>
