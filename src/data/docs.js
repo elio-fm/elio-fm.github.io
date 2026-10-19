@@ -19,7 +19,7 @@ export const docsNav = [
   {
     label: "Shell integration",
     href: "/docs/shell-integration/",
-    description: "cd-on-exit wrappers for bash, zsh, fish, and Nu.",
+    description: "cd-on-exit wrappers for bash, zsh, fish, Nu, and PowerShell.",
   },
   {
     label: "File chooser",

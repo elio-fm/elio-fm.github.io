@@ -5,7 +5,7 @@ import { Check, Copy } from "lucide-static";
 
 const highlightShellCommand = (code) => Prism.highlight(code, {
   "shell-name": {
-    pattern: /(?<=\belio\s+shell\s+(?:install|uninstall|init)\s+)(?:bash|zsh|fish|nu)\b/,
+    pattern: /(?<=\belio\s+shell\s+(?:install|uninstall|init)\s+)(?:bash|zsh|fish|nu|pwsh)\b/,
   },
   "shell-action": {
     pattern: /(?<=\belio\s+shell\s+)(?:install|uninstall|init)\b/,
@@ -44,6 +44,14 @@ const shellRows = [
     uninstallCommand: `elio shell uninstall nu`,
     initCommand: `elio shell init nu`,
     path: "$XDG_CONFIG_HOME/nushell/autoload/elio.nu or ~/.config/nushell/autoload/elio.nu",
+  },
+  {
+    name: "PowerShell 7.4+",
+    installCommand: `elio shell install pwsh`,
+    uninstallCommand: `elio shell uninstall pwsh`,
+    initCommand: `elio shell init pwsh`,
+    pathLabel: "PowerShell profile",
+    path: "$PROFILE",
   },
 ];
 ---
@@ -185,6 +193,7 @@ const shellRows = [
             <div class="docs-managed-file-row">
               <span class="docs-managed-file-shell">{row.name}</span>
               <span class="docs-managed-file-paths">
+                {row.pathLabel && <span>{row.pathLabel}</span>}
                 {row.path.split(" or ").map((pathPart, partIndex) => (
                   <>
                     {partIndex > 0 && <span class="docs-managed-file-or">or</span>}

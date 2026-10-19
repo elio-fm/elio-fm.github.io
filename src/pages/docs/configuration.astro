@@ -38,6 +38,7 @@ entries = [
   "config",
   "trash",
   { title = "tmp", path = "/tmp", key = "T" },
+  { title = "repo root", command = "git rev-parse --show-toplevel", key = "r" },
 ]`;
 
 const openSnippet = `[open]
@@ -201,6 +202,7 @@ delete_permanently = "D"                # uppercase = shifted letter`;
           <code>kitty</code>
           <code>ghostty</code>
           <code>foot</code>
+          <code>footclient</code>
           <code>wezterm</code>
           <code>alacritty</code>
           <code>rio</code>
@@ -240,6 +242,7 @@ delete_permanently = "D"                # uppercase = shifted letter`;
       <article class="doc-card docs-card-tight docs-detail-card docs-config-example-card">
         <div class="docs-config-example-heading">
           <h3>Go-to entries</h3>
+          <p>Use a built-in location, a path, or a command.</p>
         </div>
 
         <div class="command-block docs-config-code" data-command-block>
@@ -250,7 +253,7 @@ delete_permanently = "D"                # uppercase = shifted letter`;
           <pre class="language-toml"><code class="language-toml" set:html={highlightToml(gotoSnippet)}></code></pre>
         </div>
 
-        <p class="docs-note docs-config-runtime-note">Use built-in ids like <code>downloads</code>, or add custom absolute / <code>~/</code> paths with shortcut keys.</p>
+        <p class="docs-note docs-config-runtime-note">Paths must be absolute or start with <code>~/</code><br />Commands run in the current directory and must print an absolute path.</p>
         <div class="docs-config-pill-row docs-config-places-builtins" aria-label="Built-in Go-to ids">
           <code>top</code>
           <code>downloads</code>

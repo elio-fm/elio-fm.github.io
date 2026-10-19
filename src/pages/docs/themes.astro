@@ -27,6 +27,7 @@ path_bg = "#111111"          # path bar background
 # Text
 text = "#e7edf5"             # primary text
 muted = "#8c97a8"            # secondary text
+colored_names = false        # set true to use each entry's icon color for its name instead of palette text
 chip_text = "#0c0c0c"        # text on bright chips
 
 # Controls and states
@@ -60,29 +61,33 @@ function = "#36d7ff"        # function names
 invalid = "#ff8585"         # invalid/error tokens`;
 
 const classesSnippet = `[classes.directory]
-icon = "󰉋"         # folder icon
-color = "#5ba8ff"  # folder color
+icon       = "󰉋"            # folder icon
+color      = "#5ba8ff"       # folder color
 
 [classes.code]
-icon = "󰆍"         # default code-file icon
-color = "#38d5ff"  # default code-file color
+icon       = "󰆍"            # default code-file icon
+color      = "#38d5ff"       # default code-file color
+name_color = "#79e7d5"       # entry name color
 
 [classes.config]
-icon = "󰒓"         # default config-file icon
-color = "#b38cff"  # default config-file color`;
+icon       = "󰒓"            # default config-file icon
+color      = "#b38cff"       # default config-file color`;
 
 const rulesSnippet = `[extensions.rs]
-class = "code"     # reuse the code class
-icon = ""         # Rust icon
-color = "#dea584"  # Rust file color
+class      = "code"           # reuse the code class
+icon       = ""              # Rust icon
+color      = "#dea584"        # Rust file color
+name_color = "#dea584"        # entry name color
 
 [files."Cargo.toml"]
-class = "config"   # exact filename override
-icon = ""
+class      = "config"         # exact filename override
+icon       = ""
+name_color = "#e2c08d"        # entry name color
 
 [directories."node_modules"]
-icon = "󰏗"         # exact directory-name override
-color = "#6f7d8d"  # directory color`;
+icon       = "󰏗"              # exact directory-name override
+color      = "#6f7d8d"        # directory color
+name_color = "#6f7d8d"        # entry name color`;
 ---
 
 <DocsLayout
