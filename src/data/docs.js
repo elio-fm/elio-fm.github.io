@@ -145,7 +145,7 @@ export const themeSections = [
   },
   {
     name: "[focused_entry]",
-    body: "Bold, italic, and underline styles for focused browser entry names.",
+    body: "Focused entry name styles and an optional reversed focus surface.",
   },
   {
     name: "[preview.code]",

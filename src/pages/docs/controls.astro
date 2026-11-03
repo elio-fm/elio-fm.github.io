@@ -27,6 +27,7 @@ const controlColumns = [
         [["Double-click"], "Open a file or enter a folder."],
         [["Scroll"], "Move through files or scroll the preview."],
         [["Shift+Scroll"], "Scroll the preview sideways."],
+        [["Drag scrollbar"], "Scroll the list or preview directly."],
       ],
     },
     {
@@ -44,6 +45,7 @@ const controlColumns = [
       title: "View",
       rows: [
         [["v"], "Switch between grid and list view."],
+        [["i / Alt+Enter"], "Show details for the focused item."],
         [["Ctrl++ / Ctrl+-"], "Zoom the grid in or out."],
         [["."], "Show or hide dotfiles."],
         [["s"], "Cycle the sort order."],
@@ -68,11 +70,13 @@ const controlColumns = [
       rows: [
         [["Space"], "Add or remove the focused item from the selection."],
         [["Ctrl+A"], "Select everything in the current folder."],
-        [["Esc"], "Clear the selection."],
+        [["Esc"], "Clear the selection, or cancel an overlay or prompt."],
         [["y"], "Yank (copy)."],
-        [["c"], "Copy path details to the clipboard."],
         [["x"], "Cut."],
-        [["p"], "Paste."],
+        [["p"], "Paste yanked or cut items."],
+        [["c"], "Open the Copy to clipboard menu for names and paths."],
+        [["Ctrl+C"], "Copy the focused item or selection to the system clipboard."],
+        [["Ctrl+V"], "Paste items from the system clipboard; paste text in text-entry overlays."],
         [["-"], "Create absolute symlinks."],
         [["_"], "Create relative symlinks."],
       ],
@@ -119,7 +123,7 @@ const controlColumns = [
 
       <article class="doc-card docs-detail-card">
         <ul class="docs-list docs-inline-key-list">
-          <li><code>Esc</code><span>Closes overlays, cancels prompts, or clears selection.</span></li>
+          <li><code>Esc</code><span>Closes overlays, cancels prompts, or clears selection. The <code>cancel</code> and <code>clear_selection</code> actions can be configured separately.</span></li>
         </ul>
       </article>
     </div>

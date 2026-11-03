@@ -13,19 +13,19 @@ const launcherRows = [
   ["Linux / BSD desktop sessions", "gio, with xdg-open as fallback"],
 ];
 
-const clipboardRows = [
-  ["Terminal", "OSC52 when supported"],
-  ["Wayland", "wl-copy"],
-  ["X11", "xclip or xsel"],
-  ["macOS", "pbcopy"],
-  ["Windows", "clip"],
+const copyMenuRows = [
+  ["c", "Name(s)", "Text"],
+  ["n", "Name(s) without extension", "Text"],
+  ["p", "Path(s)", "Text"],
+  ["d", "Directory path(s)", "Text"],
+  ["i", "Item(s)", "Files and folders"],
 ];
 
 const trashRows = [
   ["Linux", "Uses gio trash when available, then falls back to the Freedesktop Trash layout."],
   ["BSD", "Uses the Freedesktop Trash layout."],
   ["macOS", "Moves items to ~/.Trash and stores restore metadata for items trashed by elio."],
-  ["Windows", "Moves items to the Recycle Bin. The Recycle Bin is not shown as a browsable Trash view yet."],
+  ["Windows", "Uses the system drive’s Recycle Bin."],
 ];
 ---
 
@@ -188,24 +188,42 @@ const trashRows = [
 
   <section class="docs-section">
     <div class="docs-section-heading">
-      <p class="eyebrow">CLIPBOARD</p>
-      <h2 class="docs-section-title">Copy to clipboard</h2>
-      <p><code>c</code> opens a menu to copy names, paths, or directory paths for the focused item or selection.</p>
+      <p class="eyebrow">ITEM CLIPBOARD</p>
+      <h2 class="docs-section-title">Copy and paste items</h2>
+      <p>Copy files and folders between elio and desktop apps using the system clipboard.</p>
     </div>
 
     <article class="doc-card docs-detail-card">
-      <table class="docs-table docs-clipboard-table">
+      <ul class="docs-list">
+        <li><span><code>Ctrl+C</code> copies the focused item or selection.</span></li>
+        <li><span><code>Ctrl+V</code> or your terminal’s own paste shortcut pastes items into elio.</span></li>
+        <li><span>In text-entry overlays, <code>Ctrl+V</code> pastes clipboard text.</span></li>
+      </ul>
+    </article>
+  </section>
+
+  <section class="docs-section">
+    <div class="docs-section-heading">
+      <p class="eyebrow">CLIPBOARD</p>
+      <h2 class="docs-section-title">Copy to clipboard</h2>
+      <p><code>c</code> opens a menu to copy names, paths, directory paths, or the items themselves for the focused item or selection.</p>
+    </div>
+
+    <article class="doc-card docs-detail-card">
+      <table class="docs-table docs-copy-menu-table">
         <thead>
           <tr>
-            <th>Environment</th>
-            <th>Clipboard method</th>
+            <th>Menu key</th>
+            <th>Copies</th>
+              <th>Type</th>
           </tr>
         </thead>
         <tbody>
-          {clipboardRows.map(([environment, path]) => (
+          {copyMenuRows.map(([key, copied, format]) => (
             <tr>
-              <td><strong>{environment}</strong></td>
-              <td><code>{path}</code></td>
+              <td><code>{key}</code></td>
+              <td>{copied}</td>
+              <td>{format}</td>
             </tr>
           ))}
         </tbody>

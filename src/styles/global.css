@@ -2540,6 +2540,44 @@ h2 {
   width: 66%;
 }
 
+.docs-copy-menu-table {
+  table-layout: fixed;
+}
+
+.docs-copy-menu-table th:first-child,
+.docs-copy-menu-table td:first-child {
+  width: 12%;
+  padding-right: 12px;
+}
+
+.docs-copy-menu-table th:nth-child(2),
+.docs-copy-menu-table td:nth-child(2) {
+  width: 15%;
+}
+
+.docs-copy-menu-table th:last-child,
+.docs-copy-menu-table td:last-child {
+  width: 33%;
+}
+
+@media (max-width: 620px) {
+  .docs-copy-menu-table th:first-child,
+  .docs-copy-menu-table td:first-child {
+    width: 20%;
+    padding-right: 8px;
+  }
+
+  .docs-copy-menu-table th:nth-child(2),
+  .docs-copy-menu-table td:nth-child(2) {
+    width: 48%;
+  }
+
+  .docs-copy-menu-table th:last-child,
+  .docs-copy-menu-table td:last-child {
+    width: 32%;
+  }
+}
+
 .docs-goto-table {
   table-layout: fixed;
 }

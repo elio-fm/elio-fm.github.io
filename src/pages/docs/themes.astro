@@ -46,7 +46,8 @@ progress_bar = "#41a0dc"     # background operation progress`;
 const focusedEntrySnippet = `[focused_entry]
 bold = true
 italic = false
-underline = false`;
+underline = false
+reversed = false  # set true to use the effective name color as the focus background`;
 
 const previewSnippet = `[preview.code]
 bg = "none"                 # preview background; none = transparent
@@ -187,7 +188,6 @@ name_color = "#6f7d8d"        # entry name color`;
           <pre class="language-toml"><code class="language-toml" set:html={highlightToml(focusedEntrySnippet)}></code></pre>
         </div>
 
-        <p class="docs-note docs-config-runtime-note">These modifiers apply only to focused browser entry names in list and grid views. They can be combined.</p>
       </article>
 
       <article class="doc-card docs-card-tight docs-detail-card docs-config-example-card">
